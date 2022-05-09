@@ -1,6 +1,6 @@
 ﻿namespace ApiCommon.Domain.Auth
 {
-    public static class ErrorModels
+    public static class Errors
     {
         public static readonly ErrorModel BadEmail = new(0, "bad_email");
         public static readonly ErrorModel BadUserName = new(10, "bad_user_name");

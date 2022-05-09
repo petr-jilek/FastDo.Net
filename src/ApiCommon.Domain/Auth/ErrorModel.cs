@@ -8,7 +8,7 @@
 
         public ErrorModel(int code, string message, string? detail = null)
         {
-            Code = code + 20_000;
+            Code = code;
             Message = message;
             Detail = detail;
         }
