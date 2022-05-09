@@ -17,13 +17,16 @@ namespace ApiCommon.Domain.Abstraction
             if (result is null)
                 return NotFound();
 
-            if (result.Success && result.Value is not null)
-                return StatusCode((int)result.StatusCode, result.Value);
+            if (result.Success)
+            {
+                if (result.Value is not null)
+                    return StatusCode((int)result.StatusCode, result.Value);
 
-            if (result.Success && result.Value is null)
-                return NotFound();
+                if (result.Value is null)
+                    return NotFound();
+            }
 
-            if (result.Success == false && result.Error is not null)
+            if (result.Error is not null)
                 return StatusCode((int)result.StatusCode, result.Error);
 
             return StatusCode((int)result.StatusCode);
