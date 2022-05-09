@@ -27,13 +27,9 @@ namespace ApiCommon.Domain.Middlewares
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-                var response = ex is AuthException exception
-                    ? (_env.IsDevelopment()
-                        ? new ErrorModel(exception.ErrorModel.Code, exception.ErrorModel.Message, ex.StackTrace?.ToString())
-                        : exception.ErrorModel)
-                    : (_env.IsDevelopment()
-                        ? new ErrorModel(context.Response.StatusCode, ex.Message, ex.StackTrace?.ToString())
-                        : new ErrorModel(context.Response.StatusCode, "Internal Server Error"));
+                var response = _env.IsDevelopment()
+                        ? new ErrorModel(ex.Message, context.Response.StatusCode, ex.StackTrace?.ToString())
+                        : new ErrorModel(ex.Message, context.Response.StatusCode, "Internal Server Error");
 
                 var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 

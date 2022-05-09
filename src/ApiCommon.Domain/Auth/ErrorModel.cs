@@ -2,14 +2,14 @@
 {
     public class ErrorModel
     {
-        public readonly int Code;
         public readonly string Message;
+        public readonly int? Code;
         public readonly string? Detail;
 
-        public ErrorModel(int code, string message, string? detail = null)
+        public ErrorModel(string message, int? code = null, string? detail = null)
         {
-            Code = code;
             Message = message;
+            Code = code;
             Detail = detail;
         }
     }

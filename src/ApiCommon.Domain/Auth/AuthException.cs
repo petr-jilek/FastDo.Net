@@ -2,11 +2,8 @@
 {
     public class AuthException : Exception
     {
-        public readonly ErrorModel ErrorModel;
-
-        public AuthException(ErrorModel errorModel)
+        public AuthException(string message) : base(message)
         {
-            ErrorModel = errorModel;
         }
     }
 }
