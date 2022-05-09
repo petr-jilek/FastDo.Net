@@ -38,7 +38,7 @@ namespace ApiCommon.Domain.Services
             return tokenHandler.WriteToken(token);
         }
 
-        public static async Task<LoginResponse<T>> CreateUserObject<T>(string token, T user)
+        public static async Task<LoginResponse<T>> CreateUserObjectAsync<T>(string token, T user)
             => new LoginResponse<T>()
             {
                 Token = token,
