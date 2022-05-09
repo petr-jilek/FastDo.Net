@@ -1,3 +1,4 @@
-src/ApiCommon/bin/
-src/ApiCommon/obj/
-src/ApiCommon/ApiCommon.xml
+ApiCommon.Domain/bin/
+ApiCommon.Domain/obj/
+
+ApiCommon.Domain/ApiCommon.Domain.xml
