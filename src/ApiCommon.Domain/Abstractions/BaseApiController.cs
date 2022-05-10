@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using System.Text.Json;
 
 namespace ApiCommon.Domain.Abstraction
 {
@@ -23,7 +24,7 @@ namespace ApiCommon.Domain.Abstraction
                     return StatusCode((int)result.StatusCode, result.Value);
 
                 if (result.Value is null)
-                    return NotFound();
+                    return StatusCode((int)result.StatusCode);
             }
 
             if (result.Error is not null)

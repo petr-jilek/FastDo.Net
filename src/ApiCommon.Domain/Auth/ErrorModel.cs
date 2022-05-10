@@ -2,9 +2,9 @@
 {
     public class ErrorModel
     {
-        public readonly string Message;
-        public readonly int? Code;
-        public readonly string? Detail;
+        public string Message { get; set; }
+        public int? Code { get; set; }
+        public string? Detail { get; set; }
 
         public ErrorModel(string message, int? code = null, string? detail = null)
         {
