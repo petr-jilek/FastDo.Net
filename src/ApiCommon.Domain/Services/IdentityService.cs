@@ -8,7 +8,7 @@ using ApiCommon.Domain.Abstractions;
 
 namespace ApiCommon.Domain.Services
 {
-    public class IdentityService : IService
+    public class IdentityService : IApiCommonService
     {
         private readonly IConfiguration _configuration;
 
