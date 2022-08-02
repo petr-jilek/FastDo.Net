@@ -2,7 +2,6 @@
 using System.Drawing.Imaging;
 using ApiCommon.Application.Interfaces;
 using ApiCommon.Application.ServiceSettings;
-using ApiCommon.Domain.Consts;
 using QRCoder;
 
 namespace ApiCommon.API.Services
@@ -28,7 +27,7 @@ namespace ApiCommon.API.Services
                 if (Directory.Exists(directory) == false)
                     Directory.CreateDirectory(directory);
 
-                var path = Path.Combine(directory, text + GlobalConsts.QRCodeFileType);
+                var path = Path.Combine(directory, text + ".png");
                 qrCodeImage.Save(path, ImageFormat.Png);
             }
 
