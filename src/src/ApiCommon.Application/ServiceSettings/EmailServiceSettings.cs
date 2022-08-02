@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.Application.Settings
+﻿namespace ApiCommon.Application.ServiceSettings
 {
     public class EmailServiceSettings
     {

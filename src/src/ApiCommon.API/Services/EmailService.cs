@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Headers;
 using ApiCommon.Application.Interfaces;
-using ApiCommon.Application.Settings;
+using ApiCommon.Application.ServiceSettings;
 
 namespace ApiCommon.API.Services
 {
