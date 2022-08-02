@@ -1,4 +1,4 @@
-﻿using Domain.Error;
+﻿using ApiCommon.Domain.Error;
 using System.Net;
 using System.Text.Json;
 

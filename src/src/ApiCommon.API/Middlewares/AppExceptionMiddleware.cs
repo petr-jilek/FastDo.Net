@@ -1,6 +1,6 @@
-﻿using Domain.Error;
-using System.Net;
+﻿using System.Net;
 using System.Text.Json;
+using ApiCommon.Domain.Error;
 
 namespace ApiCommon.API.Middlewares
 {
