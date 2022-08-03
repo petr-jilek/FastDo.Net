@@ -35,5 +35,12 @@
         public static readonly ErrorModel InvalidControllerAction = new("InvalidControllerAction");
 
         public static readonly ErrorModel GoPayError = new("GoPayError");
+
+        public static readonly ErrorModel FileEmpty = new("FileEmpty");
+        public static readonly ErrorModel FileTooLarge = new("FileTooLarge");
+        public static readonly ErrorModel BadFileName = new("BadFileName");
+        public static readonly ErrorModel BadFileType = new("BadFileType");
+        public static readonly ErrorModel FileExists = new("FileExists");
+        public static readonly ErrorModel FileNotExists = new("FileNotExists");
     }
 }
