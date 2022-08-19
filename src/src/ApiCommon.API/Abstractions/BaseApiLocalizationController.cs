@@ -7,8 +7,15 @@ namespace ApiCommon.API.Abstractions
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class BaseApiController : ControllerBase
+    public class BaseApiLocalizationController : ControllerBase
     {
+        private readonly ILocalizationService _localizationService;
+
+        public BaseApiLocalizationController(ILocalizationService localizationService)
+        {
+            _localizationService = localizationService;
+        }
+
         protected ActionResult HandleResult<T>(Result<T> result)
         {
             if (result is null)
@@ -23,9 +30,9 @@ namespace ApiCommon.API.Abstractions
             }
 
             if (result.Error is not null)
-                return StatusCode((int)result.StatusCode, ErrorModels.GetErrorModel(result.Error, "cz"));
+                return StatusCode((int)result.StatusCode, _localizationService.GetErrorModel(result.Error));
 
-            return StatusCode((int)result.StatusCode, ErrorModels.GetErrorModel(result.Error, "cz"));
+            return StatusCode((int)result.StatusCode, _localizationService.GetErrorModel(Errors.UnkonwnError));
         }
     }
 }

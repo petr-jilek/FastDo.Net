@@ -1,4 +1,5 @@
 ﻿using ApiCommon.Application.Interfaces;
+using ApiCommon.Domain.Error;
 
 namespace ApiCommon.API.Services
 {
@@ -19,6 +20,19 @@ namespace ApiCommon.API.Services
                 return "cz";
 
             return lang;
+        }
+
+        public string GetString(Dictionary<string, string> localizedValues)
+        {
+            if (localizedValues.TryGetValue(GetLanguageCode(), out var value))
+                return value;
+            else
+                return "##";
+        }
+
+        public ErrorModel GetErrorModel(string errorCode)
+        {
+            return ErrorModels.GetErrorModel(errorCode, GetLanguageCode());
         }
     }
 }
