@@ -4,5 +4,6 @@
     {
         public string? GetHostUrl();
         public string? CreateHttpsApiUrl(string path);
+        public string? CreateHttpsUrl(string path);
     }
 }

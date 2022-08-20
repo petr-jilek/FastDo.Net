@@ -16,5 +16,8 @@ namespace ApiCommon.API.Services
 
         public string? CreateHttpsApiUrl(string path)
             => $"https://{GetHostUrl()}/api{path}";
+
+        public string? CreateHttpsUrl(string path)
+            => $"https://{GetHostUrl()}{path}";
     }
 }

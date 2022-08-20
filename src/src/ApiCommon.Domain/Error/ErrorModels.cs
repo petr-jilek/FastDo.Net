@@ -141,6 +141,22 @@
                     _ => new ErrorModel("Datum konce musí být větší, než datum začátku"),
                 },
 
+                Errors.TextIsTooLong => lang switch
+                {
+                    "cz" => new ErrorModel("Text je příliš dlouhý"),
+                    "en" => new ErrorModel("The text is too long"),
+                    "de" => new ErrorModel("Der Text ist zu lang"),
+                    _ => new ErrorModel("Text je příliš dlouhý"),
+                },
+
+                Errors.UnconfirmedReservationAlreadyExists => lang switch
+                {
+                    "cz" => new ErrorModel("Nepotvrzená rezervace již existuje"),
+                    "en" => new ErrorModel("Unconfirmed reservation already exists"),
+                    "de" => new ErrorModel("Es besteht bereits eine unbestätigte Reservierung"),
+                    _ => new ErrorModel("Nepotvrzená rezervace již existuje"),
+                },
+
                 _ => lang switch
                 {
                     "cz" => new ErrorModel("Neznámý error"),

@@ -8,7 +8,7 @@
         public const string EmailIsRequired = "EmailIsRequired";
         public const string EmailIsNotValid = "EmailIsNotValid";
         public const string EmailIsTooLong = "EmailIsTooLong";
-  
+
         public const string PasswordIsRequired = "PasswordIsRequired";
         public const string PasswordIsTooShort = "PasswordIsTooShort";
         public const string PasswordIsTooLong = "PasswordIsTooLong";
@@ -27,6 +27,10 @@
         public const string PhoneNumberIsNotValid = "PhoneNumberIsNotValid";
 
         public const string EndDateMustBeGreaterThanStartDate = "EndDateMustBeGreaterThanStartDate";
+
+        public const string TextIsTooLong = "TextIsTooLong";
+
+        public const string UnconfirmedReservationAlreadyExists = "UnconfirmedReservationAlreadyExists";
 
 
         //public const string BadEmail = new("BadEmail");
