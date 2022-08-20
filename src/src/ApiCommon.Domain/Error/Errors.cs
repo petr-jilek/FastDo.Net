@@ -20,6 +20,14 @@
         public const string BadEmailOrPassword = "BadEmailOrPassword";
         public const string BadPassword = "BadPassword";
 
+        public const string NameIsRequired = "NameIsRequired";
+        public const string NameIsTooLong = "NameIsTooLong";
+
+        public const string PhoneNumberIsRequired = "PhoneNumberIsRequired";
+        public const string PhoneNumberIsNotValid = "PhoneNumberIsNotValid";
+
+        public const string EndDateMustBeGreaterThanStartDate = "EndDateMustBeGreaterThanStartDate";
+
 
         //public const string BadEmail = new("BadEmail");
         //public const string UserWithEmailAlreadyExists = new("UserWithEmailAlreadyExists");

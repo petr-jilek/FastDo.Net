@@ -103,6 +103,44 @@
                     _ => new ErrorModel("Špatné heslo"),
                 },
 
+                Errors.NameIsRequired => lang switch
+                {
+                    "cz" => new ErrorModel("Jméno je povinné"),
+                    "en" => new ErrorModel("Name is required"),
+                    "de" => new ErrorModel("Name ist erforderlich"),
+                    _ => new ErrorModel("Jméno je povinné"),
+                },
+                Errors.NameIsTooLong => lang switch
+                {
+                    "cz" => new ErrorModel("Jméno je příliš dlouhé"),
+                    "en" => new ErrorModel("Name is too long"),
+                    "de" => new ErrorModel("Der Name ist zu lang"),
+                    _ => new ErrorModel("Jméno je příliš dlouhé"),
+                },
+
+                Errors.PhoneNumberIsRequired => lang switch
+                {
+                    "cz" => new ErrorModel("Telefonní číslo je povinné"),
+                    "en" => new ErrorModel("Phone number is required"),
+                    "de" => new ErrorModel("Telefonnummer ist erforderlich"),
+                    _ => new ErrorModel("Telefonní číslo je povinné"),
+                },
+                Errors.PhoneNumberIsNotValid => lang switch
+                {
+                    "cz" => new ErrorModel("Telefonní číslo není validní"),
+                    "en" => new ErrorModel("Phone number is not valid"),
+                    "de" => new ErrorModel("Die Telefonnummer ist ungültig"),
+                    _ => new ErrorModel("Telefonní číslo není validní"),
+                },
+
+                Errors.EndDateMustBeGreaterThanStartDate => lang switch
+                {
+                    "cz" => new ErrorModel("Datum konce musí být větší, než datum začátku"),
+                    "en" => new ErrorModel("The end date must be greater than the start date"),
+                    "de" => new ErrorModel("Das Enddatum muss nach dem Startdatum liegen"),
+                    _ => new ErrorModel("Datum konce musí být větší, než datum začátku"),
+                },
+
                 _ => lang switch
                 {
                     "cz" => new ErrorModel("Neznámý error"),
