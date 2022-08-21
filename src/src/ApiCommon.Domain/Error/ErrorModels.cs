@@ -102,6 +102,13 @@
                     "de" => new ErrorModel("Falsches Passwort"),
                     _ => new ErrorModel("Špatné heslo"),
                 },
+                Errors.PasswordsDontMatch => lang switch
+                {
+                    "cz" => new ErrorModel("Hesla se neshodují"),
+                    "en" => new ErrorModel("Passwords dont match"),
+                    "de" => new ErrorModel("Passwörter stimmen nicht überein"),
+                    _ => new ErrorModel("Hesla se neshodují"),
+                },
 
                 Errors.NameIsRequired => lang switch
                 {
@@ -155,6 +162,118 @@
                     "en" => new ErrorModel("Unconfirmed reservation already exists"),
                     "de" => new ErrorModel("Es besteht bereits eine unbestätigte Reservierung"),
                     _ => new ErrorModel("Nepotvrzená rezervace již existuje"),
+                },
+
+                Errors.UserWithEmailAlreadyExists => lang switch
+                {
+                    "cz" => new ErrorModel("Uživatel s e-mailem již existuje"),
+                    "en" => new ErrorModel("User with email already exists"),
+                    "de" => new ErrorModel("Benutzer mit E-Mail existiert bereits"),
+                    _ => new ErrorModel("Uživatel s e-mailem již existuje"),
+                },
+
+                Errors.Empty => lang switch
+                {
+                    "cz" => new ErrorModel("Prázdný"),
+                    "en" => new ErrorModel("Empty"),
+                    "de" => new ErrorModel("Leer"),
+                    _ => new ErrorModel("Prázdný"),
+                },
+
+                Errors.FileIsEmpty => lang switch
+                {
+                    "cz" => new ErrorModel("Soubor je prázdný"),
+                    "en" => new ErrorModel("File is empty"),
+                    "de" => new ErrorModel("Die Datei ist leer"),
+                    _ => new ErrorModel("Soubor je prázdný"),
+                },
+                Errors.FileNameIsNotValid => lang switch
+                {
+                    "cz" => new ErrorModel("Název souboru není platný"),
+                    "en" => new ErrorModel("Dateiname ist ungültig"),
+                    "de" => new ErrorModel("Die Datei ist leer"),
+                    _ => new ErrorModel("Název souboru není platný"),
+                },
+                Errors.FileTypeIsNotValid => lang switch
+                {
+                    "cz" => new ErrorModel("Typ souboru není platný"),
+                    "en" => new ErrorModel("File type is not valid"),
+                    "de" => new ErrorModel("Dateityp ist ungültig"),
+                    _ => new ErrorModel("Typ souboru není platný"),
+                },
+                Errors.FileIsTooLarge => lang switch
+                {
+                    "cz" => new ErrorModel("Soubor je příliš velký"),
+                    "en" => new ErrorModel("File is too large"),
+                    "de" => new ErrorModel("Datei ist zu groß"),
+                    _ => new ErrorModel("Soubor je příliš velký"),
+                },
+                Errors.FileAlreadyExists => lang switch
+                {
+                    "cz" => new ErrorModel("Soubor již existuje"),
+                    "en" => new ErrorModel("File already exists"),
+                    "de" => new ErrorModel("Die Datei existiert bereits"),
+                    _ => new ErrorModel("Soubor již existuje"),
+                },
+                Errors.FileNotExists => lang switch
+                {
+                    "cz" => new ErrorModel("Soubor neexistuje"),
+                    "en" => new ErrorModel("File not exists"),
+                    "de" => new ErrorModel("Datei existiert nicht"),
+                    _ => new ErrorModel("Soubor neexistuje"),
+                },
+
+                Errors.ArticleNotExists => lang switch
+                {
+                    "cz" => new ErrorModel("Článek neexistuje"),
+                    "en" => new ErrorModel("Article not exists"),
+                    "de" => new ErrorModel("Artikel nicht vorhanden"),
+                    _ => new ErrorModel("Článek neexistuje"),
+                },
+                Errors.ArticleAlreadyExists => lang switch
+                {
+                    "cz" => new ErrorModel("Článek již existuje"),
+                    "en" => new ErrorModel("Article already exists"),
+                    "de" => new ErrorModel("Artikel existiert bereits"),
+                    _ => new ErrorModel("Článek již existuje"),
+                },
+
+                Errors.FundNotExists => lang switch
+                {
+                    "cz" => new ErrorModel("Fond neexistuje"),
+                    "en" => new ErrorModel("Fund not exists"),
+                    "de" => new ErrorModel("Fonds existiert nicht"),
+                    _ => new ErrorModel("Fond neexistuje"),
+                },
+
+                Errors.UserNameIsRequired => lang switch
+                {
+                    "cz" => new ErrorModel("Uživatelské jméno je povinné"),
+                    "en" => new ErrorModel("Username is required"),
+                    "de" => new ErrorModel("Benutzername wird benötigt"),
+                    _ => new ErrorModel("Uživatelské jméno je povinné"),
+                },
+                Errors.UserNameIsTooLong => lang switch
+                {
+                    "cz" => new ErrorModel("Uživatelské jméno je příliš dlouhé"),
+                    "en" => new ErrorModel("Username is too long"),
+                    "de" => new ErrorModel("Der Benutzername ist zu lang"),
+                    _ => new ErrorModel("Uživatelské jméno je příliš dlouhé"),
+                },
+
+                Errors.ImageIsRequired => lang switch
+                {
+                    "cz" => new ErrorModel("Obrázek je povinný"),
+                    "en" => new ErrorModel("Image is required"),
+                    "de" => new ErrorModel("Bild ist erforderlich"),
+                    _ => new ErrorModel("Obrázek je povinný"),
+                },
+                Errors.ImageNameIsTooLong => lang switch
+                {
+                    "cz" => new ErrorModel("Název obrázku je příliš dlouhý"),
+                    "en" => new ErrorModel("Image name is too long"),
+                    "de" => new ErrorModel("Bildname ist zu lang"),
+                    _ => new ErrorModel("Název obrázku je příliš dlouhý"),
                 },
 
                 _ => lang switch

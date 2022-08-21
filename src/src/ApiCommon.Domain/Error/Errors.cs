@@ -19,6 +19,7 @@
 
         public const string BadEmailOrPassword = "BadEmailOrPassword";
         public const string BadPassword = "BadPassword";
+        public const string PasswordsDontMatch = "PasswordsDontMatch";
 
         public const string NameIsRequired = "NameIsRequired";
         public const string NameIsTooLong = "NameIsTooLong";
@@ -31,6 +32,29 @@
         public const string TextIsTooLong = "TextIsTooLong";
 
         public const string UnconfirmedReservationAlreadyExists = "UnconfirmedReservationAlreadyExists";
+
+        public const string UserWithEmailAlreadyExists = "UserWithEmailAlreadyExists";
+
+        public const string Empty = "Empty";
+
+        public const string FileIsEmpty = "FileIsEmpty";
+        public const string FileNameIsNotValid = "FileNameIsNotValid";
+        public const string FileTypeIsNotValid = "FileTypeIsNotValid";
+        public const string FileIsNotValid = "FileIsNotValid";
+        public const string FileIsTooLarge = "FileIsTooLarge";
+        public const string FileAlreadyExists = "FileAlreadyExists";
+        public const string FileNotExists = "FileNotExists";
+
+        public const string ArticleNotExists = "ArticleNotExists";
+        public const string ArticleAlreadyExists = "ArticleAlreadyExists";
+
+        public const string FundNotExists = "FundNotExists";
+
+        public const string UserNameIsRequired = "UserNameIsRequired";
+        public const string UserNameIsTooLong = "UserNameIsTooLong";
+
+        public const string ImageIsRequired = "ImageIsRequired";
+        public const string ImageNameIsTooLong = "ImageNameIsTooLong";
 
 
         //public const string BadEmail = new("BadEmail");

@@ -1,4 +1,6 @@
 ﻿using ApiCommon.Application.Interfaces;
+using ApiCommon.Application.ServiceSettings;
+using ApiCommon.Domain.Consts;
 using ApiCommon.Domain.Error;
 
 namespace ApiCommon.API.Services
@@ -6,20 +8,33 @@ namespace ApiCommon.API.Services
     public class LocalizationService : ILocalizationService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly LocalizationServiceSettings _settings;
 
-        public LocalizationService(IHttpContextAccessor httpContextAccessor)
+        public LocalizationService(IHttpContextAccessor httpContextAccessor, LocalizationServiceSettings settings)
         {
             _httpContextAccessor = httpContextAccessor;
+            _settings = settings;
         }
 
         public string GetLanguageCode()
         {
-            var lang = _httpContextAccessor.HttpContext.Request.Headers["Accept-Language"];
+            var lang = _httpContextAccessor.HttpContext?.Request.Headers["Accept-Language"];
 
-            if (string.IsNullOrEmpty(lang))
-                return "cz";
+            if (lang is null || ApiCommonConsts.SupportedLanguages.Contains(lang) == false)
+            {
+                if (_settings.DefaultLanguage is not null)
+                    return _settings.DefaultLanguage;
 
-            return lang;
+                return ApiCommonConsts.DefaultLanguage;
+            }
+
+            if (_settings.SupportedLanguages is not null && _settings.SupportedLanguages.Contains(lang))
+                return lang;
+
+            if (_settings.DefaultLanguage is not null)
+                return _settings.DefaultLanguage;
+
+            return ApiCommonConsts.DefaultLanguage;
         }
 
         public string GetString(Dictionary<string, string> localizedValues)

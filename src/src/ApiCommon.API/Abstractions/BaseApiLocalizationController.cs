@@ -32,6 +32,9 @@ namespace ApiCommon.API.Abstractions
             if (result.Error is not null)
                 return StatusCode((int)result.StatusCode, _localizationService.GetErrorModel(result.Error));
 
+            if (result.ErrorModel is not null)
+                return StatusCode((int)result.StatusCode, result.ErrorModel);
+
             return StatusCode((int)result.StatusCode, _localizationService.GetErrorModel(Errors.UnkonwnError));
         }
     }

@@ -1,5 +1,6 @@
 ﻿using ApiCommon.Application.Core;
 using ApiCommon.Application.Interfaces;
+using ApiCommon.Domain.Consts;
 using ApiCommon.Domain.Error;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,9 +24,12 @@ namespace ApiCommon.API.Abstractions
             }
 
             if (result.Error is not null)
-                return StatusCode((int)result.StatusCode, ErrorModels.GetErrorModel(result.Error, "cz"));
+                return StatusCode((int)result.StatusCode, ErrorModels.GetErrorModel(result.Error, ApiCommonConsts.DefaultLanguage));
 
-            return StatusCode((int)result.StatusCode, ErrorModels.GetErrorModel(result.Error, "cz"));
+            if (result.ErrorModel is not null)
+                return StatusCode((int)result.StatusCode, result.ErrorModel);
+
+            return StatusCode((int)result.StatusCode, ErrorModels.GetErrorModel(result.Error, ApiCommonConsts.DefaultLanguage));
         }
     }
 }
