@@ -276,6 +276,37 @@
                     _ => new ErrorModel("Název obrázku je příliš dlouhý"),
                 },
 
+                Errors.ItemNotExists => lang switch
+                {
+                    "cz" => new ErrorModel("Položka neexistuje"),
+                    "en" => new ErrorModel("Item not exists"),
+                    "de" => new ErrorModel("Artikel existiert nicht"),
+                    _ => new ErrorModel("Položka neexistuje"),
+                },
+                Errors.ItemAlreadyExists => lang switch
+                {
+                    "cz" => new ErrorModel("Položka již existuje"),
+                    "en" => new ErrorModel("Item already exists"),
+                    "de" => new ErrorModel("Artikel existiert bereits"),
+                    _ => new ErrorModel("Položka již existuje"),
+                },
+
+                Errors.EmailSendFailed => lang switch
+                {
+                    "cz" => new ErrorModel("Email se nepodařilo odeslat"),
+                    "en" => new ErrorModel("The email could not be sent"),
+                    "de" => new ErrorModel("Die E-Mail konnte nicht gesendet werden"),
+                    _ => new ErrorModel("Email se nepodařilo odeslat"),
+                },
+
+                Errors.MustBePositiveNumber => lang switch
+                {
+                    "cz" => new ErrorModel("Musí být kladné číslo"),
+                    "en" => new ErrorModel("Must be positive number"),
+                    "de" => new ErrorModel("Muss eine positive Zahl sein"),
+                    _ => new ErrorModel("Musí být kladné číslo"),
+                },
+
                 _ => lang switch
                 {
                     "cz" => new ErrorModel("Neznámý error"),

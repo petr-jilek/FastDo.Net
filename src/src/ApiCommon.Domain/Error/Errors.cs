@@ -56,6 +56,13 @@
         public const string ImageIsRequired = "ImageIsRequired";
         public const string ImageNameIsTooLong = "ImageNameIsTooLong";
 
+        public const string ItemNotExists = "ItemNotExists";
+        public const string ItemAlreadyExists = "ItemAlreadyExists";
+
+        public const string EmailSendFailed = "EmailSendFailed";
+
+        public const string MustBePositiveNumber = "MustBePositiveNumber";
+
 
         //public const string BadEmail = new("BadEmail");
         //public const string UserWithEmailAlreadyExists = new("UserWithEmailAlreadyExists");
