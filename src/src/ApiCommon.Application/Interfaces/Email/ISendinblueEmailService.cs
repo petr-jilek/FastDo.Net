@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.Application.Interfaces
+﻿namespace ApiCommon.Application.Interfaces.Email
 {
     public interface ISendinblueEmailService
     {

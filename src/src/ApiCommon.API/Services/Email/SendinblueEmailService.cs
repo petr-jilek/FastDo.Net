@@ -1,9 +1,8 @@
-﻿using System.Net;
-using System.Text;
-using ApiCommon.Application.Interfaces;
-using ApiCommon.Application.ServiceSettings;
+﻿using System.Text;
+using ApiCommon.Application.Interfaces.Email;
+using ApiCommon.Application.ServiceSettings.Email;
 
-namespace ApiCommon.API.Services
+namespace ApiCommon.API.Services.Email
 {
     public class SendinblueEmailService : ISendinblueEmailService
     {
@@ -27,7 +26,7 @@ namespace ApiCommon.API.Services
             var jsonBody = "{\"sender\":{\"name\":\"" + fromName + "\",\"email\":\"" + fromEmail + "\"},\"to\":[{\"email\":\"" + toEmail + "\",\"name\":\"" + toName + "\"}],\"subject\":\"" + subject + "\",\"htmlContent\":\"" + htmlContent + "\"}";
 
             var result = await client.PostAsync("", new StringContent(jsonBody, Encoding.UTF8, "application/json"));
-         
+
             return result;
         }
     }

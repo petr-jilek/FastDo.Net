@@ -3,7 +3,7 @@ using ApiCommon.Application.ServiceSettings;
 using ApiCommon.Domain.Error;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Startup
+namespace ApiCommon.API.Startup
 {
     public static class ApplicationServiceExtensions
     {
