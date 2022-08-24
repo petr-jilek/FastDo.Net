@@ -307,6 +307,14 @@
                     _ => new ErrorModel("Musí být kladné číslo"),
                 },
 
+                Errors.StartDateCannotBeInPast => lang switch
+                {
+                    "cz" => new ErrorModel("Datum zahájení nemůže být v minulosti"),
+                    "en" => new ErrorModel("Start date cannot be in past"),
+                    "de" => new ErrorModel("Startdatum darf nicht in der Vergangenheit liegen"),
+                    _ => new ErrorModel("Datum zahájení nemůže být v minulosti"),
+                },
+
                 _ => lang switch
                 {
                     "cz" => new ErrorModel("Neznámý error"),
