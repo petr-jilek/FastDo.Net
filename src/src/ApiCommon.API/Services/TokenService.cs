@@ -18,7 +18,6 @@ namespace ApiCommon.API.Services
 
         public string CreateToken(List<Claim> claims, int expiration)
         {
-
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenServiceSettings.Secret));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
@@ -36,6 +35,29 @@ namespace ApiCommon.API.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             return tokenHandler.WriteToken(token);
+        }
+
+        public async Task<bool> IsTokenValidAsync(string token)
+        {
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenServiceSettings.Secret));
+
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = key,
+                ValidateIssuer = true,
+                ValidIssuer = _tokenServiceSettings.Issuer,
+                ValidateAudience = true,
+                ValidAudience = _tokenServiceSettings.Audience,
+                ValidateLifetime = true,
+                ClockSkew = TimeSpan.Zero,
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            var validationResult = await tokenHandler.ValidateTokenAsync(token, tokenValidationParameters);
+
+            return validationResult.IsValid;
         }
     }
 }
