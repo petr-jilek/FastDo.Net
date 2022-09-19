@@ -15,7 +15,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\ApiCommon.Application\ApiCommon.Application.csproj" />
+        <ProjectReference Include="..\ApiCommon.Domain\ApiCommon.Domain.csproj" />
+        <ProjectReference Include="..\ApiCommon.MongoDatabase\ApiCommon.MongoDatabase.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Application" />
     </ItemGroup>
 
 </Project>

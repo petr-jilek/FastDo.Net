@@ -1,7 +1,7 @@
-﻿using ApiCommon.Application.Helpers;
+﻿using ApiCommon.API.Helpers;
 using ApiCommon.Domain.Enums;
 using ApiCommon.MongoDatabase.Models.Users;
-using ApiCommon.MongoDatabase.Providers.Interfaces;
+using ApiCommon.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
@@ -9,11 +9,11 @@ namespace ApiCommon.API.Seeds
 {
     public static class MongoDataSeed
     {
-        public static async Task SeedData(IMongoUserCollectionsProvider mongoUserCollectionsProvider)
+        public static async Task SeedSuperAdmin(IMongoDbProvider mongoUserCollectionsProvider)
         {
-            var superAdminUserCollection = mongoUserCollectionsProvider.GetSuperAdminUserCollection();
+            var collection = mongoUserCollectionsProvider.GetCollection<SuperAdminUser>();
 
-            if (await superAdminUserCollection.AsQueryable().CountAsync() == 0)
+            if (await collection.AsQueryable().CountAsync() == 0)
             {
                 var password = "Test123!";
                 var salt = CryptographyHelper.GenerateSalt();
@@ -29,7 +29,7 @@ namespace ApiCommon.API.Seeds
                     PasswordHashMethod = (int)hashMethod,
                 };
 
-                await superAdminUserCollection.InsertOneAsync(superAdminUser);
+                await collection.InsertOneAsync(superAdminUser);
             }
         }
     }

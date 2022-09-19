@@ -1,11 +1,10 @@
-﻿using ApiCommon.API.Extensions;
+﻿using ApiCommon.API.Application.Abstractions;
+using ApiCommon.API.Extensions;
 using ApiCommon.API.Services.General;
-using ApiCommon.Application.Abstractions;
-using ApiCommon.Application.Services.Settings.General;
+using ApiCommon.API.Services.General.LocalizationService;
 using ApiCommon.Domain.Consts;
 using ApiCommon.Domain.Error;
-using ApiCommon.MongoDatabase.Providers.Implementations;
-using ApiCommon.MongoDatabase.Providers.Interfaces;
+using ApiCommon.MongoDatabase.Providers;
 using ApiCommon.MongoDatabase.Settings;
 using Microsoft.AspNetCore.Mvc;
 
@@ -73,7 +72,7 @@ namespace ApiCommon.API.Startup
         public static IServiceCollection AddMongo(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSettings<MongoDbSettings>(configuration);
-            services.AddScoped<IMongoUserCollectionsProvider, MongoUserCollectionsProvider>();
+            services.AddScoped<IMongoDbProvider, MongoDbProvider>();
             return services;
         }
     }

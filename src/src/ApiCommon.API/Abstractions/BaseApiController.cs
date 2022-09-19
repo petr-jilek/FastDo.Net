@@ -1,4 +1,4 @@
-﻿using ApiCommon.Application.Core;
+﻿using ApiCommon.API.Application.Core;
 using ApiCommon.Domain.Consts;
 using ApiCommon.Domain.Error;
 using Microsoft.AspNetCore.Mvc;
