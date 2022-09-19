@@ -43,7 +43,7 @@ namespace ApiCommon.API.Startup
             {
                 policy.Requirements.Add(new ActorRequirement(UserActors.SuperAdmin));
             });
-
+            
             return options;
         }
     }

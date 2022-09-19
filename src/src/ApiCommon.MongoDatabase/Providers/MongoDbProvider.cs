@@ -7,7 +7,7 @@ namespace ApiCommon.MongoDatabase.Providers
     {
         private readonly MongoDbSettings _mongoDbSettings;
 
-        protected MongoDbProvider(MongoDbSettings mongoDbSettings)
+        public MongoDbProvider(MongoDbSettings mongoDbSettings)
         {
             _mongoDbSettings = mongoDbSettings;
         }
@@ -27,7 +27,7 @@ namespace ApiCommon.MongoDatabase.Providers
         {
             var client = new MongoClient(_mongoDbSettings.ConnectionString);
             var db = client.GetDatabase(_mongoDbSettings.DatabaseName);
-            return db.GetCollection<T>(nameof(T));
+            return db.GetCollection<T>(typeof(T).Name);
         }
     }
 }

@@ -35,7 +35,7 @@
             configuration.GetSection(typeof(T).Name).Bind(settings);
 
             if (settings.IsAnyStringNullOrEmpty())
-                throw new ArgumentNullException(nameof(settings));
+                throw new ArgumentNullException(typeof(T).Name);
             
             services.AddSingleton(settings);
 

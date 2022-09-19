@@ -8,9 +8,9 @@ namespace ApiCommon.API.Application.Areas.MediaImages.Delete
 {
     public class DeleteHandler : IHandler
     {
-        private readonly FileUploadService _fileUploadService;
+        private readonly IFileUploadService _fileUploadService;
 
-        public DeleteHandler(FileUploadService fileUploadService)
+        public DeleteHandler(IFileUploadService fileUploadService)
         {
             _fileUploadService = fileUploadService;
         }

@@ -8,9 +8,9 @@ namespace ApiCommon.API.Application.Areas.MediaImages.Upload
 {
     public class UploadHandler : IHandler
     {
-        private readonly FileUploadService _fileUploadService;
+        private readonly IFileUploadService _fileUploadService;
         
-        public UploadHandler(FileUploadService fileUploadService)
+        public UploadHandler(IFileUploadService fileUploadService)
         {
             _fileUploadService = fileUploadService;
         }

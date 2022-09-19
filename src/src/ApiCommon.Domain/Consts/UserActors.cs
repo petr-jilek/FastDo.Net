@@ -2,7 +2,7 @@
 {
     public static class UserActors
     {
-        public const string SuperAdmin = "SuperAdmin_ApiCommonUserActors";
-        public const string AppUser = "AppUser_ApiCommonUserActors";
+        public const string SuperAdmin = "SuperAdmin_UserActors";
+        public const string AppUser = "AppUser_UserActors";
     }
 }

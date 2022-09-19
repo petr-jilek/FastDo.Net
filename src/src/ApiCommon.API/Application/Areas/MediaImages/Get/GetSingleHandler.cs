@@ -8,9 +8,9 @@ namespace ApiCommon.API.Application.Areas.MediaImages.Get
 {
     public class GetSingleHandler : IHandler
     {
-        private readonly FileUploadService _fileUploadService;
+        private readonly IFileUploadService _fileUploadService;
         
-        public GetSingleHandler(FileUploadService fileUploadService)
+        public GetSingleHandler(IFileUploadService fileUploadService)
         {
             _fileUploadService = fileUploadService;
         }

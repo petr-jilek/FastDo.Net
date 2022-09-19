@@ -7,9 +7,9 @@ namespace ApiCommon.API.Application.Areas.MediaImages.GetNames
 {
     public class GetNamesHandler : IHandler
     {
-        private readonly FileUploadService _fileUploadService;
+        private readonly IFileUploadService _fileUploadService;
 
-        public GetNamesHandler(FileUploadService fileUploadService)
+        public GetNamesHandler(IFileUploadService fileUploadService)
         {
             _fileUploadService = fileUploadService;
         }
