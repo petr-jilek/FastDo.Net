@@ -5,7 +5,7 @@ using ApiCommon.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace ApiCommon.API.Application.Areas.Articles.Get
+namespace ApiCommon.API.Application.Areas.General.Articles.Get
 {
     public class GetHandler : IHandler
     {

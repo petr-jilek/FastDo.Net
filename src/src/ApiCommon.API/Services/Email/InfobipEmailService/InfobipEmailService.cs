@@ -20,7 +20,7 @@ namespace ApiCommon.API.Services.Email.InfobipEmailService
             string body)
         {
             var client = new HttpClient();
-            client.BaseAddress = new Uri(_infobipEmailServiceSettings.BaseUrl);
+            client.BaseAddress = new Uri(_infobipEmailServiceSettings.BaseUrl!);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization =

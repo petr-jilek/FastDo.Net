@@ -3,7 +3,7 @@ using ApiCommon.API.Application.Core;
 using ApiCommon.API.Services.General.FileUploadService;
 using ApiCommon.Domain.Consts;
 
-namespace ApiCommon.API.Application.Areas.MediaImages.GetNames
+namespace ApiCommon.API.Application.Areas.General.MediaImages.GetNames
 {
     public class GetNamesHandler : IHandler
     {
@@ -14,7 +14,7 @@ namespace ApiCommon.API.Application.Areas.MediaImages.GetNames
             _fileUploadService = fileUploadService;
         }
 
-        public async Task<Result<GetNamesResponse>> Handle()
+        public Result<GetNamesResponse> Handle()
         {
             var names = _fileUploadService.GetFileNames(ApiCommonConsts.MediaImagesFolder);
             return Result<GetNamesResponse>.Ok(new GetNamesResponse() { Items = names, });

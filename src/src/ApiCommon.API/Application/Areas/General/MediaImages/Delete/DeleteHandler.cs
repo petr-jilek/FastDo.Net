@@ -4,7 +4,7 @@ using ApiCommon.API.Services.General.FileUploadService;
 using ApiCommon.Domain.Consts;
 using ApiCommon.Domain.Error;
 
-namespace ApiCommon.API.Application.Areas.MediaImages.Delete
+namespace ApiCommon.API.Application.Areas.General.MediaImages.Delete
 {
     public class DeleteHandler : IHandler
     {

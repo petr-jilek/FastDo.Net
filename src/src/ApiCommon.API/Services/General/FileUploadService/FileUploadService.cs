@@ -10,7 +10,7 @@
         }
 
         private string GetPath(string path)
-            => Path.Combine(_fileUploadServiceSettings.UploadsFolderPath, path);
+            => Path.Combine(_fileUploadServiceSettings.UploadsFolderPath!, path);
 
         private void EnsureDirectoryExists(string dirPath)
         {

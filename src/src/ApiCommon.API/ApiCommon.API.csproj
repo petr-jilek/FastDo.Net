@@ -22,6 +22,7 @@
 
     <ItemGroup>
       <Folder Include="Application" />
+      <Folder Include="Application\Areas\General" />
     </ItemGroup>
 
 </Project>

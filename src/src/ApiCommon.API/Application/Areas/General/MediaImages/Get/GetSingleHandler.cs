@@ -4,7 +4,7 @@ using ApiCommon.API.Services.General.FileUploadService;
 using ApiCommon.Domain.Consts;
 using ApiCommon.Domain.Error;
 
-namespace ApiCommon.API.Application.Areas.MediaImages.Get
+namespace ApiCommon.API.Application.Areas.General.MediaImages.Get
 {
     public class GetSingleHandler : IHandler
     {

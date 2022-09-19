@@ -6,7 +6,7 @@ using ApiCommon.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace ApiCommon.API.Application.Areas.Articles.Create
+namespace ApiCommon.API.Application.Areas.General.Articles.Create
 {
     public class CreateHandler : IHandler
     {

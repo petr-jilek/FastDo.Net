@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.API.Application.Areas.Articles.Get
+﻿namespace ApiCommon.API.Application.Areas.General.Articles.Get
 {
     public class GetArticlesItemResponse
     {

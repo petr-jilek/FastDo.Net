@@ -18,7 +18,7 @@ namespace ApiCommon.API.Services.Sms.InfobipSmsService
         public async Task<HttpResponseMessage> SendSmsAsync(string toPhoneNumber, string sender, string text)
         {
             var client = new HttpClient();
-            client.BaseAddress = new Uri(_infobipSmsServiceSettings.BaseUrl);
+            client.BaseAddress = new Uri(_infobipSmsServiceSettings.BaseUrl!);
             client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("App", _infobipSmsServiceSettings.ApiKey);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

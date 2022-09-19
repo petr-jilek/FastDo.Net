@@ -20,8 +20,10 @@ namespace ApiCommon.API.Startup
 
                     return splittedFullName.Length switch
                     {
-                        > 3 when splittedFullName[0] == "Application" => string.Join("_", splittedFullName.Skip(3)),
-                        4 when splittedFullName[2] == "Error" => splittedFullName[2] + "_" + splittedFullName[3],
+                        8 when splittedFullName[0] == "ApiCommon"
+                            => splittedFullName[0] + "_" + string.Join("_", splittedFullName.TakeLast(3)),
+                        6 when splittedFullName[0] == "Application"
+                            => splittedFullName[0] + "_" + string.Join("_", splittedFullName.Skip(3)),
                         _ => string.Join("_", splittedFullName)
                     };
                 });

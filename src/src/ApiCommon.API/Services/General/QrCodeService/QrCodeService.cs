@@ -20,7 +20,7 @@ namespace ApiCommon.API.Services.General.QrCodeService
 
             using var qrCodeImage = qrCode.GetGraphic(20);
 
-            var directory = _qRCodeServiceSettings.Path;
+            var directory = _qRCodeServiceSettings.Path!;
             if (Directory.Exists(directory) == false)
                 Directory.CreateDirectory(directory);
 

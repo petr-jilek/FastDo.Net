@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using ApiCommon.Domain.Error;
 
-namespace ApiCommon.API.Application.Areas.Articles.Edit
+namespace ApiCommon.API.Application.Areas.General.Articles.Create
 {
-    public class EditRequest
+    public class CreateRequest
     {
         [Required(ErrorMessage = Errors.NameIsRequired)]
         [StringLength(255, ErrorMessage = Errors.NameIsTooLong)]
@@ -14,7 +14,6 @@ namespace ApiCommon.API.Application.Areas.Articles.Edit
         [Required(ErrorMessage = Errors.ImageIsRequired)]
         [StringLength(255, ErrorMessage = Errors.ImageNameIsTooLong)]
         public string? ImageName { get; set; }
-
         public string? Description { get; set; }
         public string? Content { get; set; }
     }

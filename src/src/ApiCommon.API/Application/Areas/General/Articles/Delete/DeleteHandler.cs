@@ -6,18 +6,18 @@ using ApiCommon.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace ApiCommon.API.Application.Areas.Articles.Edit
+namespace ApiCommon.API.Application.Areas.General.Articles.Delete
 {
-    public class EditHandler : IHandler
+    public class DeleteHandler : IHandler
     {
         private readonly IMongoDbProvider _mongoDbProvider;
 
-        public EditHandler(IMongoDbProvider mongoDbProvider)
+        public DeleteHandler(IMongoDbProvider mongoDbProvider)
         {
             _mongoDbProvider = mongoDbProvider;
         }
 
-        public async Task<Result<EmptyClass>> Handle(string id, EditRequest request)
+        public async Task<Result<EmptyClass>> Handle(string id)
         {
             var collection = _mongoDbProvider.GetCollection<Article>();
 
@@ -26,16 +26,7 @@ namespace ApiCommon.API.Application.Areas.Articles.Edit
             if (article is null)
                 return Result<EmptyClass>.NotFound(Errors.ArticleNotExists);
 
-            if (await collection.AsQueryable().AnyAsync(_ => _.Name == request.Name) && article.Name != request.Name)
-                return Result<EmptyClass>.Conflict(Errors.ArticleAlreadyExists);
-
-            article.Name = request.Name;
-            article.Created = request.Created;
-            article.ImageName = request.ImageName;
-            article.Description = request.Description;
-            article.Content = request.Content;
-
-            await collection.ReplaceOneAsync(_ => _.Id == id, article);
+            await collection.DeleteOneAsync(_ => _.Id == id);
 
             return Result<EmptyClass>.Ok();
         }
