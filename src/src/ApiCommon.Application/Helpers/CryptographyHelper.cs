@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-using ApiCommon.Application.Enums;
+using ApiCommon.Domain.Enums;
 
 namespace ApiCommon.Application.Helpers
 {
@@ -51,11 +51,13 @@ namespace ApiCommon.Application.Helpers
 
             return int.Parse(numberString);
         }
+
         /// <summary>
         /// Perform SHA512 hash function to generate hash of the input
         /// </summary>
         /// <param name="input">Input string to be hashed</param>
         /// <param name="salt">Salt for hash</param>
+        /// <param name="hashMethod">HashMethod</param>
         /// <returns>Hashed input string</returns>
         public static string CreateHash(string input, string salt, HashMethod hashMethod)
         {
@@ -63,8 +65,8 @@ namespace ApiCommon.Application.Helpers
 
             var hash = hashMethod switch
             {
-                HashMethod.SHA256 => SHA256.HashData(bytes),
-                HashMethod.SHA512 => SHA512.HashData(bytes),
+                HashMethod.Sha256 => SHA256.HashData(bytes),
+                HashMethod.Sha512 => SHA512.HashData(bytes),
                 _ => SHA512.HashData(bytes)
             };
 
@@ -77,6 +79,7 @@ namespace ApiCommon.Application.Helpers
         /// <param name="input">Plain text input</param>
         /// <param name="hash">Hash</param>
         /// <param name="salt">Salt</param>
+        /// <param name="hashMethod">HashMethod</param>
         /// <returns>Success of the verification</returns>
         public static bool Verify(string input, string hash, string salt, HashMethod hashMethod)
         {

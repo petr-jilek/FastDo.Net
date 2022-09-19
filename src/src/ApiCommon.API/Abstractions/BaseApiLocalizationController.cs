@@ -1,5 +1,5 @@
 ﻿using ApiCommon.Application.Core;
-using ApiCommon.Application.Interfaces;
+using ApiCommon.Application.Services.Interfaces.General;
 using ApiCommon.Domain.Error;
 using Microsoft.AspNetCore.Mvc;
 

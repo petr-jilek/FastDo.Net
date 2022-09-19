@@ -1,11 +1,11 @@
 ﻿using System.Net;
 using System.Net.Mail;
-using ApiCommon.Application.Interfaces.Email;
-using ApiCommon.Application.ServiceSettings.Email;
+using ApiCommon.Application.Services.Interfaces.Email;
+using ApiCommon.Application.Services.Settings.Email;
 
 namespace ApiCommon.API.Services.Email
 {
-    public class EmailSmtpService: IEmailSmtpService
+    public class EmailSmtpService : IEmailSmtpService
     {
         private readonly EmailSmtpServiceSettings _settings;
 
@@ -14,7 +14,8 @@ namespace ApiCommon.API.Services.Email
             _settings = settings;
         }
 
-        public async Task SendEmailAsync(string email, string password, string toEmail, string subject, string body, bool isBodyHtml = true)
+        public async Task SendEmailAsync(string email, string password, string toEmail, string subject, string body,
+            bool isBodyHtml = true)
         {
             using var mail = new MailMessage();
 

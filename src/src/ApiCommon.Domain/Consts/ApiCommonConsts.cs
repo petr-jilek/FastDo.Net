@@ -2,12 +2,12 @@
 {
     public static class ApiCommonConsts
     {
-        public const string DefaultLanguage = LanguageCodes.CZ;
+        public const string DefaultLanguage = LanguageCodes.Cz;
 
         public static readonly List<string> SupportedLanguages = new List<string>() {
-            LanguageCodes.CZ,
-            LanguageCodes.EN,
-            LanguageCodes.DE
+            LanguageCodes.Cz,
+            LanguageCodes.En,
+            LanguageCodes.De
         };
     }
 }

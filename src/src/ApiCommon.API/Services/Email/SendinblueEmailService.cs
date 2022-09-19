@@ -1,19 +1,20 @@
 ﻿using System.Text;
-using ApiCommon.Application.Interfaces.Email;
-using ApiCommon.Application.ServiceSettings.Email;
+using ApiCommon.Application.Services.Interfaces.Email;
+using ApiCommon.Application.Services.Settings.Email;
 
 namespace ApiCommon.API.Services.Email
 {
     public class SendinblueEmailService : ISendinblueEmailService
     {
-        private readonly SendinblueEmailServiceSettings _settings;
+        private readonly SendinblueEmailServiceSettings _sendinblueEmailServiceSettings;
 
-        public SendinblueEmailService(SendinblueEmailServiceSettings settings)
+        public SendinblueEmailService(SendinblueEmailServiceSettings sendinblueEmailServiceSettings)
         {
-            _settings = settings;
+            _sendinblueEmailServiceSettings = sendinblueEmailServiceSettings;
         }
 
-        public async Task<HttpResponseMessage> SendEmailAsync(string fromEmail, string fromName, string toEmail, string toName, string subject, string htmlContent)
+        public async Task<HttpResponseMessage> SendEmailAsync(string fromEmail, string fromName, string toEmail,
+            string toName, string subject, string htmlContent)
         {
             using var client = new HttpClient();
 
@@ -21,9 +22,11 @@ namespace ApiCommon.API.Services.Email
 
             client.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
             client.DefaultRequestHeaders.TryAddWithoutValidation("content-type", "application/json");
-            client.DefaultRequestHeaders.TryAddWithoutValidation("api-key", _settings.ApiKey);
+            client.DefaultRequestHeaders.TryAddWithoutValidation("api-key", _sendinblueEmailServiceSettings.ApiKey);
 
-            var jsonBody = "{\"sender\":{\"name\":\"" + fromName + "\",\"email\":\"" + fromEmail + "\"},\"to\":[{\"email\":\"" + toEmail + "\",\"name\":\"" + toName + "\"}],\"subject\":\"" + subject + "\",\"htmlContent\":\"" + htmlContent + "\"}";
+            var jsonBody = "{\"sender\":{\"name\":\"" + fromName + "\",\"email\":\"" + fromEmail +
+                           "\"},\"to\":[{\"email\":\"" + toEmail + "\",\"name\":\"" + toName + "\"}],\"subject\":\"" +
+                           subject + "\",\"htmlContent\":\"" + htmlContent + "\"}";
 
             var result = await client.PostAsync("", new StringContent(jsonBody, Encoding.UTF8, "application/json"));
 

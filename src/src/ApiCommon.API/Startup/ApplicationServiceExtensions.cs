@@ -1,5 +1,8 @@
-﻿using ApiCommon.API.Services;
-using ApiCommon.Application.ServiceSettings;
+﻿using ApiCommon.API.Extensions;
+using ApiCommon.API.Services.General;
+using ApiCommon.Application.Abstractions;
+using ApiCommon.Application.Services.Settings.General;
+using ApiCommon.Domain.Consts;
 using ApiCommon.Domain.Error;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +10,8 @@ namespace ApiCommon.API.Startup
 {
     public static class ApplicationServiceExtensions
     {
-        public static IServiceCollection AddApiBehaviorOptions(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddApiBehaviorOptions(this IServiceCollection services,
+            IConfiguration configuration)
         {
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -16,12 +20,10 @@ namespace ApiCommon.API.Startup
                     var modelErrorCollection = actionContext.ModelState.Values.Select(x => x.Errors).FirstOrDefault();
 
                     var localizationServiceSettings = new LocalizationServiceSettings();
-                    configuration.GetSection(typeof(LocalizationServiceSettings).Name).Bind(localizationServiceSettings);
+                    configuration.GetSection(nameof(LocalizationServiceSettings))
+                        .Bind(localizationServiceSettings);
 
-                    var httpContextAccessor = new HttpContextAccessor()
-                    {
-                        HttpContext = actionContext.HttpContext,
-                    };
+                    var httpContextAccessor = new HttpContextAccessor() { HttpContext = actionContext.HttpContext, };
 
                     var localizationService = new LocalizationService(httpContextAccessor, localizationServiceSettings);
 
@@ -39,6 +41,30 @@ namespace ApiCommon.API.Startup
                 };
             });
 
+            return services;
+        }
+
+        public static IServiceCollection AddReactDevelopmentCorsPolicy(this IServiceCollection services,
+            int port = 3000)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(CorsPolicies.ReactFrontendDevelopment, policy =>
+                {
+                    policy
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials()
+                        .WithOrigins($"http://localhost:{port}");
+                });
+            });
+
+            return services;
+        }
+        
+        public static IServiceCollection AddApiCommonHandlers(this IServiceCollection services)
+        {
+            services.AddByInterface<IHandler>();
             return services;
         }
     }
