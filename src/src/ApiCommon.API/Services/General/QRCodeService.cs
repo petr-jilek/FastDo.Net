@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using System.Drawing.Imaging;
+﻿using System.Drawing.Imaging;
 using ApiCommon.Application.Services.Interfaces.General;
 using ApiCommon.Application.Services.Settings.General;
 using QRCoder;

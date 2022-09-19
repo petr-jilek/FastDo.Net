@@ -4,12 +4,12 @@ using ApiCommon.Application.Core;
 using ApiCommon.Application.Helpers;
 using ApiCommon.Domain.Consts;
 using ApiCommon.Domain.Error;
-using ApiCommon.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System.IdentityModel.Tokens.Jwt;
 using ApiCommon.Application.Services.Interfaces.Auth;
 using ApiCommon.Domain.Enums;
+using ApiCommon.MongoDatabase.Providers.Interfaces;
 
 namespace ApiCommon.Application.Areas.Users.AppUsers.Login
 {

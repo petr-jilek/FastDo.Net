@@ -2,7 +2,7 @@
 {
     public static class Errors
     {
-        public const string UnkonwnError = "UnkonwnError";
+        public const string UnknownError = "UnkonwnError";
         public const string UndescribedError = "UndescriptedError";
 
         public const string EmailIsRequired = "EmailIsRequired";

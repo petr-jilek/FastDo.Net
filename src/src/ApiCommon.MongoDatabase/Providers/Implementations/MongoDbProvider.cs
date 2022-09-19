@@ -1,13 +1,14 @@
-﻿using ApiCommon.MongoDatabase.Settings;
+﻿using ApiCommon.MongoDatabase.Providers.Interfaces;
+using ApiCommon.MongoDatabase.Settings;
 using MongoDB.Driver;
 
-namespace ApiCommon.MongoDatabase.Providers
+namespace ApiCommon.MongoDatabase.Providers.Implementations
 {
     public class MongoDbProvider : IMongoDbProvider
     {
         private readonly MongoDbSettings _mongoDbSettings;
 
-        public MongoDbProvider(MongoDbSettings mongoDbSettings)
+        protected MongoDbProvider(MongoDbSettings mongoDbSettings)
         {
             _mongoDbSettings = mongoDbSettings;
         }

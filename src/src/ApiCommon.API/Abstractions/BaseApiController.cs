@@ -30,7 +30,7 @@ namespace ApiCommon.API.Abstractions
                 return StatusCode((int)result.StatusCode, result.ErrorModel);
 
             return StatusCode((int)result.StatusCode,
-                ErrorModels.GetErrorModel(Errors.UnkonwnError, ApiCommonConsts.DefaultLanguage));
+                ErrorModels.GetErrorModel(Errors.UnknownError, ApiCommonConsts.DefaultLanguage));
         }
     }
 }

@@ -36,7 +36,7 @@ namespace ApiCommon.API.Middlewares
                     // Get the credentials from request header
                     var header = AuthenticationHeaderValue.Parse(authHeader);
 
-                    if (header is not null && header.Parameter is not null)
+                    if (header.Parameter is not null)
                     {
                         var inBytes = Convert.FromBase64String(header.Parameter);
                         var credentials = Encoding.UTF8.GetString(inBytes).Split(':');

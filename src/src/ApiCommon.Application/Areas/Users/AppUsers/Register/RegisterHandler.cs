@@ -4,7 +4,7 @@ using ApiCommon.Application.Helpers;
 using ApiCommon.Domain.Enums;
 using ApiCommon.Domain.Error;
 using ApiCommon.MongoDatabase.Models.Users;
-using ApiCommon.MongoDatabase.Providers;
+using ApiCommon.MongoDatabase.Providers.Interfaces;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
@@ -21,6 +21,8 @@ namespace ApiCommon.Application.Areas.Users.AppUsers.Register
 
         public async Task<Result<EmptyClass>> Handle(RegisterRequest request)
         {
+            if(request.Password is null)
+                return Result<EmptyClass>.BadRequest(Errors.PasswordIsRequired);
             if (request.Password != request.PasswordConfirmation)
                 return Result<EmptyClass>.BadRequest(Errors.PasswordsDontMatch);
    
@@ -32,12 +34,13 @@ namespace ApiCommon.Application.Areas.Users.AppUsers.Register
             var salt = CryptographyHelper.GenerateSalt();
 
             var hashMethod = HashMethod.Sha512;
-            var hash = CryptographyHelper.CreateHash(request.Password!, salt, hashMethod);
+            var hash = CryptographyHelper.CreateHash(request.Password, salt, hashMethod);
 
             var user = new AppUser
             {
-                UserName = request.UserName!,
-                Email = request.Email!,
+                UserName = request.UserName,
+                Email = request.Email,
+                PhoneNumber = request.PhoneNumber,
 
                 PasswordSalt = salt,
                 PasswordHash = hash,

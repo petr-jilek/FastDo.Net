@@ -6,7 +6,7 @@
         {
             return errorCode switch
             {
-                Errors.UnkonwnError => lang switch
+                Errors.UnknownError => lang switch
                 {
                     "cz" => new ErrorModel("Neznámý error"),
                     "en" => new ErrorModel("Unknown error"),

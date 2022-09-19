@@ -13,6 +13,10 @@ namespace ApiCommon.Application.Areas.Users.AppUsers.Register
         [EmailAddress(ErrorMessage = Errors.EmailIsNotValid)]
         [StringLength(255, ErrorMessage = Errors.EmailIsTooLong)]
         public string? Email { get; set; }
+        
+        [Required(ErrorMessage = Errors.PhoneNumberIsRequired)]
+        [RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{10,15}$", ErrorMessage = Errors.PhoneNumberIsNotValid)]
+        public string? PhoneNumber { get; set; }
 
         [Required(ErrorMessage = Errors.PasswordIsRequired)]
         [MinLength(6, ErrorMessage = Errors.PasswordIsTooShort)]

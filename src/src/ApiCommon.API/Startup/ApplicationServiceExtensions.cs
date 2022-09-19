@@ -4,6 +4,9 @@ using ApiCommon.Application.Abstractions;
 using ApiCommon.Application.Services.Settings.General;
 using ApiCommon.Domain.Consts;
 using ApiCommon.Domain.Error;
+using ApiCommon.MongoDatabase.Providers.Implementations;
+using ApiCommon.MongoDatabase.Providers.Interfaces;
+using ApiCommon.MongoDatabase.Settings;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiCommon.API.Startup
@@ -30,14 +33,13 @@ namespace ApiCommon.API.Startup
                     var lang = localizationService.GetLanguageCode();
 
                     if (modelErrorCollection is null)
-                        return new BadRequestObjectResult(ErrorModels.GetErrorModel(Errors.UnkonwnError, lang));
+                        return new BadRequestObjectResult(ErrorModels.GetErrorModel(Errors.UnknownError, lang));
 
                     var message = modelErrorCollection.FirstOrDefault()?.ErrorMessage;
 
-                    if (message is null)
-                        return new BadRequestObjectResult(ErrorModels.GetErrorModel(Errors.UnkonwnError, lang));
-
-                    return new BadRequestObjectResult(ErrorModels.GetErrorModel(message, lang));
+                    return message is null
+                        ? new BadRequestObjectResult(ErrorModels.GetErrorModel(Errors.UnknownError, lang))
+                        : new BadRequestObjectResult(ErrorModels.GetErrorModel(message, lang));
                 };
             });
 
@@ -61,10 +63,17 @@ namespace ApiCommon.API.Startup
 
             return services;
         }
-        
+
         public static IServiceCollection AddApiCommonHandlers(this IServiceCollection services)
         {
             services.AddByInterface<IHandler>();
+            return services;
+        }
+
+        public static IServiceCollection AddMongo(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddSettings<MongoDbSettings>(configuration);
+            services.AddScoped<IMongoUserCollectionsProvider, MongoUserCollectionsProvider>();
             return services;
         }
     }

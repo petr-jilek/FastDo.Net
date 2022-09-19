@@ -1,8 +1,9 @@
 ﻿using ApiCommon.MongoDatabase.Models.Users;
+using ApiCommon.MongoDatabase.Providers.Interfaces;
 using ApiCommon.MongoDatabase.Settings;
 using MongoDB.Driver;
 
-namespace ApiCommon.MongoDatabase.Providers
+namespace ApiCommon.MongoDatabase.Providers.Implementations
 {
     public class MongoUserCollectionsProvider : MongoDbProvider, IMongoUserCollectionsProvider
     {

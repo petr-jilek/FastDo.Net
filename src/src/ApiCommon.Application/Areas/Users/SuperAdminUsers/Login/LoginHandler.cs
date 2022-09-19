@@ -7,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using ApiCommon.Application.Abstractions;
 using ApiCommon.Application.Services.Interfaces.Auth;
 using ApiCommon.Domain.Enums;
-using ApiCommon.MongoDatabase.Providers;
+using ApiCommon.MongoDatabase.Providers.Interfaces;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
