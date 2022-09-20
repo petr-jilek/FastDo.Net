@@ -1,4 +1,5 @@
-﻿using ApiCommon.Application.Core;
+﻿using ApiCommon.API.Application.Core;
+using ApiCommon.Domain.Consts;
 using ApiCommon.Domain.Error;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,23 +9,23 @@ namespace ApiCommon.API.Abstractions
     [Route("api/[controller]/[action]")]
     public class BaseApiController : ControllerBase
     {
-        protected ActionResult HandleResult<T>(Result<T> result)
+        protected ActionResult HandleResult<T>(Result<T> result, string languageCode = ApiCommonConsts.DefaultLanguage)
         {
-            if (result is null)
-                return NotFound();
-
             if (result.Success)
             {
-                if (result.Value is null || result.Value is EmptyClass)
+                if (result.Value is null or EmptyClass)
                     return StatusCode((int)result.StatusCode);
 
                 return StatusCode((int)result.StatusCode, result.Value);
             }
 
-            if (result.Error is not null)
-                return StatusCode((int)result.StatusCode, result.Error);
+            if (result.Error is null)
+                return StatusCode((int)result.StatusCode,
+                    ErrorModels.GetErrorModel(Errors.UnknownError, languageCode));
 
-            return StatusCode((int)result.StatusCode, Errors.UndescriptedError);
+            var errorModel = ErrorModels.GetErrorModel(result.Error, languageCode);
+            errorModel.Detail = result.ErrorDetail ?? errorModel.Message;
+            return StatusCode((int)result.StatusCode, errorModel);
         }
     }
 }

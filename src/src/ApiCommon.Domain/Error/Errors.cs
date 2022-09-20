@@ -2,45 +2,106 @@
 {
     public static class Errors
     {
-        public static readonly ErrorModel UnkonwnError = new("UnkonwnError");
-        public static readonly ErrorModel UndescriptedError = new("UndescriptedError");
+        public const string UnknownError = "UnkonwnError";
+        public const string UndescribedError = "UndescriptedError";
 
-        public static readonly ErrorModel BadEmail = new("BadEmail");
-        public static readonly ErrorModel UserWithEmailAlreadyExists = new("UserWithEmailAlreadyExists");
-        public static readonly ErrorModel BadUserName = new("BadUserName");
-        public static readonly ErrorModel BadDisplayName = new("BadDisplayName");
-        public static readonly ErrorModel BadPassword = new("BadPassword");
-        public static readonly ErrorModel PasswordsDontMatch = new("PasswordsDontMatch");
+        public const string EmailIsRequired = "EmailIsRequired";
+        public const string EmailIsNotValid = "EmailIsNotValid";
+        public const string EmailIsTooLong = "EmailIsTooLong";
 
-        public static readonly ErrorModel RegistrationError = new("RegistrationError");
-        public static readonly ErrorModel LoginError = new("LoginError");
+        public const string PasswordIsRequired = "PasswordIsRequired";
+        public const string PasswordIsTooShort = "PasswordIsTooShort";
+        public const string PasswordIsTooLong = "PasswordIsTooLong";
 
-        public static readonly ErrorModel EmailVerificationError = new("EmailVerificationError");
+        public const string NewPasswordIsRequired = "NewPasswordIsRequired";
+        public const string NewPasswordIsTooShort = "NewPasswordIsTooShort";
+        public const string NewPasswordIsTooLong = "NewPasswordIsTooLong";
 
-        public static readonly ErrorModel UserWithEmailDoesNotExists = new("UserWithEmailDoesNotExists");
-        public static readonly ErrorModel AddToRoleError = new("AddToRoleError");
+        public const string BadEmailOrPassword = "BadEmailOrPassword";
+        public const string BadPassword = "BadPassword";
+        public const string PasswordsDontMatch = "PasswordsDontMatch";
 
-        public static readonly ErrorModel AlreadyExists = new("AlreadyExists");
-        public static readonly ErrorModel TooMany = new("TooMany");
+        public const string NameIsRequired = "NameIsRequired";
+        public const string NameIsTooLong = "NameIsTooLong";
 
-        public static readonly ErrorModel NotFound = new("NotFound");
+        public const string PhoneNumberIsRequired = "PhoneNumberIsRequired";
+        public const string PhoneNumberIsNotValid = "PhoneNumberIsNotValid";
 
-        public static readonly ErrorModel CannotDelete = new("CannotDelete");
-        public static readonly ErrorModel CannotDeleteIsMain = new("CannotDeleteIsMain");
-        public static readonly ErrorModel CannotCreate = new("CannotCreate");
-        public static readonly ErrorModel AlreadyDeleted = new("AlreadyDeleted");
+        public const string EndDateMustBeGreaterThanStartDate = "EndDateMustBeGreaterThanStartDate";
 
-        public static readonly ErrorModel InvalidData = new("InvalidData");
+        public const string TextIsTooLong = "TextIsTooLong";
 
-        public static readonly ErrorModel InvalidControllerAction = new("InvalidControllerAction");
+        public const string UnconfirmedReservationAlreadyExists = "UnconfirmedReservationAlreadyExists";
 
-        public static readonly ErrorModel GoPayError = new("GoPayError");
+        public const string UserWithEmailAlreadyExists = "UserWithEmailAlreadyExists";
 
-        public static readonly ErrorModel FileEmpty = new("FileEmpty");
-        public static readonly ErrorModel FileTooLarge = new("FileTooLarge");
-        public static readonly ErrorModel BadFileName = new("BadFileName");
-        public static readonly ErrorModel BadFileType = new("BadFileType");
-        public static readonly ErrorModel FileExists = new("FileExists");
-        public static readonly ErrorModel FileNotExists = new("FileNotExists");
+        public const string Empty = "Empty";
+
+        public const string FileIsEmpty = "FileIsEmpty";
+        public const string FileNameIsNotValid = "FileNameIsNotValid";
+        public const string FileTypeIsNotValid = "FileTypeIsNotValid";
+        public const string FileIsNotValid = "FileIsNotValid";
+        public const string FileIsTooLarge = "FileIsTooLarge";
+        public const string FileAlreadyExists = "FileAlreadyExists";
+        public const string FileNotExists = "FileNotExists";
+
+        public const string ArticleNotExists = "ArticleNotExists";
+        public const string ArticleAlreadyExists = "ArticleAlreadyExists";
+
+        public const string FundNotExists = "FundNotExists";
+
+        public const string UserNameIsRequired = "UserNameIsRequired";
+        public const string UserNameIsTooLong = "UserNameIsTooLong";
+
+        public const string ImageIsRequired = "ImageIsRequired";
+        public const string ImageNameIsTooLong = "ImageNameIsTooLong";
+
+        public const string ItemNotExists = "ItemNotExists";
+        public const string ItemAlreadyExists = "ItemAlreadyExists";
+
+        public const string EmailSendFailed = "EmailSendFailed";
+
+        public const string MustBePositiveNumber = "MustBePositiveNumber";
+
+        public const string StartDateCannotBeInPast = "StartDateCannotBeInPast";
+
+
+        //public const string BadEmail = new("BadEmail");
+        //public const string UserWithEmailAlreadyExists = new("UserWithEmailAlreadyExists");
+        //public const string BadUserName = new("BadUserName");
+        //public const string BadDisplayName = new("BadDisplayName");
+        //public const string BadPassword = new("BadPassword");
+        //public const string PasswordsDontMatch = new("PasswordsDontMatch");
+
+        //public const string RegistrationError = new("RegistrationError");
+        //public const string LoginError = new("LoginError");
+
+        //public const string EmailVerificationError = new("EmailVerificationError");
+
+        //public const string UserWithEmailDoesNotExists = new("UserWithEmailDoesNotExists");
+        //public const string AddToRoleError = new("AddToRoleError");
+
+        //public const string AlreadyExists = new("AlreadyExists");
+        //public const string TooMany = new("TooMany");
+
+        //public const string NotFound = new("NotFound");
+
+        //public const string CannotDelete = new("CannotDelete");
+        //public const string CannotDeleteIsMain = new("CannotDeleteIsMain");
+        //public const string CannotCreate = new("CannotCreate");
+        //public const string AlreadyDeleted = new("AlreadyDeleted");
+
+        //public const string InvalidData = new("InvalidData");
+
+        //public const string InvalidControllerAction = new("InvalidControllerAction");
+
+        //public const string GoPayError = new("GoPayError");
+
+        //public const string FileEmpty = new("FileEmpty");
+        //public const string FileTooLarge = new("FileTooLarge");
+        //public const string BadFileName = new("BadFileName");
+        //public const string BadFileType = new("BadFileType");
+        //public const string FileExists = new("FileExists");
+        //public const string FileNotExists = new("FileNotExists");
     }
 }

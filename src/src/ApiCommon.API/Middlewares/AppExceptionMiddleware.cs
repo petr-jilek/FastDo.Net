@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
+using ApiCommon.Domain.Consts;
 using ApiCommon.Domain.Error;
 
 namespace ApiCommon.API.Middlewares
@@ -23,15 +24,14 @@ namespace ApiCommon.API.Middlewares
             }
             catch (AppException ex)
             {
-                _logger.LogError(ex, ex.ErrorModel.Message);
+                _logger.LogError(ex, ex.Error);
 
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
+                var errorModel = ErrorModels.GetErrorModel(ex.Error, ApiCommonConsts.DefaultLanguage);
                 var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-
-                var json = JsonSerializer.Serialize(ex.ErrorModel, options);
-
+                var json = JsonSerializer.Serialize(errorModel, options);
                 await context.Response.WriteAsync(json);
             }
         }
