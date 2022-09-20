@@ -1,7 +1,7 @@
 ﻿using ApiCommon.API.Application.Abstractions;
 using ApiCommon.API.Application.Core;
-using ApiCommon.API.Services.Auth.TokenService;
-using ApiCommon.API.Services.Auth.UserAccessorService;
+using ApiCommon.API.Services.Auth.Token;
+using ApiCommon.API.Services.Auth.UserAccessor;
 
 namespace ApiCommon.API.Application.Areas.Users.SuperAdminUsers.CheckStatus
 {

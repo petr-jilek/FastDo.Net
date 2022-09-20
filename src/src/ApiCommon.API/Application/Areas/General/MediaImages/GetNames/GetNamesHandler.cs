@@ -1,6 +1,6 @@
 ﻿using ApiCommon.API.Application.Abstractions;
 using ApiCommon.API.Application.Core;
-using ApiCommon.API.Services.General.FileUploadService;
+using ApiCommon.API.Services.General.FileUpload;
 using ApiCommon.Domain.Consts;
 
 namespace ApiCommon.API.Application.Areas.General.MediaImages.GetNames

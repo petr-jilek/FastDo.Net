@@ -3,7 +3,7 @@ using System.Security.Claims;
 using ApiCommon.API.Application.Abstractions;
 using ApiCommon.API.Application.Core;
 using ApiCommon.API.Helpers;
-using ApiCommon.API.Services.Auth.TokenService;
+using ApiCommon.API.Services.Auth.Token;
 using ApiCommon.Domain.Consts;
 using ApiCommon.Domain.Enums;
 using ApiCommon.Domain.Error;

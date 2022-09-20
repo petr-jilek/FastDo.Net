@@ -1,7 +1,7 @@
 ﻿using ApiCommon.API.Application.Abstractions;
 using ApiCommon.API.Application.Core;
 using ApiCommon.API.Helpers;
-using ApiCommon.API.Services.Auth.UserAccessorService;
+using ApiCommon.API.Services.Auth.UserAccessor;
 using ApiCommon.Domain.Enums;
 using ApiCommon.Domain.Error;
 using ApiCommon.MongoDatabase.Models.Users;

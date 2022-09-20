@@ -1,5 +1,5 @@
 ﻿using ApiCommon.API.Application.Core;
-using ApiCommon.API.Services.General.LocalizationService;
+using ApiCommon.API.Services.General.Localization;
 using ApiCommon.Domain.Error;
 using Microsoft.AspNetCore.Mvc;
 

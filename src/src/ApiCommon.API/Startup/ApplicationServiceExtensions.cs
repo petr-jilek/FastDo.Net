@@ -1,7 +1,7 @@
 ﻿using ApiCommon.API.Application.Abstractions;
 using ApiCommon.API.Extensions;
 using ApiCommon.API.Services.General;
-using ApiCommon.API.Services.General.LocalizationService;
+using ApiCommon.API.Services.General.Localization;
 using ApiCommon.Domain.Consts;
 using ApiCommon.Domain.Error;
 using ApiCommon.MongoDatabase.Providers;
