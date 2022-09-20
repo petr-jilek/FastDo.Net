@@ -1,4 +1,4 @@
-ApiCommon.Domain/bin/
-ApiCommon.Domain/obj/
+.vs/
 
-ApiCommon.Domain/ApiCommon.Domain.xml
+obj/
+bin/
