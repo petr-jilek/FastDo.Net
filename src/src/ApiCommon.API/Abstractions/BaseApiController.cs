@@ -9,11 +9,8 @@ namespace ApiCommon.API.Abstractions
     [Route("api/[controller]/[action]")]
     public class BaseApiController : ControllerBase
     {
-        protected ActionResult HandleResult<T>(Result<T> result)
+        protected ActionResult HandleResult<T>(Result<T> result, string languageCode = ApiCommonConsts.DefaultLanguage)
         {
-            if (result is null)
-                return NotFound();
-
             if (result.Success)
             {
                 if (result.Value is null or EmptyClass)
@@ -22,15 +19,13 @@ namespace ApiCommon.API.Abstractions
                 return StatusCode((int)result.StatusCode, result.Value);
             }
 
-            if (result.Error is not null)
+            if (result.Error is null)
                 return StatusCode((int)result.StatusCode,
-                    ErrorModels.GetErrorModel(result.Error, ApiCommonConsts.DefaultLanguage));
+                    ErrorModels.GetErrorModel(Errors.UnknownError, languageCode));
 
-            if (result.ErrorModel is not null)
-                return StatusCode((int)result.StatusCode, result.ErrorModel);
-
-            return StatusCode((int)result.StatusCode,
-                ErrorModels.GetErrorModel(Errors.UnknownError, ApiCommonConsts.DefaultLanguage));
+            var errorModel = ErrorModels.GetErrorModel(result.Error, languageCode);
+            errorModel.Detail = result.ErrorDetail ?? errorModel.Message;
+            return StatusCode((int)result.StatusCode, errorModel);
         }
     }
 }

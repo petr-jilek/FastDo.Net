@@ -2,11 +2,13 @@
 {
     public class AppException : Exception
     {
-        public ErrorModel ErrorModel { get; set; }
+        public string? Error { get; set; }
+        public string? ErrorDetail { get; set; }
 
-        public AppException(ErrorModel errorModel) : base()
+        public AppException(string? error = null, string? errorDetail = null) : base()
         {
-            ErrorModel = errorModel;
+            Error = error;
+            ErrorDetail = errorDetail;
         }
     }
 }

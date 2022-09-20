@@ -2,8 +2,17 @@
 {
     public static class ErrorModels
     {
-        public static ErrorModel GetErrorModel(string errorCode, string lang)
+        public static ErrorModel GetErrorModel(string? errorCode, string lang)
         {
+            if (errorCode is null)
+                return lang switch
+                {
+                    "cz" => new ErrorModel("Neznámý error"),
+                    "en" => new ErrorModel("Unknown error"),
+                    "de" => new ErrorModel("Unbekannter Fehler"),
+                    _ => new ErrorModel("Neznámý error"),
+                };
+            
             return errorCode switch
             {
                 Errors.UnknownError => lang switch

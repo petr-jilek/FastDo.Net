@@ -1,5 +1,4 @@
 ﻿using ApiCommon.Domain.Consts;
-using ApiCommon.Domain.Error;
 
 namespace ApiCommon.API.Services.General.Localization
 {
@@ -19,33 +18,16 @@ namespace ApiCommon.API.Services.General.Localization
             var lang = _httpContextAccessor.HttpContext?.Request.Headers["Accept-Language"];
 
             if (lang is null || ApiCommonConsts.SupportedLanguages.Contains(lang) == false)
-            {
-                if (_settings.DefaultLanguage is not null)
-                    return _settings.DefaultLanguage;
-
-                return ApiCommonConsts.DefaultLanguage;
-            }
-
-            if (_settings.SupportedLanguages is not null && _settings.SupportedLanguages.Contains(lang))
+                return _settings.DefaultLanguage!;
+            if (_settings.SupportedLanguages!.Contains(lang))
                 return lang;
 
-            if (_settings.DefaultLanguage is not null)
-                return _settings.DefaultLanguage;
-
-            return ApiCommonConsts.DefaultLanguage;
+            return _settings.DefaultLanguage!;
         }
 
         public string GetString(Dictionary<string, string> localizedValues)
         {
-            if (localizedValues.TryGetValue(GetLanguageCode(), out var value))
-                return value;
-            else
-                return "##";
-        }
-
-        public ErrorModel GetErrorModel(string errorCode)
-        {
-            return ErrorModels.GetErrorModel(errorCode, GetLanguageCode());
+            return localizedValues.TryGetValue(GetLanguageCode(), out var value) ? value : "##";
         }
     }
 }
