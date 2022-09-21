@@ -64,8 +64,8 @@
         public const string MustBePositiveNumber = "MustBePositiveNumber";
 
         public const string StartDateCannotBeInPast = "StartDateCannotBeInPast";
-
-
+        public const string StartDateMustBeInFuture = "StartDateMustBeInFuture";
+        
         //public const string BadEmail = new("BadEmail");
         //public const string UserWithEmailAlreadyExists = new("UserWithEmailAlreadyExists");
         //public const string BadUserName = new("BadUserName");

@@ -318,12 +318,19 @@
 
                 Errors.StartDateCannotBeInPast => lang switch
                 {
-                    "cz" => new ErrorModel("Datum zahájení nemůže být v minulosti"),
+                    "cz" => new ErrorModel("Datum začátku nemůže být v minulosti"),
                     "en" => new ErrorModel("Start date cannot be in past"),
                     "de" => new ErrorModel("Startdatum darf nicht in der Vergangenheit liegen"),
-                    _ => new ErrorModel("Datum zahájení nemůže být v minulosti"),
+                    _ => new ErrorModel("Datum začátku nemůže být v minulosti"),
                 },
-
+                Errors.StartDateMustBeInFuture => lang switch
+                {
+                    "cz" => new ErrorModel("Datum začátku musí být v budoucnosti"),
+                    "en" => new ErrorModel("The start date must be in the future"),
+                    "de" => new ErrorModel("Das Startdatum muss in der Zukunft liegen"),
+                    _ => new ErrorModel("Datum začátku musí být v budoucnosti"),
+                },
+                
                 _ => lang switch
                 {
                     "cz" => new ErrorModel("Neznámý error"),
