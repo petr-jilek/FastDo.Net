@@ -30,7 +30,7 @@ namespace ApiCommon.API.Application.Areas.General.Articles.Edit
                 return Result<EmptyClass>.Conflict(Errors.ArticleAlreadyExists);
 
             article.Name = request.Name;
-            article.Created = request.Created;
+            article.LastUpdated = DateTimeOffset.UtcNow;
             article.ImageName = request.ImageName;
             article.Description = request.Description;
             article.Content = request.Content;

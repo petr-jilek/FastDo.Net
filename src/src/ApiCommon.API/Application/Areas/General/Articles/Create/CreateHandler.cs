@@ -20,17 +20,18 @@ namespace ApiCommon.API.Application.Areas.General.Articles.Create
         public async Task<Result<EmptyClass>> Handle(CreateRequest request)
         {
             var collection = _mongoDbProvider.GetCollection<Article>();
-
             if (await collection.AsQueryable().AnyAsync(_ => _.Name == request.Name))
                 return Result<EmptyClass>.Conflict(Errors.ArticleAlreadyExists);
 
             var article = new Article
             {
                 Name = request.Name,
-                Created = request.Created,
+                Created = DateTimeOffset.UtcNow,
+                LastUpdated = DateTimeOffset.UtcNow,
                 ImageName = request.ImageName,
                 Description = request.Description,
                 Content = request.Content,
+                Type = request.Type,
             };
 
             await collection.InsertOneAsync(article);

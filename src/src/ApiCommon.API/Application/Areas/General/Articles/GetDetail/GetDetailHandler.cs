@@ -31,9 +31,12 @@ namespace ApiCommon.API.Application.Areas.General.Articles.GetDetail
                 Id = article.Id,
                 Name = article.Name,
                 Created = article.Created,
+                LastUpdated = article.LastUpdated,
                 ImageName = article.ImageName,
                 Description = article.Description,
                 Content = article.Content,
+                Type = article.Type,
+                Order = article.Order,
             };
 
             return Result<GetDetailResponse>.Ok(response);

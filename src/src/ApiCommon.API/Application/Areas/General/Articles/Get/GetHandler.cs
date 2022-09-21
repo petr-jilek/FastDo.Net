@@ -19,10 +19,10 @@ namespace ApiCommon.API.Application.Areas.General.Articles.Get
         public async Task<Result<GetResponse>> Handle(GetRequest request)
         {
             var collection = _mongoDbProvider.GetCollection<Article>();
-            
+
             var articles = await collection
                 .AsQueryable()
-                .OrderByDescending(_ => _.Created)
+                .OrderBy(_ => _.Order)
                 .Skip((request.PageNumber - 1) * request.PageSize)
                 .Take(request.PageSize)
                 .Select(_ => new GetArticlesItemResponse()
@@ -30,16 +30,15 @@ namespace ApiCommon.API.Application.Areas.General.Articles.Get
                     Id = _.Id,
                     Name = _.Name,
                     Created = _.Created,
+                    LastUpdated = _.LastUpdated,
                     ImageName = _.ImageName,
                     Description = _.Description,
                 })
                 .ToListAsync();
 
-
             var response = new GetResponse()
             {
-                Items = articles,
-                TotalCount = await collection.AsQueryable().CountAsync(),
+                Items = articles, TotalCount = await collection.AsQueryable().CountAsync(),
             };
 
             return Result<GetResponse>.Ok(response);

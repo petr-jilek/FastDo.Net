@@ -20,8 +20,4 @@
         <ProjectReference Include="..\ApiCommon.MongoDatabase\ApiCommon.MongoDatabase.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Application\Areas\General" />
-    </ItemGroup>
-
 </Project>

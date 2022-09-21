@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ApiCommon.MongoDatabase.Abstractions
 {
-    public abstract class BaseDbModelStringId
+    public abstract class BaseDbModelStringId : IId
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
