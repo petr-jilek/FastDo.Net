@@ -5,7 +5,7 @@ namespace ApiCommon.API.Application.Repositories.OrderRepo
 {
     public interface IOrderRepository
     {
-        Task<Result<EmptyClass>> MoveUp<T>(string id) where T : IId, IOrder;
-        Task<Result<EmptyClass>> MoveDown<T>(string id) where T : IId, IOrder;
+        Task<Result<EmptyClass>> Higher<T>(string id) where T : IId, IOrder;
+        Task<Result<EmptyClass>> Lower<T>(string id) where T : IId, IOrder;
     }
 }

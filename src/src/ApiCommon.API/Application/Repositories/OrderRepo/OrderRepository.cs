@@ -16,7 +16,7 @@ namespace ApiCommon.API.Application.Repositories.OrderRepo
             _mongoDbProvider = mongoDbProvider;
         }
 
-        public async Task<Result<EmptyClass>> MoveUp<T>(string id) where T : IId, IOrder
+        public async Task<Result<EmptyClass>> Lower<T>(string id) where T : IId, IOrder
         {
             var collection = _mongoDbProvider.GetCollection<T>();
 
@@ -40,7 +40,7 @@ namespace ApiCommon.API.Application.Repositories.OrderRepo
             return Result<EmptyClass>.Ok();
         }
         
-        public async Task<Result<EmptyClass>> MoveDown<T>(string id) where T : IId, IOrder
+        public async Task<Result<EmptyClass>> Higher<T>(string id) where T : IId, IOrder
         {
             var collection = _mongoDbProvider.GetCollection<T>();
 

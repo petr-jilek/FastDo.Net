@@ -22,7 +22,7 @@ namespace ApiCommon.API.Application.Areas.General.Articles.Get
 
             var articles = await collection
                 .AsQueryable()
-                .OrderBy(_ => _.Order)
+                .OrderByDescending(_ => _.Order)
                 .Skip((request.PageNumber - 1) * request.PageSize)
                 .Take(request.PageSize)
                 .Select(_ => new GetArticlesItemResponse()
