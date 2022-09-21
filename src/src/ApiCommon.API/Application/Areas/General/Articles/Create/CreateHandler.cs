@@ -23,6 +23,10 @@ namespace ApiCommon.API.Application.Areas.General.Articles.Create
             if (await collection.AsQueryable().AnyAsync(_ => _.Name == request.Name))
                 return Result<EmptyClass>.Conflict(Errors.ArticleAlreadyExists);
 
+            var maxOrder = await collection.AsQueryable().AnyAsync(_ => true)
+                ? await collection.AsQueryable().MaxAsync(_ => _.Order)
+                : 0;
+
             var article = new Article
             {
                 Name = request.Name,
@@ -32,6 +36,7 @@ namespace ApiCommon.API.Application.Areas.General.Articles.Create
                 Description = request.Description,
                 Content = request.Content,
                 Type = request.Type,
+                Order = maxOrder + 1,
             };
 
             await collection.InsertOneAsync(article);
