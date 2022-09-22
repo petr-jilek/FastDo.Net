@@ -1,26 +1,23 @@
-﻿using System.Collections;
-using System.Globalization;
-using ApiCommon.API.Application.Abstractions;
+﻿using System.Globalization;
 using ApiCommon.API.Application.Core;
-using ApiCommon.MongoDatabase.Models.Articles;
 using ApiCommon.MongoDatabase.Providers;
 using CsvHelper;
 using MongoDB.Driver;
 
-namespace ApiCommon.API.Application.Areas.General.Articles.GetCsv
+namespace ApiCommon.API.Application.Repositories.CsvRepo
 {
-    public class GetCsvHandler : IHandler
+    public class CsvRepository : ICsvRepository
     {
         private readonly IMongoDbProvider _mongoDbProvider;
 
-        public GetCsvHandler(IMongoDbProvider mongoDbProvider)
+        public CsvRepository(IMongoDbProvider mongoDbProvider)
         {
             _mongoDbProvider = mongoDbProvider;
         }
 
-        public async Task<Result<byte[]>> Handle()
+        public async Task<Result<byte[]>> GetCsvAllItems<T>()
         {
-            var collection = _mongoDbProvider.GetCollection<Article>();
+            var collection = _mongoDbProvider.GetCollection<T>();
 
             var items = await collection.AsQueryable().ToListAsync();
 
@@ -28,7 +25,7 @@ namespace ApiCommon.API.Application.Areas.General.Articles.GetCsv
             await using var textWriter = new StreamWriter(stream);
             await using var csv = new CsvWriter(textWriter, CultureInfo.InvariantCulture);
 
-            await csv.WriteRecordsAsync((IEnumerable)items);
+            await csv.WriteRecordsAsync(items);
             await textWriter.FlushAsync();
             var data = stream.ToArray();
 
