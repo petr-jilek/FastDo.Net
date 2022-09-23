@@ -21,7 +21,8 @@ namespace ApiCommon.API.Startup
                     return splittedFullName.Length switch
                     {
                         8 when splittedFullName[0] == "ApiCommon" => string.Join("_", splittedFullName.TakeLast(3)),
-                        6 when splittedFullName[0] == "Application" => string.Join("_", splittedFullName.TakeLast(3)),
+                        6 when splittedFullName[0] == "Application" => string.Join("_", splittedFullName.TakeLast(4)),
+                        5 when splittedFullName[0] == "Application" => string.Join("_", splittedFullName.TakeLast(3)),
                         4 when splittedFullName[3] == "ErrorModel" => string.Join("_", splittedFullName.TakeLast(2)),
                         4 when splittedFullName[0] == "MongoDatabase"
                             => "Database" + "_" + string.Join("_", splittedFullName.TakeLast(3)),
