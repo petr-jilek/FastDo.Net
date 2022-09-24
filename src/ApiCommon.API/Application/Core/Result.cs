@@ -37,7 +37,7 @@ namespace ApiCommon.API.Application.Core
         public static Result<T> Conflict(string? error = null, string? errorDetail = null) => new()
         {
             Success = false,
-            StatusCode = HttpStatusCode.NotFound,
+            StatusCode = HttpStatusCode.Conflict,
             Value = default,
             Error = error,
             ErrorDetail = errorDetail
