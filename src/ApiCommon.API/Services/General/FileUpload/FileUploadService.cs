@@ -25,12 +25,13 @@
             return File.Exists(path);
         }
 
-        public async Task<bool> UploadFileAsync(string dirPath, IFormFile file, bool overwrite = false)
+        public async Task<bool> UploadFileAsync(string dirPath, IFormFile file, bool overwrite = false,
+            string? fileName = null)
         {
             EnsureDirectoryExists(dirPath);
             var path = GetPath(dirPath);
 
-            var filePath = Path.Combine(path, file.FileName);
+            var filePath = Path.Combine(path, fileName ?? file.FileName);
 
             if (overwrite == false && FileExists(filePath))
                 return false;

@@ -2,7 +2,9 @@
 {
     public interface IFileUploadService
     {
-        Task<bool> UploadFileAsync(string dirPath, IFormFile file, bool overwrite = false);
+        Task<bool> UploadFileAsync(string dirPath, IFormFile file, bool overwrite = false,
+            string? fileName = null);
+
         List<string> GetFileNames(string dirPath);
         byte[]? GetFile(string dirPath, string fileName);
         bool DeleteFile(string dirPath, string fileName);

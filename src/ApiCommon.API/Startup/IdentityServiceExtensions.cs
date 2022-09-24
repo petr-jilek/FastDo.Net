@@ -7,16 +7,17 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ApiCommon.API.Startup
 {
-   public static class IdentityServiceExtensions
+    public static class IdentityServiceExtensions
     {
-        public static IServiceCollection AddIdentityAuthentication(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddIdentityAuthentication(this IServiceCollection services,
+            IConfiguration configuration)
         {
             services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
                 .AddJwtBearer(options =>
                 {
                     options.SaveToken = true;
@@ -24,7 +25,9 @@ namespace ApiCommon.API.Startup
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["TokenServiceSettings:Secret"])),
+                        IssuerSigningKey =
+                            new SymmetricSecurityKey(
+                                Encoding.UTF8.GetBytes(configuration["TokenServiceSettings:Secret"])),
                         ValidateIssuer = true,
                         ValidIssuer = configuration["TokenServiceSettings:Issuer"],
                         ValidateAudience = true,
@@ -36,14 +39,24 @@ namespace ApiCommon.API.Startup
 
             return services;
         }
-        
+
         public static AuthorizationOptions AddSuperAdminUserActorAuthorizationPolicy(this AuthorizationOptions options)
         {
             options.AddPolicy(AuthorizePolicies.SuperAdminUserActor, policy =>
             {
                 policy.Requirements.Add(new ActorRequirement(UserActors.SuperAdmin));
             });
-            
+
+            return options;
+        }
+
+        public static AuthorizationOptions AddVerifiedPhoneNumberAuthorizationPolicy(this AuthorizationOptions options)
+        {
+            options.AddPolicy(AuthorizePolicies.VerifiedPhoneNumber, policy =>
+            {
+                policy.Requirements.Add(new VerifiedPhoneNumberRequirement());
+            });
+
             return options;
         }
     }
