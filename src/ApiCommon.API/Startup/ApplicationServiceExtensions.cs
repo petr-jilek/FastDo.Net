@@ -20,6 +20,33 @@ namespace ApiCommon.API.Startup
                 options.InvalidModelStateResponseFactory = actionContext =>
                 {
                     var modelErrorCollection = actionContext.ModelState.Values.Select(x => x.Errors).FirstOrDefault();
+                    
+                    var httpContextAccessor = new HttpContextAccessor() { HttpContext = actionContext.HttpContext, };
+
+                    var lang = ApiCommonConsts.DefaultLanguage;
+
+                    if (modelErrorCollection is null)
+                        return new BadRequestObjectResult(ErrorModels.GetErrorModel(Errors.UnknownError, lang));
+
+                    var message = modelErrorCollection.FirstOrDefault()?.ErrorMessage;
+
+                    return message is null
+                        ? new BadRequestObjectResult(ErrorModels.GetErrorModel(Errors.UnknownError, lang))
+                        : new BadRequestObjectResult(ErrorModels.GetErrorModel(message, lang));
+                };
+            });
+
+            return services;
+        }
+        
+        public static IServiceCollection AddApiBehaviorOptionsLocalized(this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.InvalidModelStateResponseFactory = actionContext =>
+                {
+                    var modelErrorCollection = actionContext.ModelState.Values.Select(x => x.Errors).FirstOrDefault();
 
                     var localizationServiceSettings = new LocalizationServiceSettings();
                     configuration.GetSection(nameof(LocalizationServiceSettings))
