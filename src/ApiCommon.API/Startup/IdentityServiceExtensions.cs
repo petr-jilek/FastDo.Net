@@ -54,7 +54,17 @@ namespace ApiCommon.API.Startup
         {
             options.AddPolicy(AuthorizePolicies.VerifiedPhoneNumber, policy =>
             {
-                policy.Requirements.Add(new VerifiedPhoneNumberRequirement());
+                policy.Requirements.Add(new TrueClaimRequirement(new List<string>() { ApiCommonClaimTypes.PhoneNumberConfirmed }));
+            });
+
+            return options;
+        }
+
+        public static AuthorizationOptions AddVerifiedEmailAuthorizationPolicy(this AuthorizationOptions options)
+        {
+            options.AddPolicy(AuthorizePolicies.VerifiedEmail, policy =>
+            {
+                policy.Requirements.Add(new TrueClaimRequirement(new List<string>() { ApiCommonClaimTypes.EmailConfirmed }));
             });
 
             return options;

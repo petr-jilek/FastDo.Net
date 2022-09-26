@@ -12,9 +12,6 @@ namespace ApiCommon.API.Services.Sms.InfobipSms
             _infobipSmsServiceSettings = infobipSmsServiceSettings;
         }
 
-        // private static readonly string BASE_URL = "https://4mw63m.api.infobip.com";
-        // private static readonly string API_KEY = "12148b9e998f021cb15db1b6f7097e64-f460c5e8-4f9c-4ff1-8a96-10487358c0bf";
-
         public async Task<HttpResponseMessage> SendSmsAsync(string toPhoneNumber, string sender, string text)
         {
             var client = new HttpClient();
