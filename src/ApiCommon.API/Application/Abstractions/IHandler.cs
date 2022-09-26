@@ -1,6 +1,6 @@
 ﻿namespace ApiCommon.API.Application.Abstractions
 {
-    public interface IHandler
+    internal interface IHandler
     {
         
     }
