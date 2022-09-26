@@ -2,6 +2,6 @@
 {
     public interface IQrCodeService
     {
-        string GenerateQrCode(string text);
+        byte[] GenerateQrCode(string text);
     }
 }

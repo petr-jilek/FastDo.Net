@@ -41,6 +41,20 @@
             return true;
         }
 
+        public async Task<bool> UploadFileAsync(string dirPath, byte[] file, string fileName)
+        {
+            EnsureDirectoryExists(dirPath);
+            var path = GetPath(dirPath);
+
+            var filePath = Path.Combine(path, fileName);
+
+            if (FileExists(filePath))
+                return false;
+
+            File.WriteAllBytes(filePath, file);
+            return true;
+        }
+
         public List<string> GetFileNames(string dirPath)
         {
             EnsureDirectoryExists(dirPath);
