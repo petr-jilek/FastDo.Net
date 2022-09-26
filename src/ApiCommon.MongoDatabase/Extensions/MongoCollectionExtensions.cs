@@ -6,7 +6,7 @@ namespace ApiCommon.MongoDatabase.Extensions
 {
     public static class MongoCollectionExtensions
     {
-        public static async Task<ReplaceOneResult> UpdateOneAsync<T>(this IMongoCollection<T> collection, T item) where T : IId
+        public static async Task<ReplaceOneResult> EditOneAsync<T>(this IMongoCollection<T> collection, T item) where T : IId
             => await collection.ReplaceOneAsync(_ => _.Id == item.Id, item);
         public static async Task<DeleteResult> DeleteOneAsync<T>(this IMongoCollection<T> collection, T item) where T : IId
             => await collection.DeleteOneAsync(_ => _.Id == item.Id);
