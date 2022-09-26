@@ -11,13 +11,13 @@ namespace ApiCommon.MongoDatabase.Extensions
         public static async Task<DeleteResult> DeleteOneAsync<T>(this IMongoCollection<T> collection, T item) where T : IId
             => await collection.DeleteOneAsync(_ => _.Id == item.Id);
 
-        public static async Task<DeleteResult> DeleteOneByIdAsync<T>(this IMongoCollection<T> collection, string id) where T : IId
+        public static async Task<DeleteResult> DeleteOneByIdAsync<T>(this IMongoCollection<T> collection, string? id) where T : IId
             => await collection.DeleteOneAsync(_ => _.Id == id);
 
-        public static async Task<bool> ExistsByIdAsync<T>(this IMongoCollection<T> collection, string id) where T : IId
+        public static async Task<bool> ExistsByIdAsync<T>(this IMongoCollection<T> collection, string? id) where T : IId
             => await collection.AsQueryable().AnyAsync(_ => _.Id == id);
 
-        public static async Task<T> GetSingleByIdAsync<T>(this IMongoCollection<T> collection, string id) where T : IId
+        public static async Task<T> GetSingleByIdAsync<T>(this IMongoCollection<T> collection, string? id) where T : IId
             => await collection.AsQueryable().FirstOrDefaultAsync(_ => _.Id == id);
 
         public static async Task<List<T>> GetAllAsync<T>(this IMongoCollection<T> collection) where T : IId

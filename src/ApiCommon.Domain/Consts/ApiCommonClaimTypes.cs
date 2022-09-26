@@ -2,7 +2,7 @@
 {
     public static class ApiCommonClaimTypes
     {
-        public const string PhoneNumberConfirmed = "PhoneNumberConfirmed";
-        public const string EmailConfirmed = "EmailConfirmed";
+        public const string PhoneNumberVerified = "PhoneNumberVerified";
+        public const string EmailVerified = "EmailVerified";
     }
 }

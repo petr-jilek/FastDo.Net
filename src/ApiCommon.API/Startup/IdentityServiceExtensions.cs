@@ -54,7 +54,7 @@ namespace ApiCommon.API.Startup
         {
             options.AddPolicy(AuthorizePolicies.VerifiedPhoneNumber, policy =>
             {
-                policy.Requirements.Add(new TrueClaimRequirement(new List<string>() { ApiCommonClaimTypes.PhoneNumberConfirmed }));
+                policy.Requirements.Add(new TrueClaimRequirement(new List<string>() { ApiCommonClaimTypes.PhoneNumberVerified }));
             });
 
             return options;
@@ -64,7 +64,7 @@ namespace ApiCommon.API.Startup
         {
             options.AddPolicy(AuthorizePolicies.VerifiedEmail, policy =>
             {
-                policy.Requirements.Add(new TrueClaimRequirement(new List<string>() { ApiCommonClaimTypes.EmailConfirmed }));
+                policy.Requirements.Add(new TrueClaimRequirement(new List<string>() { ApiCommonClaimTypes.EmailVerified }));
             });
 
             return options;

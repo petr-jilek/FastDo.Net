@@ -29,7 +29,7 @@ namespace ApiCommon.API.Helpers
         public static string GenerateClientSecret()
            => GenerateRandomString(40);
 
-        public static string GenerateEmailConfirmationToken()
+        public static string GenerateEmailVerificationToken()
             => GenerateRandomString(60);
 
         /// <summary>
