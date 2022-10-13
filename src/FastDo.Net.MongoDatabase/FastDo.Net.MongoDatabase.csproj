@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ApiCommon.Domain\ApiCommon.Domain.csproj" />
+      <ProjectReference Include="..\FastDo.Net.Domain\FastDo.Net.Domain.csproj" />
     </ItemGroup>
 
 </Project>

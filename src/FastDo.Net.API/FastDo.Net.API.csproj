@@ -17,8 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\ApiCommon.Domain\ApiCommon.Domain.csproj" />
-        <ProjectReference Include="..\ApiCommon.MongoDatabase\ApiCommon.MongoDatabase.csproj" />
+      <ProjectReference Include="..\FastDo.Net.MongoDatabase\FastDo.Net.MongoDatabase.csproj" />
     </ItemGroup>
 
 </Project>
