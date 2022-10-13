@@ -1,11 +1,11 @@
-﻿using FastDo.Net.Api.Application.Abstractions;
-using FastDo.Net.Api.Application.Core;
+﻿using FastDo.Net.Application.Abstractions;
+using FastDo.Net.Application.Core;
 using FastDo.Net.MongoDatabase.Models.Articles;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace FastDo.Net.Api.Application.Areas.General.Articles.Get
+namespace FastDo.Net.Application.Areas.General.Articles.Get
 {
     public class GetHandler : IHandler
     {

@@ -1,7 +1,7 @@
-﻿using FastDo.Net.Api.Application.Core;
+﻿using FastDo.Net.Application.Core;
 using FastDo.Net.MongoDatabase.Abstractions;
 
-namespace FastDo.Net.Api.Application.Repositories.IdRepo
+namespace FastDo.Net.Application.Repositories.IdRepo
 {
     public interface IIdRepository
     {

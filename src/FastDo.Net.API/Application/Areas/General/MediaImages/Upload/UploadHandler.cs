@@ -1,10 +1,10 @@
-﻿using FastDo.Net.Api.Application.Abstractions;
-using FastDo.Net.Api.Application.Core;
-using FastDo.Net.Api.Services.General.FileUpload;
+﻿using FastDo.Net.Api.Services.General.FileUpload;
+using FastDo.Net.Application.Abstractions;
+using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Consts;
 using FastDo.Net.Domain.Error;
 
-namespace FastDo.Net.Api.Application.Areas.General.MediaImages.Upload
+namespace FastDo.Net.Application.Areas.General.MediaImages.Upload
 {
     public class UploadHandler : IHandler
     {

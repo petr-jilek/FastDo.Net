@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using FastDo.Net.Domain.Error;
 
-namespace FastDo.Net.Api.Application.Areas.Users.AppUsers.Register
+namespace FastDo.Net.Application.Areas.Users.AppUsers.Register
 {
     public class RegisterRequest
     {

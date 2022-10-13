@@ -1,6 +1,6 @@
 ﻿using FastDo.Net.MongoDatabase.Models.Settings;
 
-namespace FastDo.Net.Api.Application.Repositories.AppSettingsRepo
+namespace FastDo.Net.Application.Repositories.AppSettingsRepo
 {
     public interface IAppSettingsRepository
     {

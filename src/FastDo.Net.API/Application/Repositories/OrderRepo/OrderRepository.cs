@@ -1,11 +1,11 @@
-﻿using FastDo.Net.Api.Application.Core;
+﻿using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Error;
 using FastDo.Net.MongoDatabase.Abstractions;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace FastDo.Net.Api.Application.Repositories.OrderRepo
+namespace FastDo.Net.Application.Repositories.OrderRepo
 {
     public class OrderRepository : IOrderRepository
     {

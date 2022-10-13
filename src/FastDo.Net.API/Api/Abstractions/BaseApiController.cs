@@ -1,4 +1,4 @@
-﻿using FastDo.Net.Api.Application.Core;
+﻿using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Consts;
 using FastDo.Net.Domain.Error;
 using Microsoft.AspNetCore.Mvc;

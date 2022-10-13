@@ -1,4 +1,4 @@
-﻿namespace FastDo.Net.Api.Application.Core
+﻿namespace FastDo.Net.Application.Core
 {
     public struct EmptyClass
     {

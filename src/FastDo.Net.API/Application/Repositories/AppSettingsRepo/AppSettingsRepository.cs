@@ -3,7 +3,7 @@ using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace FastDo.Net.Api.Application.Repositories.AppSettingsRepo
+namespace FastDo.Net.Application.Repositories.AppSettingsRepo
 {
     public class AppSettingsRepository : IAppSettingsRepository
     {

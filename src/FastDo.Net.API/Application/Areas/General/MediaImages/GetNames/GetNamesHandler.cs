@@ -1,9 +1,9 @@
-﻿using FastDo.Net.Api.Application.Abstractions;
-using FastDo.Net.Api.Application.Core;
-using FastDo.Net.Api.Services.General.FileUpload;
+﻿using FastDo.Net.Api.Services.General.FileUpload;
+using FastDo.Net.Application.Abstractions;
+using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Consts;
 
-namespace FastDo.Net.Api.Application.Areas.General.MediaImages.GetNames
+namespace FastDo.Net.Application.Areas.General.MediaImages.GetNames
 {
     public class GetNamesHandler : IHandler
     {

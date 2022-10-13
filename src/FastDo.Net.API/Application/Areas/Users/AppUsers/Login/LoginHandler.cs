@@ -1,9 +1,9 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using FastDo.Net.Api.Application.Abstractions;
-using FastDo.Net.Api.Application.Core;
 using FastDo.Net.Api.Helpers;
 using FastDo.Net.Api.Services.Auth.Token;
+using FastDo.Net.Application.Abstractions;
+using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Consts;
 using FastDo.Net.Domain.Enums;
 using FastDo.Net.Domain.Error;
@@ -12,7 +12,7 @@ using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace FastDo.Net.Api.Application.Areas.Users.AppUsers.Login
+namespace FastDo.Net.Application.Areas.Users.AppUsers.Login
 {
     public class LoginHandler : IHandler
     {

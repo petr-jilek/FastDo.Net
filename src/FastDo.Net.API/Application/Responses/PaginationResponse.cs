@@ -1,4 +1,4 @@
-﻿namespace FastDo.Net.Api.Application.Responses
+﻿namespace FastDo.Net.Application.Responses
 {
     public class PaginationResponse<T>
     {

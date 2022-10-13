@@ -1,7 +1,7 @@
-﻿using FastDo.Net.Api.Application.Core;
+﻿using FastDo.Net.Application.Core;
 using FastDo.Net.MongoDatabase.Abstractions;
 
-namespace FastDo.Net.Api.Application.Repositories.OrderRepo
+namespace FastDo.Net.Application.Repositories.OrderRepo
 {
     public interface IOrderRepository
     {

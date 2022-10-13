@@ -1,4 +1,4 @@
-﻿namespace FastDo.Net.Api.Application.Areas.General.Articles.Get
+﻿namespace FastDo.Net.Application.Areas.General.Articles.Get
 {
     public class GetArticlesItemResponse
     {

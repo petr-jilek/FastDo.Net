@@ -1,4 +1,4 @@
-﻿namespace FastDo.Net.Api.Application.Areas.General.Articles.UploadCsv
+﻿namespace FastDo.Net.Application.Areas.General.Articles.UploadCsv
 {
     public class UploadCsvItemRequest
     {

@@ -1,4 +1,4 @@
-﻿namespace FastDo.Net.Api.Application.Areas.Users.AppUsers.Login
+﻿namespace FastDo.Net.Application.Areas.Users.AppUsers.Login
 {
     public class LoginResponse
     {

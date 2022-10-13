@@ -1,6 +1,6 @@
-﻿using FastDo.Net.Api.Application.Abstractions;
-using FastDo.Net.Api.Application.Core;
-using FastDo.Net.Api.Helpers;
+﻿using FastDo.Net.Api.Helpers;
+using FastDo.Net.Application.Abstractions;
+using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Enums;
 using FastDo.Net.Domain.Error;
 using FastDo.Net.MongoDatabase.Models.Users;
@@ -8,7 +8,7 @@ using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace FastDo.Net.Api.Application.Areas.Users.AppUsers.Register
+namespace FastDo.Net.Application.Areas.Users.AppUsers.Register
 {
     public class RegisterHandler : IHandler
     {

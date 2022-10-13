@@ -1,12 +1,12 @@
-﻿using FastDo.Net.Api.Application.Abstractions;
-using FastDo.Net.Api.Application.Core;
+﻿using FastDo.Net.Application.Abstractions;
+using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Error;
 using FastDo.Net.MongoDatabase.Models.Articles;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace FastDo.Net.Api.Application.Areas.General.Articles.Create
+namespace FastDo.Net.Application.Areas.General.Articles.Create
 {
     public class CreateHandler : IHandler
     {

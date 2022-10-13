@@ -1,4 +1,4 @@
-﻿namespace FastDo.Net.Api.Application.Abstractions
+﻿namespace FastDo.Net.Application.Abstractions
 {
     internal interface IHandler
     {
