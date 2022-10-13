@@ -24,7 +24,7 @@
         <Title>FastDo.Net</Title>
         <Version>0.0.2</Version>
         <Authors>Petr Jílek</Authors>
-        <PackageTags>Api, Mongo, Handler, Middleware, Authentication, Helper, Extension</PackageTags>    
+        <PackageTags>Api, Mongo, Handler, Middleware, Authentication, Helper, Extension</PackageTags>
         <RepositoryUrl>https://github.com/petr-jilek/FastDo.Net</RepositoryUrl>
     </PropertyGroup>
 
