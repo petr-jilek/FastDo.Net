@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.API.Services.General.QrCode
+﻿namespace FastDo.Net.Api.Services.General.QrCode
 {
     public interface IQrCodeService
     {

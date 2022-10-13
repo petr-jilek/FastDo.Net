@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.API
+﻿namespace FastDo.Net.Api
 {
     public class Program
     {

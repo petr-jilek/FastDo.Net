@@ -1,6 +1,6 @@
-﻿using ApiCommon.API.Application.Core;
+﻿using FastDo.Net.Api.Application.Core;
 
-namespace ApiCommon.API.Application.Repositories.CsvRepo
+namespace FastDo.Net.Api.Application.Repositories.CsvRepo
 {
     public interface ICsvRepository
     {

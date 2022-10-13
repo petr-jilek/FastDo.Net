@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 
-namespace ApiCommon.API.SecurityRequirements
+namespace FastDo.Net.Api.SecurityRequirements
 {
     public class ActorRequirement : IAuthorizationRequirement
     {

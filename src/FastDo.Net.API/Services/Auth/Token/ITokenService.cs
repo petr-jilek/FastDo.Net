@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace ApiCommon.API.Services.Auth.Token
+namespace FastDo.Net.Api.Services.Auth.Token
 {
     public interface ITokenService
     {

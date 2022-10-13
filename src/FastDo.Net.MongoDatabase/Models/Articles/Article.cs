@@ -1,6 +1,6 @@
-﻿using ApiCommon.MongoDatabase.Abstractions;
+﻿using FastDo.Net.MongoDatabase.Abstractions;
 
-namespace ApiCommon.MongoDatabase.Models.Articles
+namespace FastDo.Net.MongoDatabase.Models.Articles
 {
     public class Article : BaseDbModelStringId, IOrder
     {

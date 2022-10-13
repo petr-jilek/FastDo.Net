@@ -1,6 +1,6 @@
-﻿using ApiCommon.MongoDatabase.Abstractions;
+﻿using FastDo.Net.MongoDatabase.Abstractions;
 
-namespace ApiCommon.MongoDatabase.Models.Settings
+namespace FastDo.Net.MongoDatabase.Models.Settings
 {
     public class AppSettings : BaseDbModelStringId
     {

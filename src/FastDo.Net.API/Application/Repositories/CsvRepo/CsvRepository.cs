@@ -1,10 +1,10 @@
 ﻿using System.Globalization;
-using ApiCommon.API.Application.Core;
-using ApiCommon.MongoDatabase.Providers;
 using CsvHelper;
+using FastDo.Net.Api.Application.Core;
+using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 
-namespace ApiCommon.API.Application.Repositories.CsvRepo
+namespace FastDo.Net.Api.Application.Repositories.CsvRepo
 {
     public class CsvRepository : ICsvRepository
     {

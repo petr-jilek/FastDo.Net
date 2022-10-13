@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ApiCommon.Domain.Error;
+using FastDo.Net.Domain.Error;
 
-namespace ApiCommon.API.Application.Areas.General.Articles.Create
+namespace FastDo.Net.Api.Application.Areas.General.Articles.Create
 {
     public class CreateRequest
     {

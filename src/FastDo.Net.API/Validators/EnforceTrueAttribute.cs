@@ -1,14 +1,14 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace ApiCommon.API.Validators
+namespace FastDo.Net.Api.Validators
 {
-    public class EnforceTrueAttribute: ValidationAttribute
+    public class EnforceTrueAttribute : ValidationAttribute
     {
         public override bool IsValid(object? value)
         {
-            if (value is null) 
+            if (value is null)
                 return false;
-            if (value.GetType() != typeof(bool)) 
+            if (value.GetType() != typeof(bool))
                 return false;
             return (bool)value;
         }

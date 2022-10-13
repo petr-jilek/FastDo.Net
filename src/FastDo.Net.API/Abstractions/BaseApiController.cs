@@ -1,15 +1,15 @@
-﻿using ApiCommon.API.Application.Core;
-using ApiCommon.Domain.Consts;
-using ApiCommon.Domain.Error;
+﻿using FastDo.Net.Api.Application.Core;
+using FastDo.Net.Domain.Consts;
+using FastDo.Net.Domain.Error;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ApiCommon.API.Abstractions
+namespace FastDo.Net.Api.Abstractions
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class BaseApiController : ControllerBase
     {
-        protected ActionResult HandleResult<T>(Result<T> result, string languageCode = ApiCommonConsts.DefaultLanguage)
+        protected ActionResult HandleResult<T>(Result<T> result, string languageCode = GlobalConsts.DefaultLanguage)
         {
             if (result.Success)
             {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ApiCommon.Domain.Error;
+using FastDo.Net.Domain.Error;
 
-namespace ApiCommon.API.Application.Areas.General.Articles.Edit
+namespace FastDo.Net.Api.Application.Areas.General.Articles.Edit
 {
     public class EditRequest
     {

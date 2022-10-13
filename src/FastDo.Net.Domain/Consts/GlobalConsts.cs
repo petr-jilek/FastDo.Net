@@ -1,6 +1,6 @@
-﻿namespace ApiCommon.Domain.Consts
+﻿namespace FastDo.Net.Domain.Consts
 {
-    public static class ApiCommonConsts
+    public static class GlobalConsts
     {
         public const string DefaultLanguage = LanguageCodes.Cz;
 

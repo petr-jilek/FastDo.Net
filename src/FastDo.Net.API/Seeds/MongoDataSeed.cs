@@ -1,11 +1,11 @@
-﻿using ApiCommon.API.Helpers;
-using ApiCommon.Domain.Enums;
-using ApiCommon.MongoDatabase.Models.Users;
-using ApiCommon.MongoDatabase.Providers;
+﻿using FastDo.Net.Api.Helpers;
+using FastDo.Net.Domain.Enums;
+using FastDo.Net.MongoDatabase.Models.Users;
+using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace ApiCommon.API.Seeds
+namespace FastDo.Net.Api.Seeds
 {
     public static class MongoDataSeed
     {

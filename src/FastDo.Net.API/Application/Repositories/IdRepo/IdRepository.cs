@@ -1,11 +1,11 @@
-﻿using ApiCommon.API.Application.Core;
-using ApiCommon.Domain.Error;
-using ApiCommon.MongoDatabase.Abstractions;
-using ApiCommon.MongoDatabase.Providers;
+﻿using FastDo.Net.Api.Application.Core;
+using FastDo.Net.Domain.Error;
+using FastDo.Net.MongoDatabase.Abstractions;
+using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace ApiCommon.API.Application.Repositories.IdRepo
+namespace FastDo.Net.Api.Application.Repositories.IdRepo
 {
     public class IdRepository : IIdRepository
     {

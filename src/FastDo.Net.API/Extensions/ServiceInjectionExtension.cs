@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.API.Extensions
+﻿namespace FastDo.Net.Api.Extensions
 {
     public static class ServiceInjectionExtension
     {
@@ -36,7 +36,7 @@
 
             if (settings.IsAnyStringNullOrEmpty())
                 throw new ArgumentNullException(typeof(T).Name);
-            
+
             services.AddSingleton(settings);
 
             return services;

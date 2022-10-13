@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.API.Services.General.FileUpload
+﻿namespace FastDo.Net.Api.Services.General.FileUpload
 {
     public class FileUploadService : IFileUploadService
     {

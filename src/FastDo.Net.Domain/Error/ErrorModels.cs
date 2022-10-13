@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.Domain.Error
+﻿namespace FastDo.Net.Domain.Error
 {
     public static class ErrorModels
     {
@@ -12,7 +12,7 @@
                     "de" => new ErrorModel("Unbekannter Fehler"),
                     _ => new ErrorModel("Neznámý error"),
                 };
-            
+
             return errorCode switch
             {
                 Errors.UnknownError => lang switch
@@ -330,7 +330,7 @@
                     "de" => new ErrorModel("Das Startdatum muss in der Zukunft liegen"),
                     _ => new ErrorModel("Datum začátku musí být v budoucnosti"),
                 },
-                
+
                 _ => lang switch
                 {
                     "cz" => new ErrorModel("Neznámý error"),

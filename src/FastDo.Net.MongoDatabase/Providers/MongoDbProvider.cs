@@ -1,7 +1,7 @@
-﻿using ApiCommon.MongoDatabase.Settings;
+﻿using FastDo.Net.MongoDatabase.Settings;
 using MongoDB.Driver;
 
-namespace ApiCommon.MongoDatabase.Providers
+namespace FastDo.Net.MongoDatabase.Providers
 {
     public class MongoDbProvider : IMongoDbProvider
     {

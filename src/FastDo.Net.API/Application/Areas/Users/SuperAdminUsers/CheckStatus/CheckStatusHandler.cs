@@ -1,9 +1,9 @@
-﻿using ApiCommon.API.Application.Abstractions;
-using ApiCommon.API.Application.Core;
-using ApiCommon.API.Services.Auth.Token;
-using ApiCommon.API.Services.Auth.UserAccessor;
+﻿using FastDo.Net.Api.Application.Abstractions;
+using FastDo.Net.Api.Application.Core;
+using FastDo.Net.Api.Services.Auth.Token;
+using FastDo.Net.Api.Services.Auth.UserAccessor;
 
-namespace ApiCommon.API.Application.Areas.Users.SuperAdminUsers.CheckStatus
+namespace FastDo.Net.Api.Application.Areas.Users.SuperAdminUsers.CheckStatus
 {
     public class CheckStatusHandler : IHandler
     {

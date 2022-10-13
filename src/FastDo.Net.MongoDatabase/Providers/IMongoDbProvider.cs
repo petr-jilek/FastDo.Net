@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 
-namespace ApiCommon.MongoDatabase.Providers
+namespace FastDo.Net.MongoDatabase.Providers
 {
     public interface IMongoDbProvider
     {

@@ -1,6 +1,6 @@
-﻿using ApiCommon.Domain.Consts;
+﻿using FastDo.Net.Domain.Consts;
 
-namespace ApiCommon.API.Services.General.Localization
+namespace FastDo.Net.Api.Services.General.Localization
 {
     public class LocalizationService : ILocalizationService
     {
@@ -17,7 +17,7 @@ namespace ApiCommon.API.Services.General.Localization
         {
             var lang = _httpContextAccessor.HttpContext?.Request.Headers["Accept-Language"];
 
-            if (lang is null || ApiCommonConsts.SupportedLanguages.Contains(lang) == false)
+            if (lang is null || GlobalConsts.SupportedLanguages.Contains(lang) == false)
                 return _settings.DefaultLanguage!;
             if (_settings.SupportedLanguages!.Contains(lang))
                 return lang;

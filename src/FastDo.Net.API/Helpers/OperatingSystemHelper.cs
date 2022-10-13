@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace ApiCommon.API.Helpers
+namespace FastDo.Net.Api.Helpers
 {
     public static class OperatingSystemHelper
     {

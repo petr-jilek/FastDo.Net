@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastDo.Net.API", "src\FastDo.Net.API\FastDo.Net.API.csproj", "{1CED7C50-D9BB-45A5-B618-C27E003BDBBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastDo.Net.Api", "src\FastDo.Net.API\FastDo.Net.Api.csproj", "{1CED7C50-D9BB-45A5-B618-C27E003BDBBF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D9479407-8D95-4B15-8F36-4F3A4C86008B}"
 EndProject

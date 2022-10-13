@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.API.Application.Areas.General.Articles.Get
+﻿namespace FastDo.Net.Api.Application.Areas.General.Articles.Get
 {
     public class GetResponse
     {

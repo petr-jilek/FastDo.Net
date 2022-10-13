@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.API.Services.General.AppUrl
+﻿namespace FastDo.Net.Api.Services.General.AppUrl
 {
     public class AppUrlService : IAppUrlService
     {

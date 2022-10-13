@@ -1,18 +1,18 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using ApiCommon.API.Application.Abstractions;
-using ApiCommon.API.Application.Core;
-using ApiCommon.API.Helpers;
-using ApiCommon.API.Services.Auth.Token;
-using ApiCommon.Domain.Consts;
-using ApiCommon.Domain.Enums;
-using ApiCommon.Domain.Error;
-using ApiCommon.MongoDatabase.Models.Users;
-using ApiCommon.MongoDatabase.Providers;
+using FastDo.Net.Api.Application.Abstractions;
+using FastDo.Net.Api.Application.Core;
+using FastDo.Net.Api.Helpers;
+using FastDo.Net.Api.Services.Auth.Token;
+using FastDo.Net.Domain.Consts;
+using FastDo.Net.Domain.Enums;
+using FastDo.Net.Domain.Error;
+using FastDo.Net.MongoDatabase.Models.Users;
+using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace ApiCommon.API.Application.Areas.Users.SuperAdminUsers.Login
+namespace FastDo.Net.Api.Application.Areas.Users.SuperAdminUsers.Login
 {
     public class LoginHandler : IHandler
     {
@@ -43,12 +43,13 @@ namespace ApiCommon.API.Application.Areas.Users.SuperAdminUsers.Login
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id!),
-                new Claim(ClaimTypes.Actor, UserActors.SuperAdmin),
+                new Claim(System.Security.Claims.ClaimTypes.Actor, UserActors.SuperAdmin),
             };
 
             var response = new LoginResponse()
             {
-                Token = _tokenService.CreateToken(claims, 500), Actor = UserActors.SuperAdmin,
+                Token = _tokenService.CreateToken(claims, 500),
+                Actor = UserActors.SuperAdmin,
             };
 
             return Result<LoginResponse>.Ok(response);

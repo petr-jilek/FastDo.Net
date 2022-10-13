@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace ApiCommon.API.Services.Auth.Token
+namespace FastDo.Net.Api.Services.Auth.Token
 {
     public class TokenService : ITokenService
     {

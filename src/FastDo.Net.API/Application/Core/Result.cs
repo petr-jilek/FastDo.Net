@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace ApiCommon.API.Application.Core
+namespace FastDo.Net.Api.Application.Core
 {
     public class Result<T>
     {

@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.API.Services.Email.EmailSmtp
+﻿namespace FastDo.Net.Api.Services.Email.EmailSmtp
 {
     public class EmailSmtpServiceSettings
     {

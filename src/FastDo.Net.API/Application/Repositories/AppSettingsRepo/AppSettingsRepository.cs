@@ -1,9 +1,9 @@
-﻿using ApiCommon.MongoDatabase.Models.Settings;
-using ApiCommon.MongoDatabase.Providers;
+﻿using FastDo.Net.MongoDatabase.Models.Settings;
+using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace ApiCommon.API.Application.Repositories.AppSettingsRepo
+namespace FastDo.Net.Api.Application.Repositories.AppSettingsRepo
 {
     public class AppSettingsRepository : IAppSettingsRepository
     {
@@ -35,7 +35,7 @@ namespace ApiCommon.API.Application.Repositories.AppSettingsRepo
 
             var item = await collection.AsQueryable().FirstOrDefaultAsync(_ => _.Key == key);
             if (item is null)
-                return default(T);
+                return default;
 
             if (item.Value is T value)
                 return value;
@@ -46,7 +46,7 @@ namespace ApiCommon.API.Application.Repositories.AppSettingsRepo
             }
             catch (InvalidCastException)
             {
-                return default(T);
+                return default;
             }
         }
 

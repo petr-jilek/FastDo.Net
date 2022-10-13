@@ -1,9 +1,8 @@
-﻿using ApiCommon.API.Application.Core;
-using ApiCommon.API.Services.General.Localization;
-using ApiCommon.Domain.Error;
+﻿using FastDo.Net.Api.Application.Core;
+using FastDo.Net.Api.Services.General.Localization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ApiCommon.API.Abstractions
+namespace FastDo.Net.Api.Abstractions
 {
     [ApiController]
     [Route("api/[controller]/[action]")]

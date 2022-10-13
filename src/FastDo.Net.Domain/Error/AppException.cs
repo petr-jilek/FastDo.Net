@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.Domain.Error
+﻿namespace FastDo.Net.Domain.Error
 {
     public class AppException : Exception
     {

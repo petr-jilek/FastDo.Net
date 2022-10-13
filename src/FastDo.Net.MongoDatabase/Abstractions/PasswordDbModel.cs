@@ -1,6 +1,6 @@
-﻿using ApiCommon.Domain.Enums;
+﻿using FastDo.Net.Domain.Enums;
 
-namespace ApiCommon.MongoDatabase.Abstractions
+namespace FastDo.Net.MongoDatabase.Abstractions
 {
     public abstract class PasswordDbModel : BaseDbModelStringId
     {

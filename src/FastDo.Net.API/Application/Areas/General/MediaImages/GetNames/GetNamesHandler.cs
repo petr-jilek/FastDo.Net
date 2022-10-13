@@ -1,9 +1,9 @@
-﻿using ApiCommon.API.Application.Abstractions;
-using ApiCommon.API.Application.Core;
-using ApiCommon.API.Services.General.FileUpload;
-using ApiCommon.Domain.Consts;
+﻿using FastDo.Net.Api.Application.Abstractions;
+using FastDo.Net.Api.Application.Core;
+using FastDo.Net.Api.Services.General.FileUpload;
+using FastDo.Net.Domain.Consts;
 
-namespace ApiCommon.API.Application.Areas.General.MediaImages.GetNames
+namespace FastDo.Net.Api.Application.Areas.General.MediaImages.GetNames
 {
     public class GetNamesHandler : IHandler
     {
@@ -16,7 +16,7 @@ namespace ApiCommon.API.Application.Areas.General.MediaImages.GetNames
 
         public Result<GetNamesResponse> Handle()
         {
-            var names = _fileUploadService.GetFileNames(ApiCommonConsts.MediaImagesFolder);
+            var names = _fileUploadService.GetFileNames(GlobalConsts.MediaImagesFolder);
             return Result<GetNamesResponse>.Ok(new GetNamesResponse() { Items = names, });
         }
     }

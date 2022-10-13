@@ -1,11 +1,11 @@
-﻿using ApiCommon.API.Application.Abstractions;
-using ApiCommon.API.Application.Core;
-using ApiCommon.MongoDatabase.Models.Articles;
-using ApiCommon.MongoDatabase.Providers;
+﻿using FastDo.Net.Api.Application.Abstractions;
+using FastDo.Net.Api.Application.Core;
+using FastDo.Net.MongoDatabase.Models.Articles;
+using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace ApiCommon.API.Application.Areas.General.Articles.Get
+namespace FastDo.Net.Api.Application.Areas.General.Articles.Get
 {
     public class GetHandler : IHandler
     {
@@ -38,7 +38,8 @@ namespace ApiCommon.API.Application.Areas.General.Articles.Get
 
             var response = new GetResponse()
             {
-                Items = articles, TotalCount = await collection.AsQueryable().CountAsync(),
+                Items = articles,
+                TotalCount = await collection.AsQueryable().CountAsync(),
             };
 
             return Result<GetResponse>.Ok(response);

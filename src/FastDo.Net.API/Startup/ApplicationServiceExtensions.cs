@@ -1,14 +1,13 @@
-﻿using ApiCommon.API.Application.Abstractions;
-using ApiCommon.API.Extensions;
-using ApiCommon.API.Services.General;
-using ApiCommon.API.Services.General.Localization;
-using ApiCommon.Domain.Consts;
-using ApiCommon.Domain.Error;
-using ApiCommon.MongoDatabase.Providers;
-using ApiCommon.MongoDatabase.Settings;
+﻿using FastDo.Net.Api.Application.Abstractions;
+using FastDo.Net.Api.Extensions;
+using FastDo.Net.Api.Services.General.Localization;
+using FastDo.Net.Domain.Consts;
+using FastDo.Net.Domain.Error;
+using FastDo.Net.MongoDatabase.Providers;
+using FastDo.Net.MongoDatabase.Settings;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ApiCommon.API.Startup
+namespace FastDo.Net.Api.Startup
 {
     public static class ApplicationServiceExtensions
     {
@@ -20,10 +19,10 @@ namespace ApiCommon.API.Startup
                 options.InvalidModelStateResponseFactory = actionContext =>
                 {
                     var modelErrorCollection = actionContext.ModelState.Values.Select(x => x.Errors).FirstOrDefault();
-                    
+
                     var httpContextAccessor = new HttpContextAccessor() { HttpContext = actionContext.HttpContext, };
 
-                    var lang = ApiCommonConsts.DefaultLanguage;
+                    var lang = GlobalConsts.DefaultLanguage;
 
                     if (modelErrorCollection is null)
                         return new BadRequestObjectResult(ErrorModels.GetErrorModel(Errors.UnknownError, lang));
@@ -38,7 +37,7 @@ namespace ApiCommon.API.Startup
 
             return services;
         }
-        
+
         public static IServiceCollection AddApiBehaviorOptionsLocalized(this IServiceCollection services,
             IConfiguration configuration)
         {
@@ -90,7 +89,7 @@ namespace ApiCommon.API.Startup
             return services;
         }
 
-        public static IServiceCollection AddApiCommonHandlers(this IServiceCollection services)
+        public static IServiceCollection AddFastDoHandlers(this IServiceCollection services)
         {
             services.AddByInterface<IHandler>();
             return services;

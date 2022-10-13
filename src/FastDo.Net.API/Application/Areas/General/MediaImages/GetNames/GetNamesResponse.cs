@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.API.Application.Areas.General.MediaImages.GetNames
+﻿namespace FastDo.Net.Api.Application.Areas.General.MediaImages.GetNames
 {
     public class GetNamesResponse
     {

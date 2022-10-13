@@ -1,7 +1,7 @@
 ﻿using System.Drawing.Imaging;
 using QRCoder;
 
-namespace ApiCommon.API.Services.General.QrCode
+namespace FastDo.Net.Api.Services.General.QrCode
 {
     public class QrCodeService : IQrCodeService
     {

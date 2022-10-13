@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.MongoDatabase.Abstractions
+﻿namespace FastDo.Net.MongoDatabase.Abstractions
 {
     public interface IId
     {

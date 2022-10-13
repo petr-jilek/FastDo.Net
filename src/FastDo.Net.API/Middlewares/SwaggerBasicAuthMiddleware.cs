@@ -2,7 +2,7 @@
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace ApiCommon.API.Middlewares
+namespace FastDo.Net.Api.Middlewares
 {
     /// <summary>a
     /// Middleware for Basic authorization

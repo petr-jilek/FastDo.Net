@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.MongoDatabase.Settings
+﻿namespace FastDo.Net.MongoDatabase.Settings
 {
     public class MongoDbSettings
     {

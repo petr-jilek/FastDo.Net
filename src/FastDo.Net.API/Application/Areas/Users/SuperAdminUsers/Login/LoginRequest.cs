@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ApiCommon.Domain.Error;
+using FastDo.Net.Domain.Error;
 
-namespace ApiCommon.API.Application.Areas.Users.SuperAdminUsers.Login
+namespace FastDo.Net.Api.Application.Areas.Users.SuperAdminUsers.Login
 {
     public class LoginRequest
     {

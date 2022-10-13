@@ -4,6 +4,8 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,5 +15,11 @@
     <ItemGroup>
       <ProjectReference Include="..\FastDo.Net.Domain\FastDo.Net.Domain.csproj" />
     </ItemGroup>
+
+    <PropertyGroup>
+        <PackageId>FastDo.Net.MongoDatabase</PackageId>
+        <Version>0.0.1</Version>
+        <Authors>Petr Jílek</Authors>
+    </PropertyGroup>
 
 </Project>

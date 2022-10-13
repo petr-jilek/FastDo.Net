@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.API.Services.Sms.InfobipSms
+﻿namespace FastDo.Net.Api.Services.Sms.InfobipSms
 {
     public interface IInfobipSmsService
     {

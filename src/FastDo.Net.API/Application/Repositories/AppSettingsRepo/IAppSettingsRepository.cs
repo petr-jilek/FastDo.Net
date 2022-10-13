@@ -1,12 +1,12 @@
-﻿using ApiCommon.MongoDatabase.Models.Settings;
+﻿using FastDo.Net.MongoDatabase.Models.Settings;
 
-namespace ApiCommon.API.Application.Repositories.AppSettingsRepo
+namespace FastDo.Net.Api.Application.Repositories.AppSettingsRepo
 {
     public interface IAppSettingsRepository
     {
         Task AddItemAsync<T>(string key, T value);
         Task<T?> GetItemAsync<T>(string key);
-        Task<List<AppSettings>> GetAllAsync(); 
+        Task<List<AppSettings>> GetAllAsync();
         Task<List<string?>> GetAllKeysAsync();
         Task RemoveItem(string key);
     }

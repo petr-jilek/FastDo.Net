@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace ApiCommon.API.Extensions
+namespace FastDo.Net.Api.Extensions
 {
     public static class CommonExtensions
     {

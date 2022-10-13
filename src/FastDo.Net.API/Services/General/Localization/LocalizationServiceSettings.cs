@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.API.Services.General.Localization
+﻿namespace FastDo.Net.Api.Services.General.Localization
 {
     public class LocalizationServiceSettings
     {

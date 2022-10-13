@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ApiCommon.API.Application.Requests
+namespace FastDo.Net.Api.Application.Requests
 {
     public class PaginationRequest
     {

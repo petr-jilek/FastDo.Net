@@ -1,8 +1,8 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
-using ApiCommon.Domain.Models;
+using FastDo.Net.Domain.Models;
 
-namespace ApiCommon.API.Services.Auth.BasicAuth
+namespace FastDo.Net.Api.Services.Auth.BasicAuth
 {
     public class BasicAuthService : IBasicAuthService
     {
@@ -18,11 +18,11 @@ namespace ApiCommon.API.Services.Auth.BasicAuth
             string authHeader = _httpContextAccessor.HttpContext!.Request.Headers["Authorization"];
             if (authHeader is null || authHeader.StartsWith("Basic ") == false)
                 return null;
-            
+
             var header = AuthenticationHeaderValue.Parse(authHeader);
             if (header.Parameter is null)
                 return null;
-            
+
             var inBytes = Convert.FromBase64String(header.Parameter);
             var credentials = Encoding.UTF8.GetString(inBytes).Split(':');
             if (credentials.Length != 2)

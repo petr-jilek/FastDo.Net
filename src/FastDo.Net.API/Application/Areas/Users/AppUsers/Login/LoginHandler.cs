@@ -1,24 +1,24 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using ApiCommon.API.Application.Abstractions;
-using ApiCommon.API.Application.Core;
-using ApiCommon.API.Helpers;
-using ApiCommon.API.Services.Auth.Token;
-using ApiCommon.Domain.Consts;
-using ApiCommon.Domain.Enums;
-using ApiCommon.Domain.Error;
-using ApiCommon.MongoDatabase.Models.Users;
-using ApiCommon.MongoDatabase.Providers;
+using FastDo.Net.Api.Application.Abstractions;
+using FastDo.Net.Api.Application.Core;
+using FastDo.Net.Api.Helpers;
+using FastDo.Net.Api.Services.Auth.Token;
+using FastDo.Net.Domain.Consts;
+using FastDo.Net.Domain.Enums;
+using FastDo.Net.Domain.Error;
+using FastDo.Net.MongoDatabase.Models.Users;
+using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace ApiCommon.API.Application.Areas.Users.AppUsers.Login
+namespace FastDo.Net.Api.Application.Areas.Users.AppUsers.Login
 {
     public class LoginHandler : IHandler
     {
         private readonly IMongoDbProvider _mongoDbProvider;
         private readonly ITokenService _tokenService;
-        
+
         public LoginHandler(IMongoDbProvider mongoDbProvider, ITokenService tokenService)
         {
             _mongoDbProvider = mongoDbProvider;
@@ -42,7 +42,7 @@ namespace ApiCommon.API.Application.Areas.Users.AppUsers.Login
 
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id!), new Claim(ClaimTypes.Actor, UserActors.AppUser),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id!), new Claim(System.Security.Claims.ClaimTypes.Actor, UserActors.AppUser),
             };
 
             var response = new LoginResponse()

@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.Domain.Models
+﻿namespace FastDo.Net.Domain.Models
 {
     public record BasicAuthCredentials
     {

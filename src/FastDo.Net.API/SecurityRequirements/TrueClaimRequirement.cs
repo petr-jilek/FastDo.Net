@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace ApiCommon.API.SecurityRequirements
+namespace FastDo.Net.Api.SecurityRequirements
 {
     public class TrueClaimRequirement : IAuthorizationRequirement
     {

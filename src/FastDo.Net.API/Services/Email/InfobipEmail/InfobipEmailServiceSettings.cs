@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.API.Services.Email.InfobipEmail
+﻿namespace FastDo.Net.Api.Services.Email.InfobipEmail
 {
     public class InfobipEmailServiceSettings
     {

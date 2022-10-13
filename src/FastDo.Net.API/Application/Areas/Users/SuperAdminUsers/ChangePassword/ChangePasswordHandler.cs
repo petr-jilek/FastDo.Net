@@ -1,15 +1,15 @@
-﻿using ApiCommon.API.Application.Abstractions;
-using ApiCommon.API.Application.Core;
-using ApiCommon.API.Helpers;
-using ApiCommon.API.Services.Auth.UserAccessor;
-using ApiCommon.Domain.Enums;
-using ApiCommon.Domain.Error;
-using ApiCommon.MongoDatabase.Models.Users;
-using ApiCommon.MongoDatabase.Providers;
+﻿using FastDo.Net.Api.Application.Abstractions;
+using FastDo.Net.Api.Application.Core;
+using FastDo.Net.Api.Helpers;
+using FastDo.Net.Api.Services.Auth.UserAccessor;
+using FastDo.Net.Domain.Enums;
+using FastDo.Net.Domain.Error;
+using FastDo.Net.MongoDatabase.Models.Users;
+using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace ApiCommon.API.Application.Areas.Users.SuperAdminUsers.ChangePassword
+namespace FastDo.Net.Api.Application.Areas.Users.SuperAdminUsers.ChangePassword
 {
     public class ChangePasswordHandler : IHandler
     {

@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace ApiCommon.MongoDatabase.Abstractions
+namespace FastDo.Net.MongoDatabase.Abstractions
 {
     public abstract class BaseDbModelStringId : IId
     {

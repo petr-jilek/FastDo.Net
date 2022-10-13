@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.API.Services.Auth.UserAccessor
+﻿namespace FastDo.Net.Api.Services.Auth.UserAccessor
 {
     public interface IUserAccessorService
     {

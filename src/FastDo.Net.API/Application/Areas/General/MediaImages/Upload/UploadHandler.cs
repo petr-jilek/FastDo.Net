@@ -1,15 +1,15 @@
-﻿using ApiCommon.API.Application.Abstractions;
-using ApiCommon.API.Application.Core;
-using ApiCommon.API.Services.General.FileUpload;
-using ApiCommon.Domain.Consts;
-using ApiCommon.Domain.Error;
+﻿using FastDo.Net.Api.Application.Abstractions;
+using FastDo.Net.Api.Application.Core;
+using FastDo.Net.Api.Services.General.FileUpload;
+using FastDo.Net.Domain.Consts;
+using FastDo.Net.Domain.Error;
 
-namespace ApiCommon.API.Application.Areas.General.MediaImages.Upload
+namespace FastDo.Net.Api.Application.Areas.General.MediaImages.Upload
 {
     public class UploadHandler : IHandler
     {
         private readonly IFileUploadService _fileUploadService;
-        
+
         public UploadHandler(IFileUploadService fileUploadService)
         {
             _fileUploadService = fileUploadService;
@@ -19,7 +19,7 @@ namespace ApiCommon.API.Application.Areas.General.MediaImages.Upload
         {
             if (file is null)
                 return Result<EmptyClass>.BadRequest(Errors.FileIsEmpty);
-            if (file.Length > ApiCommonConsts.MaxMediaImageSize)
+            if (file.Length > GlobalConsts.MaxMediaImageSize)
                 return Result<EmptyClass>.BadRequest(Errors.FileIsTooLarge);
 
             var splittedName = file.FileName.Split('.');
@@ -27,10 +27,10 @@ namespace ApiCommon.API.Application.Areas.General.MediaImages.Upload
                 return Result<EmptyClass>.BadRequest(Errors.FileNameIsNotValid);
 
             var fileExtension = splittedName[1];
-            if (ApiCommonConsts.AllowedMediaImageExtensions.Contains(fileExtension) == false)
+            if (GlobalConsts.AllowedMediaImageExtensions.Contains(fileExtension) == false)
                 return Result<EmptyClass>.BadRequest(Errors.FileTypeIsNotValid);
 
-            var ok = await  _fileUploadService.UploadFileAsync(ApiCommonConsts.MediaImagesFolder, file);
+            var ok = await _fileUploadService.UploadFileAsync(GlobalConsts.MediaImagesFolder, file);
             return ok == false ? Result<EmptyClass>.BadRequest(Errors.FileAlreadyExists) : Result<EmptyClass>.Ok();
         }
     }

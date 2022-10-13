@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.Domain.Enums
+﻿namespace FastDo.Net.Domain.Enums
 {
     public enum HashMethod
     {

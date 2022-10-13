@@ -1,8 +1,8 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-using ApiCommon.Domain.Enums;
+using FastDo.Net.Domain.Enums;
 
-namespace ApiCommon.API.Helpers
+namespace FastDo.Net.Api.Helpers
 {
     /// <summary>
     /// Helper for generating Salt, Hash, ApiKey

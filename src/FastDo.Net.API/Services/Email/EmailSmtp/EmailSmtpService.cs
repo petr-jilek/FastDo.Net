@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Mail;
 
-namespace ApiCommon.API.Services.Email.EmailSmtp
+namespace FastDo.Net.Api.Services.Email.EmailSmtp
 {
     public class EmailSmtpService : IEmailSmtpService
     {

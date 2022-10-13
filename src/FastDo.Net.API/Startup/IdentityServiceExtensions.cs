@@ -1,11 +1,11 @@
 ﻿using System.Text;
-using ApiCommon.API.SecurityRequirements;
-using ApiCommon.Domain.Consts;
+using FastDo.Net.Api.SecurityRequirements;
+using FastDo.Net.Domain.Consts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 
-namespace ApiCommon.API.Startup
+namespace FastDo.Net.Api.Startup
 {
     public static class IdentityServiceExtensions
     {
@@ -54,7 +54,7 @@ namespace ApiCommon.API.Startup
         {
             options.AddPolicy(AuthorizePolicies.VerifiedPhoneNumber, policy =>
             {
-                policy.Requirements.Add(new TrueClaimRequirement(new List<string>() { ApiCommonClaimTypes.PhoneNumberVerified }));
+                policy.Requirements.Add(new TrueClaimRequirement(new List<string>() { ClaimTypes.PhoneNumberVerified }));
             });
 
             return options;
@@ -64,7 +64,7 @@ namespace ApiCommon.API.Startup
         {
             options.AddPolicy(AuthorizePolicies.VerifiedEmail, policy =>
             {
-                policy.Requirements.Add(new TrueClaimRequirement(new List<string>() { ApiCommonClaimTypes.EmailVerified }));
+                policy.Requirements.Add(new TrueClaimRequirement(new List<string>() { ClaimTypes.EmailVerified }));
             });
 
             return options;

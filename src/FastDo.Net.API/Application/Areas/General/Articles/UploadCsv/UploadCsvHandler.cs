@@ -1,17 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Text;
-using ApiCommon.API.Application.Abstractions;
-using ApiCommon.API.Application.Core;
-using ApiCommon.Domain.Error;
-using ApiCommon.MongoDatabase.Models.Articles;
-using ApiCommon.MongoDatabase.Providers;
 using CsvHelper;
 using CsvHelper.Configuration;
+using FastDo.Net.Api.Application.Abstractions;
+using FastDo.Net.Api.Application.Core;
+using FastDo.Net.Domain.Error;
+using FastDo.Net.MongoDatabase.Models.Articles;
+using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace ApiCommon.API.Application.Areas.General.Articles.UploadCsv
+namespace FastDo.Net.Api.Application.Areas.General.Articles.UploadCsv
 {
     public class UploadCsvHandler : IHandler
     {

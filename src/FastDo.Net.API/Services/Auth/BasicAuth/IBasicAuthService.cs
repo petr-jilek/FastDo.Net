@@ -1,6 +1,6 @@
-﻿using ApiCommon.Domain.Models;
+﻿using FastDo.Net.Domain.Models;
 
-namespace ApiCommon.API.Services.Auth.BasicAuth
+namespace FastDo.Net.Api.Services.Auth.BasicAuth
 {
     public interface IBasicAuthService
     {

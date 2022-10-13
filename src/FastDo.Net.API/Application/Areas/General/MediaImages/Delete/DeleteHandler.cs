@@ -1,10 +1,10 @@
-﻿using ApiCommon.API.Application.Abstractions;
-using ApiCommon.API.Application.Core;
-using ApiCommon.API.Services.General.FileUpload;
-using ApiCommon.Domain.Consts;
-using ApiCommon.Domain.Error;
+﻿using FastDo.Net.Api.Application.Abstractions;
+using FastDo.Net.Api.Application.Core;
+using FastDo.Net.Api.Services.General.FileUpload;
+using FastDo.Net.Domain.Consts;
+using FastDo.Net.Domain.Error;
 
-namespace ApiCommon.API.Application.Areas.General.MediaImages.Delete
+namespace FastDo.Net.Api.Application.Areas.General.MediaImages.Delete
 {
     public class DeleteHandler : IHandler
     {
@@ -17,7 +17,7 @@ namespace ApiCommon.API.Application.Areas.General.MediaImages.Delete
 
         public Result<EmptyClass> Handle(string name)
         {
-            var ok = _fileUploadService.DeleteFile(ApiCommonConsts.MediaImagesFolder, name);
+            var ok = _fileUploadService.DeleteFile(GlobalConsts.MediaImagesFolder, name);
             return ok == false ? Result<EmptyClass>.BadRequest(Errors.FileNotExists) : Result<EmptyClass>.Ok();
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace ApiCommon.Domain.Consts
+﻿namespace FastDo.Net.Domain.Consts
 {
     public static class AuthorizePolicies
     {

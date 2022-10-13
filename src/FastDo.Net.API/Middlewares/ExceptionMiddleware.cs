@@ -1,8 +1,8 @@
-﻿using ApiCommon.Domain.Error;
-using System.Net;
+﻿using System.Net;
 using System.Text.Json;
+using FastDo.Net.Domain.Error;
 
-namespace ApiCommon.API.Middlewares
+namespace FastDo.Net.Api.Middlewares
 {
     public class ExceptionMiddleware
     {

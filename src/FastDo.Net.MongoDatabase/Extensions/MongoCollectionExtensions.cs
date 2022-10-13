@@ -1,8 +1,9 @@
-﻿using ApiCommon.MongoDatabase.Abstractions;
+﻿using FastDo.Net.MongoDatabase.Abstractions;
+using FastDo.Net.MongoDatabase.Extensions;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace ApiCommon.MongoDatabase.Extensions
+namespace FastDo.Net.MongoDatabase.Extensions
 {
     public static class MongoCollectionExtensions
     {

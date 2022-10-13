@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using System.Text.Json;
-using ApiCommon.API.Services.General.Localization;
-using ApiCommon.Domain.Error;
+using FastDo.Net.Api.Services.General.Localization;
+using FastDo.Net.Domain.Error;
 
-namespace ApiCommon.API.Middlewares
+namespace FastDo.Net.Api.Middlewares
 {
     public class AppExceptionLocalizedMiddleware
     {

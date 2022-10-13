@@ -1,12 +1,12 @@
-﻿using ApiCommon.API.Application.Abstractions;
-using ApiCommon.API.Application.Core;
-using ApiCommon.Domain.Error;
-using ApiCommon.MongoDatabase.Models.Articles;
-using ApiCommon.MongoDatabase.Providers;
+﻿using FastDo.Net.Api.Application.Abstractions;
+using FastDo.Net.Api.Application.Core;
+using FastDo.Net.Domain.Error;
+using FastDo.Net.MongoDatabase.Models.Articles;
+using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace ApiCommon.API.Application.Areas.General.Articles.Edit
+namespace FastDo.Net.Api.Application.Areas.General.Articles.Edit
 {
     public class EditHandler : IHandler
     {

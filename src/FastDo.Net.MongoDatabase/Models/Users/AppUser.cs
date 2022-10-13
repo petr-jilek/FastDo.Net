@@ -1,6 +1,6 @@
-﻿using ApiCommon.MongoDatabase.Abstractions;
+﻿using FastDo.Net.MongoDatabase.Abstractions;
 
-namespace ApiCommon.MongoDatabase.Models.Users
+namespace FastDo.Net.MongoDatabase.Models.Users
 {
     public class AppUser : BaseDbModelStringId
     {
