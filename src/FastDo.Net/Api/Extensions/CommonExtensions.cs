@@ -10,7 +10,6 @@ namespace FastDo.Net.Api.Extensions
                 .Select(pi => (string?)pi.GetValue(obj))
                 .Any(string.IsNullOrEmpty);
 
-
         public static bool IsImage(this IFormFile postedFile, int imageMinimumBytes = 512,
             int imageMaximumBytes = 5 * 1024 * 1024)
         {
