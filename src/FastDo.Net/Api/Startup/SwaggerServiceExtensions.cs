@@ -20,6 +20,7 @@ namespace FastDo.Net.Api.Startup
 
                     return splittedFullName.Length switch
                     {
+                        5 when splittedFullName[0] == "FastDo" && splittedFullName.Last() == "ErrorModel" => string.Join("_", splittedFullName.TakeLast(2)),
                         8 when splittedFullName[0] == "FastDo" => string.Join("_", splittedFullName.TakeLast(3)),
                         6 when splittedFullName[0] == "Application" => string.Join("_", splittedFullName.TakeLast(4)),
                         5 when splittedFullName[0] == "Application" => string.Join("_", splittedFullName.TakeLast(3)),

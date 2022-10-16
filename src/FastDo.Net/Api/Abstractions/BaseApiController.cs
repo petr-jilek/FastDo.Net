@@ -27,5 +27,23 @@ namespace FastDo.Net.Api.Abstractions
             errorModel.Detail = result.ErrorDetail ?? errorModel.Message;
             return StatusCode((int)result.StatusCode, errorModel);
         }
+
+        protected ActionResult HandleFileResult<T>(Result<byte[]> result, string contentType, string? fileDownloadName = null, string languageCode = GlobalConsts.DefaultLanguage)
+        {
+            if (result.Success)
+            {
+                if (result.Value is null)
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+
+                return File(result.Value, contentType, fileDownloadName);
+            }
+
+            if (result.Error is null)
+                return StatusCode((int)result.StatusCode, ErrorModels.GetErrorModel(Errors.UnknownError, languageCode));
+
+            var errorModel = ErrorModels.GetErrorModel(result.Error, languageCode);
+            errorModel.Detail = result.ErrorDetail ?? errorModel.Message;
+            return StatusCode((int)result.StatusCode, errorModel);
+        }
     }
 }

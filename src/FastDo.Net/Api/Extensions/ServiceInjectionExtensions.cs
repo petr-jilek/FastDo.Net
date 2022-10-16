@@ -1,6 +1,6 @@
 ﻿namespace FastDo.Net.Api.Extensions
 {
-    public static class ServiceInjectionExtension
+    public static class ServiceInjectionExtensions
     {
         private static IServiceCollection AddService(this IServiceCollection services, Type type,
             ServiceLifetime lifetime)

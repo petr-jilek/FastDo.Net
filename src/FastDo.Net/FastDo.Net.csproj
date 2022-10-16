@@ -10,7 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Include="..\..\LICENSE.md">
+      <None Include="..\..\LICENSE">
         <Pack>True</Pack>
         <PackagePath>\</PackagePath>
       </None>
@@ -38,7 +38,7 @@
         <PackageTags>Api, Mongo, Handler, Middleware, Authentication, Helper, Extension</PackageTags>
         <RepositoryUrl>https://github.com/petr-jilek/FastDo.Net</RepositoryUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
