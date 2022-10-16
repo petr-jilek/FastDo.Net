@@ -11,8 +11,7 @@ namespace FastDo.Net.Api.Startup
 {
     public static class ApplicationServiceExtensions
     {
-        public static IServiceCollection AddApiBehaviorOptions(this IServiceCollection services,
-            IConfiguration configuration)
+        public static IServiceCollection AddApiBehaviorOptions(this IServiceCollection services)
         {
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -38,8 +37,7 @@ namespace FastDo.Net.Api.Startup
             return services;
         }
 
-        public static IServiceCollection AddApiBehaviorOptionsLocalized(this IServiceCollection services,
-            IConfiguration configuration)
+        public static IServiceCollection AddApiBehaviorOptionsLocalized(this IServiceCollection services, IConfiguration configuration, IGetErrorModel? getErrorModel = null)
         {
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -61,10 +59,13 @@ namespace FastDo.Net.Api.Startup
                         return new BadRequestObjectResult(ErrorModels.GetErrorModel(Errors.UnknownError, lang));
 
                     var message = modelErrorCollection.FirstOrDefault()?.ErrorMessage;
+                    if (message is null)
+                        return new BadRequestObjectResult(ErrorModels.GetErrorModel(Errors.UnknownError, lang));
 
-                    return message is null
-                        ? new BadRequestObjectResult(ErrorModels.GetErrorModel(Errors.UnknownError, lang))
-                        : new BadRequestObjectResult(ErrorModels.GetErrorModel(message, lang));
+                    if (getErrorModel is not null)
+                        return new BadRequestObjectResult(getErrorModel.GetErrorModel(message, lang));
+
+                    return new BadRequestObjectResult(ErrorModels.GetErrorModel(message, lang));
                 };
             });
 
