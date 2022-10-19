@@ -1,5 +1,6 @@
 ﻿using FastDo.Net.Api.Services.General.Localization;
 using FastDo.Net.Application.Core;
+using FastDo.Net.Domain.Errors.ErrorMessages;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FastDo.Net.Api.Abstractions
@@ -10,7 +11,7 @@ namespace FastDo.Net.Api.Abstractions
     {
         private readonly ILocalizationService _localizationService;
 
-        public BaseApiLocalizedController(ILocalizationService localizationService)
+        public BaseApiLocalizedController(ILocalizationService localizationService, IGetErrorMessage getErrorMessage) : base(getErrorMessage)
         {
             _localizationService = localizationService;
         }

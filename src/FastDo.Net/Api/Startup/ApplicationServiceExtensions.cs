@@ -3,6 +3,9 @@ using FastDo.Net.Api.Services.General.Localization;
 using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Domain.Consts;
 using FastDo.Net.Domain.Error;
+using FastDo.Net.Domain.Errors;
+using FastDo.Net.Domain.Errors.Codes;
+using FastDo.Net.Domain.Errors.ErrorMessages;
 using FastDo.Net.MongoDatabase.Providers;
 using FastDo.Net.MongoDatabase.Settings;
 using Microsoft.AspNetCore.Mvc;
@@ -24,12 +27,12 @@ namespace FastDo.Net.Api.Startup
                     var lang = GlobalConsts.DefaultLanguage;
 
                     if (modelErrorCollection is null)
-                        return new BadRequestObjectResult(ErrorModels.GetErrorModel(Errors.UnknownError, lang));
+                        return new BadRequestObjectResult(ErrorModels.GetErrorModel(ErrorCodes.UnknownError, lang));
 
                     var message = modelErrorCollection.FirstOrDefault()?.ErrorMessage;
 
                     return message is null
-                        ? new BadRequestObjectResult(ErrorModels.GetErrorModel(Errors.UnknownError, lang))
+                        ? new BadRequestObjectResult(ErrorModels.GetErrorModel(ErrorCodes.UnknownError, lang))
                         : new BadRequestObjectResult(ErrorModels.GetErrorModel(message, lang));
                 };
             });
@@ -37,7 +40,7 @@ namespace FastDo.Net.Api.Startup
             return services;
         }
 
-        public static IServiceCollection AddApiBehaviorOptionsLocalized(this IServiceCollection services, IConfiguration configuration, IGetErrorModel? getErrorModel = null)
+        public static IServiceCollection AddApiBehaviorOptionsLocalized(this IServiceCollection services, IConfiguration configuration, IGetErrorMessage? getErrorModel = null)
         {
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -56,11 +59,11 @@ namespace FastDo.Net.Api.Startup
                     var lang = localizationService.GetLanguageCode();
 
                     if (modelErrorCollection is null)
-                        return new BadRequestObjectResult(ErrorModels.GetErrorModel(Errors.UnknownError, lang));
+                        return new BadRequestObjectResult(ErrorModels.GetErrorModel(ErrorCodes.UnknownError, lang));
 
                     var message = modelErrorCollection.FirstOrDefault()?.ErrorMessage;
                     if (message is null)
-                        return new BadRequestObjectResult(ErrorModels.GetErrorModel(Errors.UnknownError, lang));
+                        return new BadRequestObjectResult(ErrorModels.GetErrorModel(ErrorCodes.UnknownError, lang));
 
                     if (getErrorModel is not null)
                         return new BadRequestObjectResult(getErrorModel.GetErrorModel(message, lang));

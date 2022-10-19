@@ -2,6 +2,7 @@
 using System.Text.Json;
 using FastDo.Net.Domain.Consts;
 using FastDo.Net.Domain.Error;
+using FastDo.Net.Domain.Exceptions;
 
 namespace FastDo.Net.Api.Middlewares
 {

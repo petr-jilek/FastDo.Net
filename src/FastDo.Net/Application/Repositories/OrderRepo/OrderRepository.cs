@@ -1,5 +1,5 @@
 ﻿using FastDo.Net.Application.Core;
-using FastDo.Net.Domain.Error;
+using FastDo.Net.Domain.Errors.Codes;
 using FastDo.Net.MongoDatabase.Abstractions;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;

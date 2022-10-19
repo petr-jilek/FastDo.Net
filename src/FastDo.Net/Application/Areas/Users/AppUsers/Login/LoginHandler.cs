@@ -6,7 +6,7 @@ using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Consts;
 using FastDo.Net.Domain.Enums;
-using FastDo.Net.Domain.Error;
+using FastDo.Net.Domain.Errors.Codes;
 using FastDo.Net.MongoDatabase.Models.Users;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;

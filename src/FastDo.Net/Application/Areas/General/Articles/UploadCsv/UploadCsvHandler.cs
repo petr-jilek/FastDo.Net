@@ -5,7 +5,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
-using FastDo.Net.Domain.Error;
+using FastDo.Net.Domain.Errors.Codes;
 using FastDo.Net.MongoDatabase.Models.Articles;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;

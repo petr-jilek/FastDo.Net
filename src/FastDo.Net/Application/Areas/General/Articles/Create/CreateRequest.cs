@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using FastDo.Net.Domain.Error;
+using FastDo.Net.Domain.Errors.Codes;
 
 namespace FastDo.Net.Application.Areas.General.Articles.Create
 {

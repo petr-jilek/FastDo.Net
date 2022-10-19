@@ -2,7 +2,7 @@
 using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Consts;
-using FastDo.Net.Domain.Error;
+using FastDo.Net.Domain.Errors.Codes;
 
 namespace FastDo.Net.Application.Areas.General.MediaImages.Get
 {

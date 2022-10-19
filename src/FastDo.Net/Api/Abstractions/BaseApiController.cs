@@ -1,6 +1,6 @@
 ﻿using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Consts;
-using FastDo.Net.Domain.Error;
+using FastDo.Net.Domain.Errors.ErrorMessages;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FastDo.Net.Api.Abstractions
@@ -9,6 +9,13 @@ namespace FastDo.Net.Api.Abstractions
     [Route("api/[controller]/[action]")]
     public class BaseApiController : ControllerBase
     {
+        private readonly IGetErrorMessage _getErrorMessage;
+
+        public BaseApiController(IGetErrorMessage getErrorMessage)
+        {
+            _getErrorMessage = getErrorMessage;
+        }
+
         protected IActionResult HandleResult<T>(Result<T> result, string languageCode = GlobalConsts.DefaultLanguage)
         {
             if (result.Success)
@@ -19,12 +26,7 @@ namespace FastDo.Net.Api.Abstractions
                 return StatusCode((int)result.StatusCode, result.Value);
             }
 
-            if (result.Error is null)
-                return StatusCode((int)result.StatusCode,
-                    ErrorModels.GetErrorModel(Errors.UnknownError, languageCode));
-
-            var errorModel = ErrorModels.GetErrorModel(result.Error, languageCode);
-            errorModel.Detail = result.ErrorDetail ?? errorModel.Message;
+            var errorModel = result.GetErrorModel(_getErrorMessage, languageCode);
             return StatusCode((int)result.StatusCode, errorModel);
         }
 
@@ -38,11 +40,7 @@ namespace FastDo.Net.Api.Abstractions
                 return File(result.Value, contentType, fileDownloadName);
             }
 
-            if (result.Error is null)
-                return StatusCode((int)result.StatusCode, ErrorModels.GetErrorModel(Errors.UnknownError, languageCode));
-
-            var errorModel = ErrorModels.GetErrorModel(result.Error, languageCode);
-            errorModel.Detail = result.ErrorDetail ?? errorModel.Message;
+            var errorModel = result.GetErrorModel(_getErrorMessage, languageCode);
             return StatusCode((int)result.StatusCode, errorModel);
         }
 
