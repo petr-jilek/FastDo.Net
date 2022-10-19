@@ -9,13 +9,12 @@ namespace FastDo.Net.Api.Seeds
 {
     public static class MongoDataSeed
     {
-        public static async Task SeedSuperAdmin(IMongoDbProvider mongoUserCollectionsProvider)
+        public static async Task SeedSuperAdmin(IMongoDbProvider mongoUserCollectionsProvider, string email, string password)
         {
             var collection = mongoUserCollectionsProvider.GetCollection<SuperAdminUser>();
 
             if (await collection.AsQueryable().CountAsync() == 0)
             {
-                var password = "Test123!";
                 var salt = CryptographyHelper.GenerateSalt();
 
                 var hashMethod = HashMethod.Sha512;
@@ -23,7 +22,7 @@ namespace FastDo.Net.Api.Seeds
 
                 var superAdminUser = new SuperAdminUser()
                 {
-                    Email = "superadmin@superadmin.superadmin",
+                    Email = email,
                     PasswordSalt = salt,
                     PasswordHash = passwordHash,
                     PasswordHashMethod = (int)hashMethod,

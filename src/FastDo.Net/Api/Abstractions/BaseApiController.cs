@@ -9,7 +9,7 @@ namespace FastDo.Net.Api.Abstractions
     [Route("api/[controller]/[action]")]
     public class BaseApiController : ControllerBase
     {
-        protected ActionResult HandleResult<T>(Result<T> result, string languageCode = GlobalConsts.DefaultLanguage)
+        protected IActionResult HandleResult<T>(Result<T> result, string languageCode = GlobalConsts.DefaultLanguage)
         {
             if (result.Success)
             {
@@ -28,7 +28,7 @@ namespace FastDo.Net.Api.Abstractions
             return StatusCode((int)result.StatusCode, errorModel);
         }
 
-        protected ActionResult HandleFileResult<T>(Result<byte[]> result, string contentType, string? fileDownloadName = null, string languageCode = GlobalConsts.DefaultLanguage)
+        protected IActionResult HandleFileResult(Result<byte[]> result, string contentType, string? fileDownloadName = null, string languageCode = GlobalConsts.DefaultLanguage)
         {
             if (result.Success)
             {
@@ -44,6 +44,16 @@ namespace FastDo.Net.Api.Abstractions
             var errorModel = ErrorModels.GetErrorModel(result.Error, languageCode);
             errorModel.Detail = result.ErrorDetail ?? errorModel.Message;
             return StatusCode((int)result.StatusCode, errorModel);
+        }
+
+        protected IActionResult HandleFileJpegResult(Result<byte[]> result, string? fileDownloadName = null, string languageCode = GlobalConsts.DefaultLanguage)
+        {
+            return HandleFileResult(result, "image/jpeg", fileDownloadName, languageCode);
+        }
+
+        protected IActionResult HandleFileCsvResult(Result<byte[]> result, string? fileDownloadName = null, string languageCode = GlobalConsts.DefaultLanguage)
+        {
+            return HandleFileResult(result, "text/csv", fileDownloadName, languageCode);
         }
     }
 }

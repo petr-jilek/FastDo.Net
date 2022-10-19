@@ -41,7 +41,7 @@
             return true;
         }
 
-        public async Task<bool> UploadFileAsync(string dirPath, byte[] file, string fileName)
+        public bool UploadFile(string dirPath, byte[] file, string fileName)
         {
             EnsureDirectoryExists(dirPath);
             var path = GetPath(dirPath);
