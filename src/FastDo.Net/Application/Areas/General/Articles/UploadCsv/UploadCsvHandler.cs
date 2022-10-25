@@ -5,7 +5,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
-using FastDo.Net.Domain.Errors.Codes;
+using FastDo.Net.Domain.Errors;
 using FastDo.Net.MongoDatabase.Models.Articles;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
@@ -25,7 +25,7 @@ namespace FastDo.Net.Application.Areas.General.Articles.UploadCsv
         public async Task<Result<EmptyClass>> Handle(IFormFile file)
         {
             if (file.Length == 0)
-                return Result<EmptyClass>.BadRequest(Errors.FileIsEmpty);
+                return Result<EmptyClass>.BadRequest(FastDoErrorCodes.FileIsEmpty);
 
             var config = new CsvConfiguration(CultureInfo.InvariantCulture);
 
@@ -43,7 +43,7 @@ namespace FastDo.Net.Application.Areas.General.Articles.UploadCsv
                     var isValid = Validator.TryValidateObject(_, validationContext, validationResults, true);
 
                     if (isValid == false)
-                        Result<EmptyClass>.BadRequest(Errors.UndescribedError,
+                        Result<EmptyClass>.BadRequest(FastDoErrorCodes.UndescribedError,
                             $"Špatná data: {validationResults.FirstOrDefault()}");
                 });
 
@@ -88,7 +88,7 @@ namespace FastDo.Net.Application.Areas.General.Articles.UploadCsv
             }
             catch (Exception ex)
             {
-                return Result<EmptyClass>.BadRequest(Errors.UndescribedError, $"Špatná data: {ex.Message}");
+                return Result<EmptyClass>.BadRequest(FastDoErrorCodes.UndescribedError, $"Špatná data: {ex.Message}");
             }
         }
     }

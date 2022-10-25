@@ -2,10 +2,9 @@
 using FastDo.Net.Api.Services.General.Localization;
 using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Domain.Consts;
-using FastDo.Net.Domain.Error;
 using FastDo.Net.Domain.Errors;
-using FastDo.Net.Domain.Errors.Codes;
 using FastDo.Net.Domain.Errors.ErrorMessages;
+using FastDo.Net.Domain.Errors.Models;
 using FastDo.Net.MongoDatabase.Providers;
 using FastDo.Net.MongoDatabase.Settings;
 using Microsoft.AspNetCore.Mvc;
@@ -14,61 +13,62 @@ namespace FastDo.Net.Api.Startup
 {
     public static class ApplicationServiceExtensions
     {
-        public static IServiceCollection AddApiBehaviorOptions(this IServiceCollection services)
+        private static IActionResult HandleErrors(ActionContext actionContext, IGetErrorMessage? getErrorMessage = null, IConfiguration? configuration = null)
+        {
+            var modelErrorCollection = actionContext.ModelState.Values.Select(x => x.Errors).FirstOrDefault();
+
+            var lang = GlobalConsts.DefaultLanguage;
+
+            if (configuration is not null)
+            {
+                var localizationServiceSettings = new LocalizationServiceSettings();
+                configuration.GetSection(nameof(LocalizationServiceSettings))
+                    .Bind(localizationServiceSettings);
+
+                var httpContextAccessor = new HttpContextAccessor() { HttpContext = actionContext.HttpContext, };
+
+                var localizationService = new LocalizationService(httpContextAccessor, localizationServiceSettings);
+
+                lang = localizationService.GetLanguageCode();
+            }
+
+            if (getErrorMessage is null)
+                getErrorMessage = new FastDoGetErrorMessage();
+
+            var unknownErrorCode = (ErrorCode)FastDoErrorCodes.UnknownError;
+            var unknownErrorModel = new ErrorModel(getErrorMessage.GetErrorMessage(unknownErrorCode, lang), unknownErrorCode);
+
+            if (modelErrorCollection is null)
+                return new BadRequestObjectResult(unknownErrorModel);
+
+            var message = modelErrorCollection.FirstOrDefault()?.ErrorMessage;
+            if (message is null)
+                return new BadRequestObjectResult(unknownErrorModel);
+
+            var errorCode = (ErrorCode)message;
+            return new BadRequestObjectResult(new ErrorModel(getErrorMessage.GetErrorMessage(errorCode, lang), errorCode));
+        }
+
+        public static IServiceCollection AddApiBehaviorOptions(this IServiceCollection services, IGetErrorMessage? getErrorMessage = null)
         {
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory = actionContext =>
                 {
-                    var modelErrorCollection = actionContext.ModelState.Values.Select(x => x.Errors).FirstOrDefault();
-
-                    var httpContextAccessor = new HttpContextAccessor() { HttpContext = actionContext.HttpContext, };
-
-                    var lang = GlobalConsts.DefaultLanguage;
-
-                    if (modelErrorCollection is null)
-                        return new BadRequestObjectResult(ErrorModels.GetErrorModel(ErrorCodes.UnknownError, lang));
-
-                    var message = modelErrorCollection.FirstOrDefault()?.ErrorMessage;
-
-                    return message is null
-                        ? new BadRequestObjectResult(ErrorModels.GetErrorModel(ErrorCodes.UnknownError, lang))
-                        : new BadRequestObjectResult(ErrorModels.GetErrorModel(message, lang));
+                    return HandleErrors(actionContext, getErrorMessage);
                 };
             });
 
             return services;
         }
 
-        public static IServiceCollection AddApiBehaviorOptionsLocalized(this IServiceCollection services, IConfiguration configuration, IGetErrorMessage? getErrorModel = null)
+        public static IServiceCollection AddApiBehaviorOptionsLocalized(this IServiceCollection services, IConfiguration configuration, IGetErrorMessage? getErrorMessage = null)
         {
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory = actionContext =>
                 {
-                    var modelErrorCollection = actionContext.ModelState.Values.Select(x => x.Errors).FirstOrDefault();
-
-                    var localizationServiceSettings = new LocalizationServiceSettings();
-                    configuration.GetSection(nameof(LocalizationServiceSettings))
-                        .Bind(localizationServiceSettings);
-
-                    var httpContextAccessor = new HttpContextAccessor() { HttpContext = actionContext.HttpContext, };
-
-                    var localizationService = new LocalizationService(httpContextAccessor, localizationServiceSettings);
-
-                    var lang = localizationService.GetLanguageCode();
-
-                    if (modelErrorCollection is null)
-                        return new BadRequestObjectResult(ErrorModels.GetErrorModel(ErrorCodes.UnknownError, lang));
-
-                    var message = modelErrorCollection.FirstOrDefault()?.ErrorMessage;
-                    if (message is null)
-                        return new BadRequestObjectResult(ErrorModels.GetErrorModel(ErrorCodes.UnknownError, lang));
-
-                    if (getErrorModel is not null)
-                        return new BadRequestObjectResult(getErrorModel.GetErrorModel(message, lang));
-
-                    return new BadRequestObjectResult(ErrorModels.GetErrorModel(message, lang));
+                    return HandleErrors(actionContext, getErrorMessage, configuration);
                 };
             });
 

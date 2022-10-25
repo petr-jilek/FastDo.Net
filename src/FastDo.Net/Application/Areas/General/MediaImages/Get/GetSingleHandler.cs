@@ -2,7 +2,7 @@
 using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Consts;
-using FastDo.Net.Domain.Errors.Codes;
+using FastDo.Net.Domain.Errors;
 
 namespace FastDo.Net.Application.Areas.General.MediaImages.Get
 {
@@ -18,7 +18,7 @@ namespace FastDo.Net.Application.Areas.General.MediaImages.Get
         public Result<byte[]> Handle(string name)
         {
             var file = _fileUploadService.GetFile(GlobalConsts.MediaImagesFolder, name);
-            return file is null ? Result<byte[]>.BadRequest(Errors.FileNotExists) : Result<byte[]>.Ok(file);
+            return file is null ? Result<byte[]>.BadRequest(FastDoErrorCodes.FileNotExists) : Result<byte[]>.Ok(file);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
-using FastDo.Net.Domain.Errors.Codes;
+using FastDo.Net.Domain.Errors;
 using FastDo.Net.MongoDatabase.Models.Articles;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
@@ -21,7 +21,7 @@ namespace FastDo.Net.Application.Areas.General.Articles.Create
         {
             var collection = _mongoDbProvider.GetCollection<Article>();
             if (await collection.AsQueryable().AnyAsync(_ => _.Name == request.Name))
-                return Result<EmptyClass>.Conflict(Errors.ArticleAlreadyExists);
+                return Result<EmptyClass>.Conflict(FastDoErrorCodes.ArticleAlreadyExists);
 
             var maxOrder = await collection.AsQueryable().AnyAsync(_ => true)
                 ? await collection.AsQueryable().MaxAsync(_ => _.Order)

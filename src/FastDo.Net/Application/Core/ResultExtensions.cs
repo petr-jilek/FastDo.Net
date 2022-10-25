@@ -11,7 +11,7 @@ namespace FastDo.Net.Application.Core
         {
             if (result.ErrorCode is null)
             {
-                var errorCodeUnknown = (ErrorCode)ErrorCodes.UnknownError;
+                var errorCodeUnknown = (ErrorCode)FastDoErrorCodes.UnknownError;
                 var errorModelUnknown = new ErrorModel(getErrorMessage.GetErrorMessage(errorCodeUnknown, languageCode), errorCodeUnknown);
                 return errorModelUnknown;
             }

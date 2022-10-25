@@ -1,26 +1,26 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using FastDo.Net.Domain.Errors.Codes;
+using FastDo.Net.Domain.Errors;
 
 namespace FastDo.Net.Application.Areas.Users.AppUsers.Register
 {
     public class RegisterRequest
     {
-        [Required(ErrorMessage = Errors.UserNameIsRequired)]
-        [StringLength(255, ErrorMessage = Errors.UserNameIsTooLong)]
+        [Required(ErrorMessage = FastDoErrorCodes.UserNameIsRequired)]
+        [StringLength(255, ErrorMessage = FastDoErrorCodes.UserNameIsTooLong)]
         public string? UserName { get; set; }
 
-        [Required(ErrorMessage = Errors.EmailIsRequired)]
-        [EmailAddress(ErrorMessage = Errors.EmailIsNotValid)]
-        [StringLength(255, ErrorMessage = Errors.EmailIsTooLong)]
+        [Required(ErrorMessage = FastDoErrorCodes.EmailIsRequired)]
+        [EmailAddress(ErrorMessage = FastDoErrorCodes.EmailIsNotValid)]
+        [StringLength(255, ErrorMessage = FastDoErrorCodes.EmailIsTooLong)]
         public string? Email { get; set; }
 
-        [Required(ErrorMessage = Errors.PhoneNumberIsRequired)]
-        [RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{10,15}$", ErrorMessage = Errors.PhoneNumberIsNotValid)]
+        [Required(ErrorMessage = FastDoErrorCodes.PhoneNumberIsRequired)]
+        [RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{10,15}$", ErrorMessage = FastDoErrorCodes.PhoneNumberIsNotValid)]
         public string? PhoneNumber { get; set; }
 
-        [Required(ErrorMessage = Errors.PasswordIsRequired)]
-        [MinLength(6, ErrorMessage = Errors.PasswordIsTooShort)]
-        [StringLength(255, ErrorMessage = Errors.PasswordIsTooLong)]
+        [Required(ErrorMessage = FastDoErrorCodes.PasswordIsRequired)]
+        [MinLength(6, ErrorMessage = FastDoErrorCodes.PasswordIsTooShort)]
+        [StringLength(255, ErrorMessage = FastDoErrorCodes.PasswordIsTooLong)]
         public string? Password { get; set; }
 
         public string? PasswordConfirmation { get; set; }

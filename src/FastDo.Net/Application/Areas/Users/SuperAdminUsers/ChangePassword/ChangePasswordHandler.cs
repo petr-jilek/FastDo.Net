@@ -3,7 +3,7 @@ using FastDo.Net.Api.Services.Auth.UserAccessor;
 using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Enums;
-using FastDo.Net.Domain.Errors.Codes;
+using FastDo.Net.Domain.Errors;
 using FastDo.Net.MongoDatabase.Models.Users;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
@@ -25,7 +25,7 @@ namespace FastDo.Net.Application.Areas.Users.SuperAdminUsers.ChangePassword
         public async Task<Result<EmptyClass>> Handle(ChangePasswordRequest request)
         {
             if (request.NewPassword != request.NewPasswordConfirmation)
-                return Result<EmptyClass>.BadRequest(Errors.PasswordsDontMatch);
+                return Result<EmptyClass>.BadRequest(FastDoErrorCodes.PasswordsDontMatch);
 
             var collection = _mongoDbProvider.GetCollection<SuperAdminUser>();
 
@@ -37,11 +37,11 @@ namespace FastDo.Net.Application.Areas.Users.SuperAdminUsers.ChangePassword
 
             if (request.Password is null || user.PasswordHash is null || user.PasswordSalt is null ||
                 request.NewPassword is null)
-                return Result<EmptyClass>.Unauthorized(Errors.BadPassword);
+                return Result<EmptyClass>.Unauthorized(FastDoErrorCodes.BadPassword);
 
             if (CryptographyHelper.Verify(request.Password, user.PasswordHash, user.PasswordSalt,
                     (HashMethod)user.PasswordHashMethod) == false)
-                return Result<EmptyClass>.Unauthorized(Errors.BadPassword);
+                return Result<EmptyClass>.Unauthorized(FastDoErrorCodes.BadPassword);
 
             var hashMethod = HashMethod.Sha512;
             var newPasswordSalt = CryptographyHelper.GenerateSalt();

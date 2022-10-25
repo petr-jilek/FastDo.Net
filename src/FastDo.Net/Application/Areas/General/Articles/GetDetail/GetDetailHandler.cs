@@ -1,6 +1,6 @@
 ﻿using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
-using FastDo.Net.Domain.Errors.Codes;
+using FastDo.Net.Domain.Errors;
 using FastDo.Net.MongoDatabase.Models.Articles;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
@@ -24,7 +24,7 @@ namespace FastDo.Net.Application.Areas.General.Articles.GetDetail
             var article = await collection.AsQueryable().FirstOrDefaultAsync(_ => _.Id == id);
 
             if (article is null)
-                return Result<GetDetailResponse>.NotFound(Errors.ArticleNotExists);
+                return Result<GetDetailResponse>.NotFound(FastDoErrorCodes.ArticleNotExists);
 
             var response = new GetDetailResponse()
             {

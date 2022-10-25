@@ -11,7 +11,7 @@ namespace FastDo.Net.Domain.Exceptions
         {
             if (appException.ErrorCode is null)
             {
-                var errorCodeUnknown = (ErrorCode)ErrorCodes.UnknownError;
+                var errorCodeUnknown = (ErrorCode)FastDoErrorCodes.UnknownError;
                 var errorModelUnknown = new ErrorModel(getErrorMessage.GetErrorMessage(errorCodeUnknown, languageCode), errorCodeUnknown);
                 return errorModelUnknown;
             }

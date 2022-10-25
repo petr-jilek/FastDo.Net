@@ -2,7 +2,7 @@
 using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Enums;
-using FastDo.Net.Domain.Errors.Codes;
+using FastDo.Net.Domain.Errors;
 using FastDo.Net.MongoDatabase.Models.Users;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
@@ -22,14 +22,14 @@ namespace FastDo.Net.Application.Areas.Users.AppUsers.Register
         public async Task<Result<EmptyClass>> Handle(RegisterRequest request)
         {
             if (request.Password is null)
-                return Result<EmptyClass>.BadRequest(Errors.PasswordIsRequired);
+                return Result<EmptyClass>.BadRequest(FastDoErrorCodes.PasswordIsRequired);
             if (request.Password != request.PasswordConfirmation)
-                return Result<EmptyClass>.BadRequest(Errors.PasswordsDontMatch);
+                return Result<EmptyClass>.BadRequest(FastDoErrorCodes.PasswordsDontMatch);
 
             var collection = _mongoDbProvider.GetCollection<AppUser>();
 
             if (await collection.AsQueryable().AnyAsync(_ => _.Email == request.Email))
-                return Result<EmptyClass>.Conflict(Errors.UserWithEmailAlreadyExists);
+                return Result<EmptyClass>.Conflict(FastDoErrorCodes.UserWithEmailAlreadyExists);
 
             var salt = CryptographyHelper.GenerateSalt();
 

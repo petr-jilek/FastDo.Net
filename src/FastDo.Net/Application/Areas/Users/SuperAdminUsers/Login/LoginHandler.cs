@@ -6,7 +6,7 @@ using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Consts;
 using FastDo.Net.Domain.Enums;
-using FastDo.Net.Domain.Errors.Codes;
+using FastDo.Net.Domain.Errors;
 using FastDo.Net.MongoDatabase.Models.Users;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
@@ -31,14 +31,14 @@ namespace FastDo.Net.Application.Areas.Users.SuperAdminUsers.Login
 
             var user = await collection.AsQueryable().FirstOrDefaultAsync(_ => _.Email == request.Email);
             if (user is null)
-                return Result<LoginResponse>.BadRequest(Errors.BadEmailOrPassword);
+                return Result<LoginResponse>.BadRequest(FastDoErrorCodes.BadEmailOrPassword);
 
             if (request.Password is null || user.PasswordHash is null || user.PasswordSalt is null)
-                return Result<LoginResponse>.BadRequest(Errors.BadEmailOrPassword);
+                return Result<LoginResponse>.BadRequest(FastDoErrorCodes.BadEmailOrPassword);
 
             if (CryptographyHelper.Verify(request.Password, user.PasswordHash, user.PasswordSalt,
                     (HashMethod)user.PasswordHashMethod) == false)
-                return Result<LoginResponse>.BadRequest(Errors.BadEmailOrPassword);
+                return Result<LoginResponse>.BadRequest(FastDoErrorCodes.BadEmailOrPassword);
 
             var claims = new List<Claim>
             {

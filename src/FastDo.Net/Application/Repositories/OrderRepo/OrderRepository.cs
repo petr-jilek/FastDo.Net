@@ -1,5 +1,5 @@
 ﻿using FastDo.Net.Application.Core;
-using FastDo.Net.Domain.Errors.Codes;
+using FastDo.Net.Domain.Errors;
 using FastDo.Net.MongoDatabase.Abstractions;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
@@ -22,7 +22,7 @@ namespace FastDo.Net.Application.Repositories.OrderRepo
 
             var item = await collection.AsQueryable().FirstOrDefaultAsync(_ => _.Id == id);
             if (item is null)
-                return Result<EmptyClass>.NotFound(Errors.ItemNotExists);
+                return Result<EmptyClass>.NotFound(FastDoErrorCodes.ItemNotExists);
 
             var itemWithLowerOrder = await collection
                 .AsQueryable()
@@ -46,7 +46,7 @@ namespace FastDo.Net.Application.Repositories.OrderRepo
 
             var item = await collection.AsQueryable().FirstOrDefaultAsync(_ => _.Id == id);
             if (item is null)
-                return Result<EmptyClass>.NotFound(Errors.ItemNotExists);
+                return Result<EmptyClass>.NotFound(FastDoErrorCodes.ItemNotExists);
 
             var itemWithHigherOrder = await collection
                 .AsQueryable()

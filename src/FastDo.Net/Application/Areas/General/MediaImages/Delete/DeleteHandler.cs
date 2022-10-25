@@ -2,7 +2,7 @@
 using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Consts;
-using FastDo.Net.Domain.Errors.Codes;
+using FastDo.Net.Domain.Errors;
 
 namespace FastDo.Net.Application.Areas.General.MediaImages.Delete
 {
@@ -18,7 +18,7 @@ namespace FastDo.Net.Application.Areas.General.MediaImages.Delete
         public Result<EmptyClass> Handle(string name)
         {
             var ok = _fileUploadService.DeleteFile(GlobalConsts.MediaImagesFolder, name);
-            return ok == false ? Result<EmptyClass>.BadRequest(Errors.FileNotExists) : Result<EmptyClass>.Ok();
+            return ok == false ? Result<EmptyClass>.BadRequest(FastDoErrorCodes.FileNotExists) : Result<EmptyClass>.Ok();
         }
     }
 }

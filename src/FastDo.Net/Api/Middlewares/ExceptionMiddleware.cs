@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
-using FastDo.Net.Domain.Error;
+using FastDo.Net.Domain.Errors;
+using FastDo.Net.Domain.Errors.Models;
 
 namespace FastDo.Net.Api.Middlewares
 {
@@ -31,8 +32,8 @@ namespace FastDo.Net.Api.Middlewares
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
                 var response = _env.IsDevelopment()
-                        ? new ErrorModel(ex.Message, context.Response.StatusCode, ex.StackTrace?.ToString())
-                        : new ErrorModel(ex.Message, context.Response.StatusCode, "Internal Server Error");
+                        ? new ErrorModel(ex.Message, (ErrorCode)FastDoErrorCodes.UnknownError, ex.StackTrace?.ToString())
+                        : new ErrorModel(ex.Message, (ErrorCode)FastDoErrorCodes.UnknownError);
 
                 var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
                 var json = JsonSerializer.Serialize(response, options);

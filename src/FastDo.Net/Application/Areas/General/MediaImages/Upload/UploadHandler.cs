@@ -2,7 +2,7 @@
 using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Consts;
-using FastDo.Net.Domain.Errors.Codes;
+using FastDo.Net.Domain.Errors;
 
 namespace FastDo.Net.Application.Areas.General.MediaImages.Upload
 {
@@ -18,20 +18,20 @@ namespace FastDo.Net.Application.Areas.General.MediaImages.Upload
         public async Task<Result<EmptyClass>> Handle(IFormFile file)
         {
             if (file is null)
-                return Result<EmptyClass>.BadRequest(Errors.FileIsEmpty);
+                return Result<EmptyClass>.BadRequest(FastDoErrorCodes.FileIsEmpty);
             if (file.Length > GlobalConsts.MaxMediaImageSize)
-                return Result<EmptyClass>.BadRequest(Errors.FileIsTooLarge);
+                return Result<EmptyClass>.BadRequest(FastDoErrorCodes.FileIsTooLarge);
 
             var splittedName = file.FileName.Split('.');
             if (splittedName.Length != 2)
-                return Result<EmptyClass>.BadRequest(Errors.FileNameIsNotValid);
+                return Result<EmptyClass>.BadRequest(FastDoErrorCodes.FileNameIsNotValid);
 
             var fileExtension = splittedName[1];
             if (GlobalConsts.AllowedMediaImageExtensions.Contains(fileExtension) == false)
-                return Result<EmptyClass>.BadRequest(Errors.FileTypeIsNotValid);
+                return Result<EmptyClass>.BadRequest(FastDoErrorCodes.FileTypeIsNotValid);
 
             var ok = await _fileUploadService.UploadFileAsync(GlobalConsts.MediaImagesFolder, file);
-            return ok == false ? Result<EmptyClass>.BadRequest(Errors.FileAlreadyExists) : Result<EmptyClass>.Ok();
+            return ok == false ? Result<EmptyClass>.BadRequest(FastDoErrorCodes.FileAlreadyExists) : Result<EmptyClass>.Ok();
         }
     }
 }
