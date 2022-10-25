@@ -93,6 +93,12 @@ namespace FastDo.Net.Api.Startup
             return services;
         }
 
+        public static IServiceCollection AddFastDoErrorMessages(this IServiceCollection services)
+        {
+            services.AddScoped<IGetErrorMessage, FastDoGetErrorMessage>();
+            return services;
+        }
+
         public static IServiceCollection AddFastDoHandlers(this IServiceCollection services)
         {
             services.AddByInterface<IHandler>();

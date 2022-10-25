@@ -24,7 +24,9 @@ namespace FastDo.Net.Api.Middlewares
                 await _next(context);
             }
             catch (AppException ex)
-            {                
+            {
+                _logger.LogError(ex, ex.Message);
+
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
