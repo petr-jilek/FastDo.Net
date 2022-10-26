@@ -12,23 +12,35 @@ namespace FastDo.Net.Api.Helpers
         /// <summary>
         /// Generate salt
         /// </summary>
-        /// <returns>Random string of length 40</returns>
+        /// <returns>Random string of length 40 in base64</returns>
         public static string GenerateSalt()
             => GenerateRandomString(40);
 
         /// <summary>
         /// Generate ApiKey
         /// </summary>
-        /// <returns>Random string of length 60</returns>
+        /// <returns>Random string of length 60 in base64</returns>
         public static string GenerateApiKey()
             => GenerateRandomString(60);
 
+        /// <summary>
+        /// Generate ClientId
+        /// </summary>
+        /// <returns>Random string of length 20 in base64</returns>
         public static string GenerateClientId()
            => GenerateRandomString(20);
 
+        /// <summary>
+        /// Generate ClientSecret
+        /// </summary>
+        /// <returns>Random string of length 40 in base64</returns>
         public static string GenerateClientSecret()
            => GenerateRandomString(40);
 
+        /// <summary>
+        /// Generate EmailVerificationToken
+        /// </summary>
+        /// <returns>Random string of length 60 in base64</returns>
         public static string GenerateEmailVerificationToken()
             => GenerateRandomString(60);
 
@@ -36,17 +48,27 @@ namespace FastDo.Net.Api.Helpers
         /// Generate random string of specific size
         /// </summary>
         /// <param name="size">Size of random string</param>
-        /// <returns>Random string of length size</returns>
+        /// <returns>Random string in base64 of length specified by parameter: size</returns>
         public static string GenerateRandomString(int size)
             => Convert.ToBase64String(RandomNumberGenerator.GetBytes(size));
 
+        /// <summary>
+        /// Generate random int number of specified digits
+        /// </summary>
+        /// <param name="digits">Number of digits</param>
+        /// <returns>Random int number of specified digits</returns>
         public static int GenerateRandomNumberFixedDigits(int digits)
         {
             var numberString = "";
 
             for (var i = 0; i < digits; i++)
             {
-                numberString += RandomNumberGenerator.GetInt32(0, 10).ToString();
+                var randomInt = RandomNumberGenerator.GetInt32(0, 10);
+
+                if (randomInt == 0)
+                    randomInt++;
+
+                numberString += randomInt.ToString();
             }
 
             return int.Parse(numberString);
@@ -57,7 +79,7 @@ namespace FastDo.Net.Api.Helpers
         /// </summary>
         /// <param name="input">Input string to be hashed</param>
         /// <param name="salt">Salt for hash</param>
-        /// <param name="hashMethod">HashMethod</param>
+        /// <param name="hashMethod">HashMethod by which the input will be hashed</param>
         /// <returns>Hashed input string</returns>
         public static string CreateHash(string input, string salt, HashMethod hashMethod)
         {
