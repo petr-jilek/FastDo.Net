@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <!--<GenerateDocumentationFile>true</GenerateDocumentationFile>-->
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\..\LICENSE">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+        <None Include="..\..\README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CsvHelper" Version="28.0.1" />
+        <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.7" />
+        <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.17.0" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.17.0" />
+        <PackageReference Include="QRCoder" Version="1.4.3" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <PackageId>FastDo.Net</PackageId>
+        <Title>FastDo.Net</Title>
+        <Version>0.0.3</Version>
+        <Authors>Petr Jílek</Authors>
+        <PackageTags>Api, Mongo, Handler, Middleware, Authentication, Helper, Extension</PackageTags>
+        <RepositoryUrl>https://github.com/petr-jilek/FastDo.Net</RepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    </PropertyGroup>
+
+</Project>
