@@ -1,6 +1,4 @@
 ﻿using FastDo.Net.Api.Services.General.QrCode;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
 
 namespace FastDo.Net.Tests.Tests.Api.Services.General
 {
