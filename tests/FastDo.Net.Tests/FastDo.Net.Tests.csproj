@@ -27,12 +27,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Tests\Api\Abstractions\" />
-    <Folder Include="Tests\Api\Middlewares\" />
     <Folder Include="Tests\Api\Validators\" />
     <Folder Include="Tests\Api\Startup\" />
     <Folder Include="Tests\Api\Seeds\" />
     <Folder Include="Tests\Application\" />
+    <Folder Include="Tests\Domain\" />
+    <Folder Include="Tests\MongoDatabase\" />
   </ItemGroup>
 
 </Project>
