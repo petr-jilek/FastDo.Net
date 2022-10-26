@@ -26,4 +26,14 @@
     <ProjectReference Include="..\..\src\FastDo.Net\FastDo.Net.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Tests\Api\Abstractions\" />
+    <Folder Include="Tests\Api\Helpers\" />
+    <Folder Include="Tests\Api\Middlewares\" />
+    <Folder Include="Tests\Api\Validators\" />
+    <Folder Include="Tests\Api\Startup\" />
+    <Folder Include="Tests\Api\Seeds\" />
+    <Folder Include="Tests\Application\" />
+  </ItemGroup>
+
 </Project>
