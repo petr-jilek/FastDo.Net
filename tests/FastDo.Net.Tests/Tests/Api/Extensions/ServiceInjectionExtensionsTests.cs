@@ -8,7 +8,7 @@ namespace FastDo.Net.Tests.Tests.Api.Extensions
     public class ServiceInjectionExtensionsTests
     {
         [Fact]
-        public void AddSettings_Ok()
+        public void AddSettings_Test()
         {
             var name = "Test";
             var description = "Test";
@@ -38,7 +38,7 @@ namespace FastDo.Net.Tests.Tests.Api.Extensions
         [InlineData(ServiceLifetime.Transient)]
         [InlineData(ServiceLifetime.Scoped)]
         [InlineData(ServiceLifetime.Singleton)]
-        public void AddByInterface_Scoped_Ok(ServiceLifetime serviceLifetime)
+        public void AddByInterface_Scoped_Test(ServiceLifetime serviceLifetime)
         {
             // Create class instances manualy
             var testClass1 = new TestClass1();

@@ -10,41 +10,6 @@ namespace FastDo.Net.Api.Helpers
     public class CryptographyHelper
     {
         /// <summary>
-        /// Generate salt
-        /// </summary>
-        /// <returns>Random string of length 40 in base64</returns>
-        public static string GenerateSalt()
-            => GenerateRandomString(40);
-
-        /// <summary>
-        /// Generate ApiKey
-        /// </summary>
-        /// <returns>Random string of length 60 in base64</returns>
-        public static string GenerateApiKey()
-            => GenerateRandomString(60);
-
-        /// <summary>
-        /// Generate ClientId
-        /// </summary>
-        /// <returns>Random string of length 20 in base64</returns>
-        public static string GenerateClientId()
-           => GenerateRandomString(20);
-
-        /// <summary>
-        /// Generate ClientSecret
-        /// </summary>
-        /// <returns>Random string of length 40 in base64</returns>
-        public static string GenerateClientSecret()
-           => GenerateRandomString(40);
-
-        /// <summary>
-        /// Generate EmailVerificationToken
-        /// </summary>
-        /// <returns>Random string of length 60 in base64</returns>
-        public static string GenerateEmailVerificationToken()
-            => GenerateRandomString(60);
-
-        /// <summary>
         /// Generate random string of specific size
         /// </summary>
         /// <param name="size">Size of random string</param>
@@ -108,5 +73,40 @@ namespace FastDo.Net.Api.Helpers
             var newHash = CreateHash(input, salt, hashMethod);
             return newHash.Equals(hash);
         }
+
+        /// <summary>
+        /// Generate salt
+        /// </summary>
+        /// <returns>Random string of length 40 in base64</returns>
+        public static string GenerateSalt()
+            => GenerateRandomString(40);
+
+        /// <summary>
+        /// Generate ApiKey
+        /// </summary>
+        /// <returns>Random string of length 60 in base64</returns>
+        public static string GenerateApiKey()
+            => GenerateRandomString(60);
+
+        /// <summary>
+        /// Generate ClientId
+        /// </summary>
+        /// <returns>Random string of length 20 in base64</returns>
+        public static string GenerateClientId()
+           => GenerateRandomString(20);
+
+        /// <summary>
+        /// Generate ClientSecret
+        /// </summary>
+        /// <returns>Random string of length 40 in base64</returns>
+        public static string GenerateClientSecret()
+           => GenerateRandomString(40);
+
+        /// <summary>
+        /// Generate EmailVerificationToken
+        /// </summary>
+        /// <returns>Random string of length 60 in base64</returns>
+        public static string GenerateEmailVerificationToken()
+            => GenerateRandomString(60);
     }
 }
