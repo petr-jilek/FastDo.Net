@@ -18,7 +18,7 @@ namespace FastDo.Net.Domain.Errors.ErrorMessages
             };
         }
 
-        private string GetUnknownErrorMessage(string lang)
+        public string GetUnknownErrorMessage(string lang)
         {
             return lang switch
             {
