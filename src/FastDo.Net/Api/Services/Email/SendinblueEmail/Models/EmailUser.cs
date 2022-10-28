@@ -2,7 +2,7 @@
 
 namespace FastDo.Net.Api.Services.Email.SendinblueEmail.Models
 {
-    public class Sender
+    public class EmailUser
     {
         [JsonPropertyName("name")]
         public string? Name { get; set; }

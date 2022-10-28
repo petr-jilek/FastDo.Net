@@ -13,12 +13,12 @@ namespace FastDo.Net.Api.Services.Email.SendinblueEmail
             _sendinblueEmailServiceSettings = sendinblueEmailServiceSettings;
         }
 
-        public async Task<HttpResponseMessage> SendEmailAsync(Sender sender, Reciever reciever, string subject, string htmlContent)
+        public async Task<HttpResponseMessage> SendEmailAsync(EmailUser sender, EmailUser reciever, string subject, string htmlContent)
         {
-            return await SendEmailMultipleRecieversAsync(sender, new List<Reciever>() { reciever }, subject, htmlContent);
+            return await SendEmailMultipleRecieversAsync(sender, new List<EmailUser>() { reciever }, subject, htmlContent);
         }
 
-        public async Task<HttpResponseMessage> SendEmailMultipleRecieversAsync(Sender sender, List<Reciever> recievers, string subject, string htmlContent)
+        public async Task<HttpResponseMessage> SendEmailMultipleRecieversAsync(EmailUser sender, List<EmailUser> recievers, string subject, string htmlContent)
         {
             using var client = new HttpClient();
 

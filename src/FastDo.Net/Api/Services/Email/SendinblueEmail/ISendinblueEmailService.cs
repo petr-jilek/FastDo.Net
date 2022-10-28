@@ -4,7 +4,7 @@ namespace FastDo.Net.Api.Services.Email.SendinblueEmail
 {
     public interface ISendinblueEmailService
     {
-        Task<HttpResponseMessage> SendEmailAsync(Sender sender, Reciever reciever, string subject, string htmlContent);
-        Task<HttpResponseMessage> SendEmailMultipleRecieversAsync(Sender sender, List<Reciever> recievers, string subject, string htmlContent);
+        Task<HttpResponseMessage> SendEmailAsync(EmailUser sender, EmailUser reciever, string subject, string htmlContent);
+        Task<HttpResponseMessage> SendEmailMultipleRecieversAsync(EmailUser sender, List<EmailUser> recievers, string subject, string htmlContent);
     }
 }
