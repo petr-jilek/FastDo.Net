@@ -4,8 +4,28 @@ namespace FastDo.Net.Api.Startup
 {
     public static class SwaggerServiceExtensions
     {
+        public static string MapTypeToName(Type type)
+        {
+            if (type.FullName is null)
+                return "Unknown";
+
+            var splittedFullName = type.FullName.Split('.');
+
+            return splittedFullName.Length switch
+            {
+                5 when splittedFullName[0] == "FastDo" && splittedFullName.Last() == "ErrorModel" => string.Join("_", splittedFullName.TakeLast(2)),
+                8 when splittedFullName[0] == "FastDo" => string.Join("_", splittedFullName.TakeLast(3)),
+                6 when splittedFullName[0] == "Application" => string.Join("_", splittedFullName.TakeLast(4)),
+                5 when splittedFullName[0] == "Application" => string.Join("_", splittedFullName.TakeLast(3)),
+                4 when splittedFullName[3] == "ErrorModel" => string.Join("_", splittedFullName.TakeLast(2)),
+                4 when splittedFullName[0] == "MongoDatabase"
+                    => "Database" + "_" + string.Join("_", splittedFullName.TakeLast(3)),
+                _ => string.Join("_", splittedFullName)
+            };
+        }
+        
         public static IServiceCollection AddSwagger(this IServiceCollection services, string version = "v1",
-            string title = "Title", string description = "An ASP.NET Core Web API")
+            string title = "Title", string description = "An ASP.NET Core Web API", Func<Type, string>? modelNameFunc = null)
         {
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
@@ -13,24 +33,11 @@ namespace FastDo.Net.Api.Startup
             {
                 options.CustomSchemaIds(_ =>
                 {
-                    if (_.FullName is null)
-                        return "Unknown";
-
-                    var splittedFullName = _.FullName.Split('.');
-
-                    return splittedFullName.Length switch
-                    {
-                        5 when splittedFullName[0] == "FastDo" && splittedFullName.Last() == "ErrorModel" => string.Join("_", splittedFullName.TakeLast(2)),
-                        8 when splittedFullName[0] == "FastDo" => string.Join("_", splittedFullName.TakeLast(3)),
-                        6 when splittedFullName[0] == "Application" => string.Join("_", splittedFullName.TakeLast(4)),
-                        5 when splittedFullName[0] == "Application" => string.Join("_", splittedFullName.TakeLast(3)),
-                        4 when splittedFullName[3] == "ErrorModel" => string.Join("_", splittedFullName.TakeLast(2)),
-                        4 when splittedFullName[0] == "MongoDatabase"
-                            => "Database" + "_" + string.Join("_", splittedFullName.TakeLast(3)),
-                        _ => string.Join("_", splittedFullName)
-                    };
+                    if (modelNameFunc is null)
+                        return MapTypeToName(_);
+                    return modelNameFunc(_);
                 });
-
+                
                 options.SwaggerDoc("v1",
                     new OpenApiInfo { Version = version, Title = title, Description = description, });
 
