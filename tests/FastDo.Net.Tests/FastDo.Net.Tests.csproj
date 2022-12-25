@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Tests\Api\Validators\" />
     <Folder Include="Tests\Api\Startup\" />
     <Folder Include="Tests\Api\Seeds\" />
     <Folder Include="Tests\Application\" />

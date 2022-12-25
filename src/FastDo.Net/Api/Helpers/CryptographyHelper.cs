@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using FastDo.Net.Domain.Enums;
+using Microsoft.IdentityModel.Tokens;
 
 namespace FastDo.Net.Api.Helpers
 {
@@ -15,7 +16,7 @@ namespace FastDo.Net.Api.Helpers
         /// <param name="size">Size of random string</param>
         /// <returns>Random string in base64 of length specified by parameter: size</returns>
         public static string GenerateRandomString(int size)
-            => Convert.ToBase64String(RandomNumberGenerator.GetBytes(size));
+            => Base64UrlEncoder.Encode(RandomNumberGenerator.GetBytes(size));
 
         /// <summary>
         /// Generate random int number of specified digits
