@@ -3,5 +3,6 @@
     public static class CorsPolicies
     {
         public const string ReactFrontendDevelopment = "ReactFrontendDevelopment_CorsPolicies";
+        public const string AllowAllCorsPolicy = "AllowAllCorsPolicy_CorsPolicies";
     }
 }

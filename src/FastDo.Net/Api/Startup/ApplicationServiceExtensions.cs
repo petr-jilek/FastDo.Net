@@ -93,6 +93,23 @@ namespace FastDo.Net.Api.Startup
             return services;
         }
 
+        public static IServiceCollection AddAllowAllCorsPolicy(this IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(CorsPolicies.AllowAllCorsPolicy, policy =>
+                {
+                    policy
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials()
+                        .AllowAnyOrigin();
+                });
+            });
+
+            return services;
+        }
+
         public static IServiceCollection AddFastDoErrorMessages(this IServiceCollection services)
         {
             services.AddScoped<IGetErrorMessage, FastDoGetErrorMessage>();
