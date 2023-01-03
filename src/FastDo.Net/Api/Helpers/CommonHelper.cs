@@ -1,4 +1,7 @@
-﻿namespace FastDo.Net.Api.Helpers
+﻿using System.Globalization;
+using System.Text;
+
+namespace FastDo.Net.Api.Helpers
 {
     public static class CommonHelper
     {
@@ -9,6 +12,5 @@
 
             return Enum.IsDefined(typeof(T), value);
         }
-
     }
 }

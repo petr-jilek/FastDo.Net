@@ -76,6 +76,19 @@ namespace FastDo.Net.Api.Helpers
         }
 
         /// <summary>
+        /// Generate salt and create hash
+        /// </summary>
+        /// <param name="input">Input string</param>
+        /// <param name="hashMethod">HashMethod</param>
+        /// <returns>Salt and hash</returns>
+        public (string, string) CreateSaltAndHash(string input, HashMethod hashMethod)
+        {
+            var salt = GenerateSalt();
+            var hash = CreateHash(input, salt, hashMethod);
+            return (salt, hash);
+        }
+
+        /// <summary>
         /// Generate salt
         /// </summary>
         /// <returns>Random string of length 40 in base64</returns>
