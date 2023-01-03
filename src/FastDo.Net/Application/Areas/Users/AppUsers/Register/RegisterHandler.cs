@@ -31,19 +31,12 @@ namespace FastDo.Net.Application.Areas.Users.AppUsers.Register
             if (await collection.AsQueryable().AnyAsync(_ => _.Email == request.Email))
                 return Result<EmptyClass>.Conflict(FastDoErrorCodes.UserWithEmailAlreadyExists);
 
-            var salt = CryptographyHelper.GenerateSalt();
-
-            var hashMethod = HashMethod.Sha512;
-            var hash = CryptographyHelper.CreateHash(request.Password, salt, hashMethod);
-
             var user = new AppUser
             {
                 UserName = request.UserName,
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber,
-                PasswordSalt = salt,
-                PasswordHash = hash,
-                PasswordHashMethod = (int)hashMethod,
+                PasswordCredentials = CryptographyHelper.CreatePasswordCredentialsSha256(request.Password),
             };
 
             await collection.InsertOneAsync(user);

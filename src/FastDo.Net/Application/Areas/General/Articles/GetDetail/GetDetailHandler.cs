@@ -17,19 +17,19 @@ namespace FastDo.Net.Application.Areas.General.Articles.GetDetail
             _mongoDbProvider = mongoDbProvider;
         }
 
-        public async Task<Result<GetDetailResponse>> Handle(string id)
+        public async Task<Result<GetDetailResponse>> Handle(string nameUrl)
         {
             var collection = _mongoDbProvider.GetCollection<Article>();
 
-            var article = await collection.AsQueryable().FirstOrDefaultAsync(_ => _.Id == id);
+            var article = await collection.AsQueryable().FirstOrDefaultAsync(_ => _.NameUrl == nameUrl);
 
             if (article is null)
                 return Result<GetDetailResponse>.NotFound(FastDoErrorCodes.ArticleNotExists);
 
             var response = new GetDetailResponse()
             {
-                Id = article.Id,
                 Name = article.Name,
+                NameUrl = article.NameUrl,
                 Created = article.Created,
                 LastUpdated = article.LastUpdated,
                 ImageName = article.ImageName,

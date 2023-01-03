@@ -23,9 +23,7 @@ namespace FastDo.Net.Api.Seeds
                 var superAdminUser = new SuperAdminUser()
                 {
                     Email = email,
-                    PasswordSalt = salt,
-                    PasswordHash = passwordHash,
-                    PasswordHashMethod = (int)hashMethod,
+                    PasswordCredentials = CryptographyHelper.CreatePasswordCredentialsSha256(request.Password),
                 };
 
                 await collection.InsertOneAsync(superAdminUser);

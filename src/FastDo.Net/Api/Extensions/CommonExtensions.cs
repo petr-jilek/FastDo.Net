@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+﻿using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -86,7 +86,7 @@ namespace FastDo.Net.Api.Extensions
 
             // Replace spaces with hyphens
             var hyphenatedString = strippedString.Replace(" ", "-");
-            
+
             // Make the entire string lowercase
             var result = hyphenatedString.ToLower();
 
@@ -95,5 +95,11 @@ namespace FastDo.Net.Api.Extensions
 
             return result;
         }
+
+        public static bool IsSuccessStatusCode(this HttpStatusCode httpStatusCode)
+            => IsSuccessStatusCode((int)httpStatusCode);
+
+        public static bool IsSuccessStatusCode(this int httpStatusCode)
+            => (httpStatusCode >= 200) && (httpStatusCode <= 299);
     }
 }

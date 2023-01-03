@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using FastDo.Net.Domain.Enums;
+using FastDo.Net.Domain.Models;
 using Microsoft.IdentityModel.Tokens;
 
 namespace FastDo.Net.Api.Helpers
@@ -62,7 +63,7 @@ namespace FastDo.Net.Api.Helpers
         }
 
         /// <summary>
-        /// Verify if hashed input mathces hash. Use it for verifing passwords.
+        /// Verify if hashed input matches hash. Use it for verifing passwords.
         /// </summary>
         /// <param name="input">Plain text input</param>
         /// <param name="hash">Hash</param>
@@ -76,17 +77,80 @@ namespace FastDo.Net.Api.Helpers
         }
 
         /// <summary>
+        /// Verify if hashed input matches hash in password credentials with salt. Use it for verifing passwords.
+        /// </summary>
+        /// <param name="input">Plain text input</param>
+        /// <param name="passwordCredentials">Password credentials</param>
+        /// <returns>Success of the verification</returns>
+        public static bool Verify(string input, PasswordCredentials passwordCredentials)
+        {
+            var newHash = CreateHash(input, passwordCredentials.Hash!, (HashMethod)passwordCredentials.HashMethod);
+            return newHash.Equals(passwordCredentials.Hash);
+        }
+
+        /// <summary>
         /// Generate salt and create hash
         /// </summary>
         /// <param name="input">Input string</param>
         /// <param name="hashMethod">HashMethod</param>
         /// <returns>Salt and hash</returns>
-        public (string, string) CreateSaltAndHash(string input, HashMethod hashMethod)
+        public static (string, string) CreateSaltAndHash(string input, HashMethod hashMethod)
         {
             var salt = GenerateSalt();
             var hash = CreateHash(input, salt, hashMethod);
             return (salt, hash);
         }
+
+        /// <summary>
+        /// Generate salt and create hash with Sha256
+        /// </summary>
+        /// <param name="input">Input string</param>
+        /// <param name="hashMethod">HashMethod</param>
+        /// <returns>Salt and hash</returns>
+        public static (string, string) CreateSaltAndHashSha256(string input)
+            => CreateSaltAndHash(input, HashMethod.Sha256);
+
+        /// <summary>
+        /// Generate salt and create hash with Sha512
+        /// </summary>
+        /// <param name="input">Input string</param>
+        /// <param name="hashMethod">HashMethod</param>
+        /// <returns>Salt and hash</returns>
+        public static (string, string) CreateSaltAndHashSha512(string input)
+            => CreateSaltAndHash(input, HashMethod.Sha512);
+
+        /// <summary>
+        /// Create password credentials like salt, hash and hashMethod from string input
+        /// </summary>
+        /// <param name="input">Input string</param>
+        /// <param name="hashMethod">HashMethod</param>
+        /// <returns>PasswordCredentials</returns>
+        public static PasswordCredentials CreatePasswordCredentials(string input, HashMethod hashMethod)
+        {
+            (var salt, var hash) = CreateSaltAndHash(input, hashMethod);
+            return new PasswordCredentials()
+            {
+                Salt = salt,
+                Hash = hash,
+                HashMethod = (int)hashMethod,
+            };
+        }
+        
+        /// <summary>
+        /// Create password credentials like salt, hash and hashMethod from string input with hashMethod Sha256
+        /// </summary>
+        /// <param name="input">Input string</param>
+        /// <returns>PasswordCredentials</returns>
+        public static PasswordCredentials CreatePasswordCredentialsSha256(string input)
+            => CreatePasswordCredentials(input, HashMethod.Sha256);
+
+        /// <summary>
+        /// Create password credentials like salt, hash and hashMethod from string input with hashMethod Sha512
+        /// </summary>
+        /// <param name="input">Input string</param>
+        /// <returns>PasswordCredentials</returns>
+        public static PasswordCredentials CreatePasswordCredentialsSha512(string input)
+             => CreatePasswordCredentials(input, HashMethod.Sha512);
 
         /// <summary>
         /// Generate salt

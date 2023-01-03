@@ -38,6 +38,8 @@
         public const string ImageIsRequired = "2.18";
         public const string ImageNameIsTooLong = "2.19";
         public const string UserWithEmailAlreadyExists = "2.20";
+        public const string TermsOfConditionsMustBeAccepted = "2.21";
+        public const string EmailIsNotVerified = "2.22";
 
         public const string FileIsEmpty = "3.0";
         public const string FileNameIsNotValid = "3.1";

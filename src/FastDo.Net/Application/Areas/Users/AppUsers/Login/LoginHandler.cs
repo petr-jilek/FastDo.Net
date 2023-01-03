@@ -33,11 +33,7 @@ namespace FastDo.Net.Application.Areas.Users.AppUsers.Login
             if (user is null)
                 return Result<LoginResponse>.BadRequest(FastDoErrorCodes.BadEmailOrPassword);
 
-            if (request.Password is null || user.PasswordHash is null || user.PasswordSalt is null)
-                return Result<LoginResponse>.BadRequest(FastDoErrorCodes.BadEmailOrPassword);
-
-            if (CryptographyHelper.Verify(request.Password, user.PasswordHash, user.PasswordSalt,
-                    (HashMethod)user.PasswordHashMethod) == false)
+            if (CryptographyHelper.Verify(request.Password!, user.PasswordCredentials!))
                 return Result<LoginResponse>.BadRequest(FastDoErrorCodes.BadEmailOrPassword);
 
             var claims = new List<Claim>

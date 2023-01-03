@@ -27,8 +27,8 @@ namespace FastDo.Net.Application.Areas.General.Articles.Get
                 .Take(request.PageSize)
                 .Select(_ => new GetArticlesItemResponse()
                 {
-                    Id = _.Id,
                     Name = _.Name,
+                    NameUrl = _.NameUrl,
                     Created = _.Created,
                     LastUpdated = _.LastUpdated,
                     ImageName = _.ImageName,

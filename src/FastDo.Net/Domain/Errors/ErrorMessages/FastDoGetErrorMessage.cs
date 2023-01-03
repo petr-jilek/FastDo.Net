@@ -287,6 +287,20 @@ namespace FastDo.Net.Domain.Errors.ErrorMessages
                     "de" => "Benutzer mit E-Mail existiert bereits",
                     _ => "Uživatel s e-mailem již existuje",
                 },
+                FastDoErrorCodes.TermsOfConditionsMustBeAccepted => lang switch
+                {
+                    "cz" => "Obchodní podmínky musí být přijaty",
+                    "en" => "Terms of conditions must be accepted",
+                    "de" => "Die AGB müssen akzeptiert werden",
+                    _ => "Obchodní podmínky musí být přijaty",
+                },
+                FastDoErrorCodes.EmailIsNotVerified => lang switch
+                {
+                    "cz" => "Email není ověřen",
+                    "en" => "Email is not verified",
+                    "de" => "E-Mail ist nicht verifiziert",
+                    _ => "Email is not verified",
+                },
                 _ => GetUnknownErrorMessage(lang),
             };
         }
