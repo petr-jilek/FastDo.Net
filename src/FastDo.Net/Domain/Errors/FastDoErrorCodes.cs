@@ -40,6 +40,8 @@
         public const string UserWithEmailAlreadyExists = "2.20";
         public const string TermsOfConditionsMustBeAccepted = "2.21";
         public const string EmailIsNotVerified = "2.22";
+        public const string UserWithEmailDoesNotExists = "2.23";
+        public const string PasswordRefreshFailed = "2.24";
 
         public const string FileIsEmpty = "3.0";
         public const string FileNameIsNotValid = "3.1";

@@ -301,6 +301,20 @@ namespace FastDo.Net.Domain.Errors.ErrorMessages
                     "de" => "E-Mail ist nicht verifiziert",
                     _ => "Email is not verified",
                 },
+                FastDoErrorCodes.UserWithEmailDoesNotExists => lang switch
+                {
+                    "cz" => "Uživatel s e-mailem neexistuje",
+                    "en" => "User with email does not exists",
+                    "de" => "Benutzer mit E-Mail existiert nicht",
+                    _ => "Uživatel s e-mailem neexistuje",
+                },
+                FastDoErrorCodes.PasswordRefreshFailed => lang switch
+                {
+                    "cz" => "Obnova hesla selhala",
+                    "en" => "Password refresh failed",
+                    "de" => "Passwortaktualisierung fehlgeschlagen",
+                    _ => "Obnova hesla selhala",
+                },
                 _ => GetUnknownErrorMessage(lang),
             };
         }
