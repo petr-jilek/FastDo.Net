@@ -1,5 +1,4 @@
 ﻿using FastDo.Net.Api.Helpers;
-using FastDo.Net.Domain.Enums;
 using FastDo.Net.MongoDatabase.Models.Users;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
@@ -14,16 +13,11 @@ namespace FastDo.Net.Api.Seeds
             var collection = mongoUserCollectionsProvider.GetCollection<SuperAdminUser>();
 
             if (await collection.AsQueryable().CountAsync() == 0)
-            {
-                var salt = CryptographyHelper.GenerateSalt();
-
-                var hashMethod = HashMethod.Sha512;
-                var passwordHash = CryptographyHelper.CreateHash(password, salt, hashMethod);
-
+            {                
                 var superAdminUser = new SuperAdminUser()
                 {
                     Email = email,
-                    PasswordCredentials = CryptographyHelper.CreatePasswordCredentialsSha256(request.Password),
+                    PasswordCredentials = CryptographyHelper.CreatePasswordCredentialsSha256(password),
                 };
 
                 await collection.InsertOneAsync(superAdminUser);

@@ -84,7 +84,7 @@ namespace FastDo.Net.Api.Helpers
         /// <returns>Success of the verification</returns>
         public static bool Verify(string input, PasswordCredentials passwordCredentials)
         {
-            var newHash = CreateHash(input, passwordCredentials.Hash!, (HashMethod)passwordCredentials.HashMethod);
+            var newHash = CreateHash(input, passwordCredentials.Salt!, (HashMethod)passwordCredentials.HashMethod);
             return newHash.Equals(passwordCredentials.Hash);
         }
 
@@ -135,7 +135,7 @@ namespace FastDo.Net.Api.Helpers
                 HashMethod = (int)hashMethod,
             };
         }
-        
+
         /// <summary>
         /// Create password credentials like salt, hash and hashMethod from string input with hashMethod Sha256
         /// </summary>
@@ -186,5 +186,16 @@ namespace FastDo.Net.Api.Helpers
         /// <returns>Random string of length 60 in base64</returns>
         public static string GenerateEmailVerificationToken()
             => GenerateRandomString(60);
+
+        /// <summary>
+        /// Generate EmailVerificationCredentials
+        /// </summary>
+        /// <returns>EmailVerificationCredentials</returns>
+        public static EmailVerificationCredentials GenerateEmailVerificationCredentials()
+            => new EmailVerificationCredentials()
+            {
+                Token = GenerateEmailVerificationToken(),
+                Verified = false,
+            };
     }
 }
