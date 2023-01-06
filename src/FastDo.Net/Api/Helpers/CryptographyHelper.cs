@@ -192,10 +192,17 @@ namespace FastDo.Net.Api.Helpers
         /// </summary>
         /// <returns>EmailVerificationCredentials</returns>
         public static EmailVerificationCredentials GenerateEmailVerificationCredentials()
-            => new EmailVerificationCredentials()
+            => new()
             {
                 Token = GenerateEmailVerificationToken(),
                 Verified = false,
+            };
+
+        public static OAuthClientCredentials GenerateOAuthClientCredentials()
+            => new()
+            {
+                ClientId = GenerateClientId(),
+                ClientSecret = GenerateClientSecret(),
             };
     }
 }
