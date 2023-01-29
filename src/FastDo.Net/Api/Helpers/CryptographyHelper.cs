@@ -9,7 +9,7 @@ namespace FastDo.Net.Api.Helpers
     /// <summary>
     /// Helper for generating Salt, Hash, ApiKey
     /// </summary>
-    public class CryptographyHelper
+    public static class CryptographyHelper
     {
         /// <summary>
         /// Generate random string of specific size
@@ -204,5 +204,21 @@ namespace FastDo.Net.Api.Helpers
                 ClientId = GenerateClientId(),
                 ClientSecret = GenerateClientSecret(),
             };
+
+        public static OAuthClientCredentialsSecure ToSecure(this OAuthClientCredentials oAuthClientCredentials, HashMethod hashMethod = HashMethod.Sha256)
+        {
+            if (string.IsNullOrEmpty(oAuthClientCredentials.ClientSecret))
+                throw new ArgumentNullException("ClientSecret must not be null");
+
+            (var salt, var hash) = CreateSaltAndHash(oAuthClientCredentials.ClientSecret, hashMethod);
+
+            return new OAuthClientCredentialsSecure()
+            {
+                ClientId = oAuthClientCredentials.ClientId,
+                HashMethod = (int)hashMethod,
+                Salt = salt,
+                ClientSecretHash = hash
+            };
+        }
     }
 }
