@@ -57,5 +57,41 @@
         public const string ArticleNotExists = "5.0";
         public const string ArticleAlreadyExists = "5.1";
         public const string FundNotExists = "5.2";
+
+        public const string EshopDoesNotExists = "6.0";
+        public const string EshopWithSameNameAlreadyExists = "6.1";
+        public const string TooManyEshopCreateRequestsInProgress = "6.2";
+        public const string EshopCreateRequestNotExists = "6.3";
+        public const string AtLeastOneExpeditionAddressItemMustBeProvided = "6.4";
+        public const string ExpeditionTimesAreRequired = "6.5";
+        public const string EshopNameIsRequired = "6.6";
+        public const string EshopNameIsTooLong = "6.7";
+        public const string EshopUrlIsRequired = "6.8";
+        public const string EshopUrlIsTooLong = "6.9";
+        public const string EshopUrlIsNotValid = "6.10";
+        public const string EshopDescriptionIsRequired = "6.11";
+        public const string EshopDescriptionIsTooLong = "6.12";
+
+        public const string DescriptionIsRequired = "7.0";
+        public const string DescriptionIsTooLong = "7.1";
+        public const string AddressIsRequired = "7.2";
+        public const string StreetIsRequired = "7.3";
+        public const string StreetNumberIsRequired = "7.4";
+        public const string ZipCodeIsRequired = "7.5";
+        public const string CityIsRequired = "7.6";
+        public const string CountryIsRequired = "7.7";
+        public const string CompanyNameIsRequired = "7.8";
+        public const string CompanyNameIsTooLong = "7.9";
+        public const string DicIsRequired = "7.10";
+        public const string IcoIsRequired = "7.11";
+        public const string IbanIsRequired = "7.12";
+        public const string CompanyAddressIsRequired = "7.13";
+
+        public const string MustFillPreviousForms = "8.0";
+        public const string AlreadySubmitted = "8.1";
+
+        public const string StringIsTooLong = "9.0";
+        public const string InputIsNotValid = "9.1";
+        public const string AtLeastOneItemMustBeProvided = "9.2";
     }
 }

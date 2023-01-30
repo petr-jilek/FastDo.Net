@@ -215,9 +215,9 @@ namespace FastDo.Net.Api.Helpers
             return new OAuthClientCredentialsSecure()
             {
                 ClientId = oAuthClientCredentials.ClientId,
+                ClientSecretHash = hash,
                 HashMethod = (int)hashMethod,
                 Salt = salt,
-                ClientSecretHash = hash
             };
         }
     }
