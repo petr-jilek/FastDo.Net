@@ -96,7 +96,7 @@ namespace FastDo.Net.Api.Startup
 
             return services;
         }
-
+        
         public static IServiceCollection AddAllowAllCorsPolicy(this IServiceCollection services)
         {
             services.AddCors(options =>
@@ -106,7 +106,6 @@ namespace FastDo.Net.Api.Startup
                     policy
                         .AllowAnyMethod()
                         .AllowAnyHeader()
-                        .AllowCredentials()
                         .AllowAnyOrigin();
                 });
             });
