@@ -8,6 +8,7 @@ using FastDo.Net.Domain.Errors.Models;
 using FastDo.Net.MongoDatabase.Providers;
 using FastDo.Net.MongoDatabase.Settings;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace FastDo.Net.Api.Startup
 {
@@ -15,7 +16,10 @@ namespace FastDo.Net.Api.Startup
     {
         private static IActionResult HandleErrors(ActionContext actionContext, IGetErrorMessage? getErrorMessage = null, IConfiguration? configuration = null)
         {
-            var modelErrorCollection = actionContext.ModelState.Values.Select(x => x.Errors).FirstOrDefault();
+            var modelErrorCollection = actionContext.ModelState.Values
+                .Where(_ => _.ValidationState == ModelValidationState.Invalid)
+                .Select(_ => _.Errors)
+                .FirstOrDefault();
 
             var lang = GlobalConsts.DefaultLanguage;
 
