@@ -1,7 +1,4 @@
-﻿using System.Globalization;
-using System.Text;
-
-namespace FastDo.Net.Api.Helpers
+﻿namespace FastDo.Net.Api.Helpers
 {
     public static class CommonHelper
     {
