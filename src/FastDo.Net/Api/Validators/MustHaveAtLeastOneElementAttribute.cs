@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FastDo.Net.Api.Validators
 {
-    public class MustHaveOneElementAttribute : ValidationAttribute
+    public class MustHaveAtLeastOneElementAttribute : ValidationAttribute
     {
         public override bool IsValid(object? value)
         {
