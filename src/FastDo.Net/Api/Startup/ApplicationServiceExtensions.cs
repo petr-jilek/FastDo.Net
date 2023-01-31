@@ -96,7 +96,7 @@ namespace FastDo.Net.Api.Startup
 
             return services;
         }
-        
+
         public static IServiceCollection AddAllowAllCorsPolicy(this IServiceCollection services)
         {
             services.AddCors(options =>
@@ -107,6 +107,23 @@ namespace FastDo.Net.Api.Startup
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowAnyOrigin();
+                });
+            });
+
+            return services;
+        }
+
+        public static IServiceCollection AddAllowAllCorsPolicySignalR(this IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(CorsPolicies.AddAllowAllCorsPolicySignalR, policy =>
+                {
+                    policy
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .SetIsOriginAllowed(_ => true)
+                        .AllowCredentials();
                 });
             });
 

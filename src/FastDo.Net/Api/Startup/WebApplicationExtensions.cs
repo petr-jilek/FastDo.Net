@@ -7,7 +7,8 @@ namespace FastDo.Net.Api.Startup
     {
         public bool UseExceptionMiddleware { get; set; } = true;
         public bool UseAppExceptionMiddleware { get; set; } = true;
-        public bool UseAllowAllCorsPolicyInDevelopment { get; set; } = true;
+        public bool UseCorsPolicyInDevelopment { get; set; } = true;
+        public string CorsPolicyInDevelopment { get; set; } = CorsPolicies.AllowAllCorsPolicy;
         public bool UseSwaggerBasicAuthMiddlewareInNotDevelopment { get; set; } = true;
         public bool UseSwagger { get; set; } = true;
         public bool UseSecurityHeaders { get; set; } = true;
@@ -22,16 +23,16 @@ namespace FastDo.Net.Api.Startup
 
     public static class WebApplicationExtensions
     {
-        public static WebApplication CreateDefaultPipeline(this WebApplication app, CreateDefaultPipelineOptions options)
+        public static WebApplication CreateDefaultPipeline(this WebApplication app, CreateDefaultPipelineOptions options, Action<WebApplication>? configurationBeforeFallback = null)
         {
             if (options.UseExceptionMiddleware)
                 app.UseMiddleware<ExceptionMiddleware>();
             if (options.UseAppExceptionMiddleware)
                 app.UseMiddleware<AppExceptionMiddleware>();
 
-            if (options.UseAllowAllCorsPolicyInDevelopment)
+            if (options.UseCorsPolicyInDevelopment)
                 if (app.Environment.IsDevelopment())
-                    app.UseCors(CorsPolicies.AllowAllCorsPolicy);
+                    app.UseCors(options.CorsPolicyInDevelopment);
 
             if (options.UseSwaggerBasicAuthMiddlewareInNotDevelopment)
                 if (app.Environment.IsDevelopment() == false)
@@ -64,6 +65,10 @@ namespace FastDo.Net.Api.Startup
 
             if (options.MapControllers)
                 app.MapControllers();
+
+            if (configurationBeforeFallback is not null)
+                configurationBeforeFallback.Invoke(app);
+
             if (options.MapFallbackToController)
                 app.MapFallbackToController("Index", "Fallback");
 
