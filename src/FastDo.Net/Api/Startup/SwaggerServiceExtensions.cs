@@ -1,9 +1,25 @@
 ﻿using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace FastDo.Net.Api.Startup
 {
     public static class SwaggerServiceExtensions
     {
+        public static SwaggerGenOptions AddCustomSchemaIdsFuncSplitByDotTakeLast(this SwaggerGenOptions swaggerGenOptions, int takeLast = 3)
+        {
+            swaggerGenOptions.CustomSchemaIds((type) =>
+            {
+                if (type.FullName is null)
+                    return "Unknown";
+
+                var splittedFullName = type.FullName.Split('.');
+
+                return string.Join("_", splittedFullName.TakeLast(takeLast));
+            });
+
+            return swaggerGenOptions;
+        }
+
         public static string MapTypeToName(Type type)
         {
             if (type.FullName is null)
@@ -23,7 +39,7 @@ namespace FastDo.Net.Api.Startup
                 _ => string.Join("_", splittedFullName)
             };
         }
-        
+
         public static IServiceCollection AddSwagger(this IServiceCollection services, string version = "v1",
             string title = "Title", string description = "An ASP.NET Core Web API", Func<Type, string>? modelNameFunc = null)
         {
@@ -37,7 +53,7 @@ namespace FastDo.Net.Api.Startup
                         return MapTypeToName(_);
                     return modelNameFunc(_);
                 });
-                
+
                 options.SwaggerDoc("v1",
                     new OpenApiInfo { Version = version, Title = title, Description = description, });
 
