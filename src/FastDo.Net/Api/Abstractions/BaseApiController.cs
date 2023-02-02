@@ -30,6 +30,22 @@ namespace FastDo.Net.Api.Abstractions
             return StatusCode((int)result.StatusCode, errorModel);
         }
 
+        protected IActionResult HandleResultWithoutErrorModel<T>(Result<T> result)
+        {
+            if (result.Success)
+            {
+                if (result.Value is null or EmptyClass)
+                    return StatusCode((int)result.StatusCode);
+
+                return StatusCode((int)result.StatusCode, result.Value);
+            }
+
+            if (result.ErrorCode is null)
+                return StatusCode((int)result.StatusCode);
+
+            return StatusCode((int)result.StatusCode, result.ErrorCode);
+        }
+
         protected IActionResult HandleFileResult(Result<byte[]> result, string contentType, string? fileDownloadName = null, string languageCode = GlobalConsts.DefaultLanguage)
         {
             if (result.Success)
