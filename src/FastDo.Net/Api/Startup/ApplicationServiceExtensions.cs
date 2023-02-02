@@ -7,7 +7,9 @@ using FastDo.Net.Domain.Errors.ErrorMessages;
 using FastDo.Net.Domain.Errors.Models;
 using FastDo.Net.MongoDatabase.Providers;
 using FastDo.Net.MongoDatabase.Settings;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace FastDo.Net.Api.Startup
@@ -146,6 +148,18 @@ namespace FastDo.Net.Api.Startup
         {
             services.AddSettings<MongoDbSettings>(configuration);
             services.AddScoped<IMongoDbProvider, MongoDbProvider>();
+            return services;
+        }
+
+        public static IServiceCollection AddAuthorizedControllersWithHttpContextAccessor(this IServiceCollection services)
+        {
+            services.AddControllers(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             return services;
         }
     }
