@@ -5,7 +5,10 @@ namespace FastDo.Net.Api.Helpers
     public static class EnviromentHelper
     {
         public static bool IsDevelopment()
-         => Environment.GetEnvironmentVariable(GlobalConsts.EnviromentKey) == Enviroments.Development;
+            => Environment.GetEnvironmentVariable(GlobalConsts.EnviromentKey) == Enviroments.Development;
+
+        public static bool IsTesting()
+            => Environment.GetEnvironmentVariable(GlobalConsts.EnviromentKey) == Enviroments.Testing;
 
         public static bool IsStaging()
             => Environment.GetEnvironmentVariable(GlobalConsts.EnviromentKey) == Enviroments.Staging;
