@@ -526,6 +526,13 @@ namespace FastDo.Net.Domain.Errors.ErrorMessages
                     "de" => "Eshop-Beschreibung ist zu lang",
                     _ => "Popis eshopu je příliš dlouhý",
                 },
+                FastDoErrorCodes.OrderDoesNotExists => lang switch
+                {
+                    "cz" => "Objednávka neexistuje",
+                    "en" => "Order does not exists",
+                    "de" => "Bestellung existiert nicht",
+                    _ => "Objednávka neexistuje",
+                },
                 _ => GetUnknownErrorMessage(lang),
             };
         }
@@ -632,6 +639,13 @@ namespace FastDo.Net.Domain.Errors.ErrorMessages
                     "de" => "Firmenadresse ist erforderlich",
                     _ => "Adresa firmy je povinná",
                 },
+                FastDoErrorCodes.CompanyInfoIsRequired => lang switch
+                {
+                    "cz" => "Informace o firmě je povinná",
+                    "en" => "Company info is required",
+                    "de" => "Firmeninformation ist erforderlich",
+                    _ => "Informace o firmě je povinná",
+                },
                 _ => GetUnknownErrorMessage(lang),
             };
         }
@@ -653,6 +667,20 @@ namespace FastDo.Net.Domain.Errors.ErrorMessages
                     "en" => "This form has already been submitted",
                     "de" => "Dieses Formular wurde bereits abgeschickt",
                     _ => "Tento formulář byl již odeslán",
+                },
+                FastDoErrorCodes.MustFillForm => lang switch
+                {
+                    "cz" => "Musíte vyplnit formulář",
+                    "en" => "You must fill the form",
+                    "de" => "Sie müssen das Formular ausfüllen",
+                    _ => "Musíte vyplnit formulář",
+                },
+                FastDoErrorCodes.PaymentCreationFailed => lang switch
+                {
+                    "cz" => "Vytvoření platby selhalo",
+                    "en" => "Payment creation failed",
+                    "de" => "Zahlungserstellung fehlgeschlagen",
+                    _ => "Vytvoření platby selhalo",
                 },
                 _ => GetUnknownErrorMessage(lang),
             };

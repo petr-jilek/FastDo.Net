@@ -71,6 +71,7 @@
         public const string EshopUrlIsNotValid = "6.10";
         public const string EshopDescriptionIsRequired = "6.11";
         public const string EshopDescriptionIsTooLong = "6.12";
+        public const string OrderDoesNotExists = "6.13";
 
         public const string DescriptionIsRequired = "7.0";
         public const string DescriptionIsTooLong = "7.1";
@@ -86,9 +87,12 @@
         public const string IcoIsRequired = "7.11";
         public const string IbanIsRequired = "7.12";
         public const string CompanyAddressIsRequired = "7.13";
+        public const string CompanyInfoIsRequired = "7.14";
 
         public const string MustFillPreviousForms = "8.0";
         public const string AlreadySubmitted = "8.1";
+        public const string MustFillForm = "8.2";
+        public const string PaymentCreationFailed = "8.3";
 
         public const string StringIsTooLong = "9.0";
         public const string InputIsNotValid = "9.1";
