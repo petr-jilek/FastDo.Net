@@ -138,6 +138,14 @@ namespace FastDo.Net.Api.Startup
             return services;
         }
 
+        public static IServiceCollection AddErrorMessages<T>(this IServiceCollection services, bool addFastDoErrorMessages = true) where T : class, IGetErrorMessage
+        {
+            if (addFastDoErrorMessages)
+                services.AddScoped<FastDoGetErrorMessage>();
+            services.AddScoped<IGetErrorMessage, T>();
+            return services;
+        }
+
         public static IServiceCollection AddFastDoHandlers(this IServiceCollection services)
         {
             services.AddByInterface<IHandler>();
