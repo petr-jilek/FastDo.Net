@@ -32,7 +32,7 @@ namespace FastDo.Net.Application.Areas.Users.SuperadminUsers.Login
             if (user is null)
                 return Result<LoginResponse>.BadRequest(FastDoErrorCodes.BadEmailOrPassword);
 
-            if (CryptographyHelper.Verify(request.Password!, user.PasswordCredentials!))
+            if (CryptographyHelper.Verify(request.Password!, user.PasswordCredentials!) == false)
                 return Result<LoginResponse>.BadRequest(FastDoErrorCodes.BadEmailOrPassword);
 
             var claims = new List<Claim>
