@@ -711,6 +711,13 @@ namespace FastDo.Net.Domain.Errors.ErrorMessages
                     "de" => "Sie müssen mindestens ein Element ausfüllen",
                     _ => "Musíte vyplnit alespoň jednu položku",
                 },
+                FastDoErrorCodes.InvalidHexColorCode => lang switch
+                {
+                    "cz" => "Neplatný hexadecimální kód barvy",
+                    "en" => "Invalid hex color code",
+                    "de" => "Ungültiger Hex-Farbcode",
+                    _ => "Neplatný hexadecimální kód barvy",
+                },
                 _ => GetUnknownErrorMessage(lang),
             };
         }

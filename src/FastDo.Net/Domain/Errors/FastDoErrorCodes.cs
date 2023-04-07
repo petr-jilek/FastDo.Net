@@ -97,5 +97,6 @@
         public const string StringIsTooLong = "9.0";
         public const string InputIsNotValid = "9.1";
         public const string AtLeastOneItemMustBeProvided = "9.2";
+        public const string InvalidHexColorCode = "9.3";
     }
 }
