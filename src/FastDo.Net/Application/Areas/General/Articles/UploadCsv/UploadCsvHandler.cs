@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
+using FastDo.Net.Api.Extensions;
 using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Errors;
@@ -50,9 +51,10 @@ namespace FastDo.Net.Application.Areas.General.Articles.UploadCsv
                 var articles = records.Select(_ => new Article
                 {
                     Name = _.Name,
+                    NameUrl = _.Name!.ToFriendlyUrl(),
+                    ImageName = _.ImageName,
                     Created = _.Created,
                     LastUpdated = _.LastUpdated,
-                    ImageName = _.ImageName,
                     Description = _.Description,
                     Content = _.Content,
                     Type = _.Type,
@@ -68,9 +70,10 @@ namespace FastDo.Net.Application.Areas.General.Articles.UploadCsv
                     if (dbArticle is not null)
                     {
                         dbArticle.Name = article.Name;
+                        dbArticle.NameUrl = article.NameUrl;
+                        dbArticle.ImageName = article.ImageName;
                         dbArticle.Created = article.Created;
                         dbArticle.LastUpdated = article.LastUpdated;
-                        dbArticle.ImageName = article.ImageName;
                         dbArticle.Description = article.Description;
                         dbArticle.Content = article.Content;
                         dbArticle.Type = article.Type;

@@ -1,4 +1,4 @@
-﻿namespace FastDo.Net.Application.Areas.Users.SuperAdminUsers.Login
+﻿namespace FastDo.Net.Application.Areas.Users.SuperadminUsers.Login
 {
     public class LoginResponse
     {

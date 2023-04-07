@@ -1,4 +1,4 @@
-﻿namespace FastDo.Net.Application.Areas.Users.SuperAdminUsers.CheckStatus
+﻿namespace FastDo.Net.Application.Areas.Users.SuperadminUsers.CheckStatus
 {
     public class CheckStatusResponse
     {

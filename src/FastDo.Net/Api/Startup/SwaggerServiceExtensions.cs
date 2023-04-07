@@ -30,13 +30,7 @@ namespace FastDo.Net.Api.Startup
             return splittedFullName.Length switch
             {
                 5 when splittedFullName[0] == "FastDo" && splittedFullName.Last() == "ErrorModel" => string.Join("_", splittedFullName.TakeLast(2)),
-                8 when splittedFullName[0] == "FastDo" => string.Join("_", splittedFullName.TakeLast(3)),
-                6 when splittedFullName[0] == "Application" => string.Join("_", splittedFullName.TakeLast(4)),
-                5 when splittedFullName[0] == "Application" => string.Join("_", splittedFullName.TakeLast(3)),
-                4 when splittedFullName[3] == "ErrorModel" => string.Join("_", splittedFullName.TakeLast(2)),
-                4 when splittedFullName[0] == "MongoDatabase"
-                    => "Database" + "_" + string.Join("_", splittedFullName.TakeLast(3)),
-                _ => string.Join("_", splittedFullName)
+                _ => string.Join("_", splittedFullName.TakeLast(3))
             };
         }
 

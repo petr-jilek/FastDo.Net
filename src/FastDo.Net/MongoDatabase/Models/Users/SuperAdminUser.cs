@@ -3,7 +3,7 @@ using FastDo.Net.MongoDatabase.Abstractions;
 
 namespace FastDo.Net.MongoDatabase.Models.Users
 {
-    public class SuperAdminUser : BaseDbModelStringId
+    public class SuperadminUser : BaseDbModelStringId
     {
         public string? Email { get; set; }
 

@@ -35,9 +35,9 @@ namespace FastDo.Net.Application.Areas.General.Articles.Create
             {
                 Name = request.Name,
                 NameUrl = nameUrl,
+                ImageName = request.ImageName,
                 Created = DateTimeOffset.UtcNow,
                 LastUpdated = DateTimeOffset.UtcNow,
-                ImageName = request.ImageName,
                 Description = request.Description,
                 Content = request.Content,
                 Type = request.Type,

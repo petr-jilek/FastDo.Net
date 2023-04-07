@@ -5,14 +5,13 @@ using FastDo.Net.Api.Services.Auth.Token;
 using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Consts;
-using FastDo.Net.Domain.Enums;
 using FastDo.Net.Domain.Errors;
 using FastDo.Net.MongoDatabase.Models.Users;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace FastDo.Net.Application.Areas.Users.SuperAdminUsers.Login
+namespace FastDo.Net.Application.Areas.Users.SuperadminUsers.Login
 {
     public class LoginHandler : IHandler
     {
@@ -27,7 +26,7 @@ namespace FastDo.Net.Application.Areas.Users.SuperAdminUsers.Login
 
         public async Task<Result<LoginResponse>> Handle(LoginRequest request)
         {
-            var collection = _mongoDbProvider.GetCollection<SuperAdminUser>();
+            var collection = _mongoDbProvider.GetCollection<SuperadminUser>();
 
             var user = await collection.AsQueryable().FirstOrDefaultAsync(_ => _.Email == request.Email);
             if (user is null)

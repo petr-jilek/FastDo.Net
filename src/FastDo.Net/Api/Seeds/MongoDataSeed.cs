@@ -10,11 +10,11 @@ namespace FastDo.Net.Api.Seeds
     {
         public static async Task SeedSuperAdmin(IMongoDbProvider mongoUserCollectionsProvider, string email, string password)
         {
-            var collection = mongoUserCollectionsProvider.GetCollection<SuperAdminUser>();
+            var collection = mongoUserCollectionsProvider.GetCollection<SuperadminUser>();
 
             if (await collection.AsQueryable().CountAsync() == 0)
             {                
-                var superAdminUser = new SuperAdminUser()
+                var superAdminUser = new SuperadminUser()
                 {
                     Email = email,
                     PasswordCredentials = CryptographyHelper.CreatePasswordCredentialsSha256(password),

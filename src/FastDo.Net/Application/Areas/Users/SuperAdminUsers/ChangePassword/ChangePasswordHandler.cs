@@ -8,7 +8,7 @@ using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace FastDo.Net.Application.Areas.Users.SuperAdminUsers.ChangePassword
+namespace FastDo.Net.Application.Areas.Users.SuperadminUsers.ChangePassword
 {
     public class ChangePasswordHandler : IHandler
     {
@@ -26,7 +26,7 @@ namespace FastDo.Net.Application.Areas.Users.SuperAdminUsers.ChangePassword
             if (request.NewPassword != request.NewPasswordConfirmation)
                 return Result<EmptyClass>.BadRequest(FastDoErrorCodes.PasswordsDontMatch);
 
-            var collection = _mongoDbProvider.GetCollection<SuperAdminUser>();
+            var collection = _mongoDbProvider.GetCollection<SuperadminUser>();
 
             var userId = _userAccessorService.GetId();
 
