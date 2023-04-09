@@ -89,5 +89,17 @@
             File.Delete(path);
             return true;
         }
+
+        public bool DeleteAllFiles(string dirPath)
+        {
+            EnsureDirectoryExists(dirPath);
+            var path = GetPath(dirPath);
+
+            var files = Directory.GetFiles(path);
+            foreach (var file in files)
+                File.Delete(file);
+
+            return true;
+        }
     }
 }
