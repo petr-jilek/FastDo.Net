@@ -35,7 +35,7 @@ namespace FastDo.Net.Application.Areas.Users.SuperadminUsers.ChangePassword
                 return Result<EmptyClass>.NotFound();
 
             if (CryptographyHelper.Verify(request.Password!, user.PasswordCredentials!) == false)
-                return Result<EmptyClass>.Unauthorized(FastDoErrorCodes.BadPassword);
+                return Result<EmptyClass>.BadRequest(FastDoErrorCodes.BadPassword);
 
             user.PasswordCredentials = CryptographyHelper.CreatePasswordCredentialsSha256(request.NewPassword!);
 
