@@ -28,6 +28,7 @@ namespace FastDo.Net.Application.Areas.General.Articles.GetDetail
 
             var response = new GetDetailResponse()
             {
+                Id = article.Id,
                 Name = article.Name,
                 NameUrl = article.NameUrl,
                 Created = article.Created,

@@ -19,17 +19,17 @@ namespace FastDo.Net.Application.Areas.General.Articles.Edit
             _mongoDbProvider = mongoDbProvider;
         }
 
-        public async Task<Result<EmptyClass>> Handle(string nameUrl, EditRequest request)
+        public async Task<Result<EmptyClass>> Handle(string id, EditRequest request)
         {
             var collection = _mongoDbProvider.GetCollection<Article>();
 
-            var article = await collection.AsQueryable().FirstOrDefaultAsync(_ => _.NameUrl == nameUrl);
+            var article = await collection.AsQueryable().FirstOrDefaultAsync(_ => _.Id == id);
             if (article is null)
                 return Result<EmptyClass>.NotFound(FastDoErrorCodes.ArticleNotExists);
 
             var newNameUrl = request.Name!.ToFriendlyUrl();
 
-            if (await collection.AsQueryable().AnyAsync(_ => (_.NameUrl == newNameUrl || _.Name == request.Name) && _.NameUrl != article.NameUrl))
+            if (await collection.AsQueryable().AnyAsync(_ => (_.NameUrl == newNameUrl || _.Name == request.Name) && _.Id != article.Id))
                 return Result<EmptyClass>.Conflict(FastDoErrorCodes.ArticleAlreadyExists);
 
             article.Name = request.Name;
