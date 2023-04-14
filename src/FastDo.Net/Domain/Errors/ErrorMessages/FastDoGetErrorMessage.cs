@@ -14,11 +14,15 @@ namespace FastDo.Net.Domain.Errors.ErrorMessages
                 3 => Get3(errorCode, lang),
                 4 => Get4(errorCode, lang),
                 5 => Get5(errorCode, lang),
+                6 => Get6(errorCode, lang),
+                7 => Get7(errorCode, lang),
+                8 => Get8(errorCode, lang),
+                9 => Get9(errorCode, lang),
                 _ => GetUnknownErrorMessage(lang),
             };
         }
 
-        private string GetUnknownErrorMessage(string lang)
+        public string GetUnknownErrorMessage(string lang)
         {
             return lang switch
             {
@@ -287,6 +291,34 @@ namespace FastDo.Net.Domain.Errors.ErrorMessages
                     "de" => "Benutzer mit E-Mail existiert bereits",
                     _ => "Uživatel s e-mailem již existuje",
                 },
+                FastDoErrorCodes.TermsOfConditionsMustBeAccepted => lang switch
+                {
+                    "cz" => "Obchodní podmínky musí být přijaty",
+                    "en" => "Terms of conditions must be accepted",
+                    "de" => "Die AGB müssen akzeptiert werden",
+                    _ => "Obchodní podmínky musí být přijaty",
+                },
+                FastDoErrorCodes.EmailIsNotVerified => lang switch
+                {
+                    "cz" => "Email není ověřen",
+                    "en" => "Email is not verified",
+                    "de" => "E-Mail ist nicht verifiziert",
+                    _ => "Email is not verified",
+                },
+                FastDoErrorCodes.UserWithEmailDoesNotExists => lang switch
+                {
+                    "cz" => "Uživatel s e-mailem neexistuje",
+                    "en" => "User with email does not exists",
+                    "de" => "Benutzer mit E-Mail existiert nicht",
+                    _ => "Uživatel s e-mailem neexistuje",
+                },
+                FastDoErrorCodes.PasswordRefreshFailed => lang switch
+                {
+                    "cz" => "Obnova hesla selhala",
+                    "en" => "Password refresh failed",
+                    "de" => "Passwortaktualisierung fehlgeschlagen",
+                    _ => "Obnova hesla selhala",
+                },
                 _ => GetUnknownErrorMessage(lang),
             };
         }
@@ -394,6 +426,297 @@ namespace FastDo.Net.Domain.Errors.ErrorMessages
                     "en" => "Fund not exists",
                     "de" => "Fonds existiert nicht",
                     _ => "Fond neexistuje",
+                },
+                _ => GetUnknownErrorMessage(lang),
+            };
+        }
+
+        private string Get6(ErrorCode errorCode, string lang)
+        {
+            return (string)errorCode switch
+            {
+                FastDoErrorCodes.EshopDoesNotExists => lang switch
+                {
+                    "cz" => "Eshop neexistuje",
+                    "en" => "Eshop not exists",
+                    "de" => "Eshop existiert nicht",
+                    _ => "Eshop neexistuje",
+                },
+                FastDoErrorCodes.EshopWithSameNameAlreadyExists => lang switch
+                {
+                    "cz" => "Eshop s tímto názvem již existuje",
+                    "en" => "Eshop with same name already exists",
+                    "de" => "Eshop mit demselben Namen existiert bereits",
+                    _ => "Eshop s tímto názvem již existuje",
+                },
+                FastDoErrorCodes.TooManyEshopCreateRequestsInProgress => lang switch
+                {
+                    "cz" => "Příliš mnoho eshopů jsou momentálně vytvářeny",
+                    "en" => "Too many e-shops are being created",
+                    "de" => "Es werden zu viele E-Shops erstellt",
+                    _ => "Příliš mnoho eshopů jsou momentálně vytvářeny",
+                },
+                FastDoErrorCodes.EshopCreateRequestNotExists => lang switch
+                {
+                    "cz" => "Žádost o vytvoření eshopu neexistuje",
+                    "en" => "Eshop create request not exists",
+                    "de" => "Eshop-Anfrage existiert nicht",
+                    _ => "Žádost o vytvoření eshopu neexistuje",
+                },
+                FastDoErrorCodes.AtLeastOneExpeditionAddressItemMustBeProvided => lang switch
+                {
+                    "cz" => "Musí být vyplněna alespoň jedna z expedičních adres",
+                    "en" => "At least one of the shipping addresses must be filled in",
+                    "de" => "Mindestens eine der Lieferadressen muss ausgefüllt werden",
+                    _ => "Musí být vyplněna alespoň jedna z expedičních adres",
+                },
+                FastDoErrorCodes.ExpeditionTimesAreRequired => lang switch
+                {
+                    "cz" => "Časy expedice jsou povinné",
+                    "en" => "Expedition times are required",
+                    "de" => "Expeditionszeiten sind erforderlich",
+                    _ => "Časy expedice jsou povinné",
+                },
+                FastDoErrorCodes.EshopNameIsRequired => lang switch
+                {
+                    "cz" => "Název eshopu je povinný",
+                    "en" => "Eshop name is required",
+                    "de" => "Eshop-Name ist erforderlich",
+                    _ => "Název eshopu je povinný",
+                },
+                FastDoErrorCodes.EshopNameIsTooLong => lang switch
+                {
+                    "cz" => "Název eshopu je příliš dlouhý",
+                    "en" => "Eshop name is too long",
+                    "de" => "Eshop-Name ist zu lang",
+                    _ => "Název eshopu je příliš dlouhý",
+                },
+                FastDoErrorCodes.EshopUrlIsRequired => lang switch
+                {
+                    "cz" => "Url eshopu je povinná",
+                    "en" => "Eshop url is required",
+                    "de" => "Eshop-URL ist erforderlich",
+                    _ => "Url eshopu je povinná",
+                },
+                FastDoErrorCodes.EshopUrlIsTooLong => lang switch
+                {
+                    "cz" => "Url eshopu je příliš dlouhá",
+                    "en" => "Eshop url is too long",
+                    "de" => "Eshop-URL ist zu lang",
+                    _ => "Url eshopu je příliš dlouhá",
+                },
+                FastDoErrorCodes.EshopUrlIsNotValid => lang switch
+                {
+                    "cz" => "Url eshopu není validní",
+                    "en" => "Eshop url is not valid",
+                    "de" => "Eshop-URL ist nicht gültig",
+                    _ => "Url eshopu není validní",
+                },
+                FastDoErrorCodes.EshopDescriptionIsRequired => lang switch
+                {
+                    "cz" => "Popis eshopu je povinný",
+                    "en" => "Eshop description is required",
+                    "de" => "Eshop-Beschreibung ist erforderlich",
+                    _ => "Popis eshopu je povinný",
+                },
+                FastDoErrorCodes.EshopDescriptionIsTooLong => lang switch
+                {
+                    "cz" => "Popis eshopu je příliš dlouhý",
+                    "en" => "Eshop description is too long",
+                    "de" => "Eshop-Beschreibung ist zu lang",
+                    _ => "Popis eshopu je příliš dlouhý",
+                },
+                FastDoErrorCodes.OrderDoesNotExists => lang switch
+                {
+                    "cz" => "Objednávka neexistuje",
+                    "en" => "Order does not exists",
+                    "de" => "Bestellung existiert nicht",
+                    _ => "Objednávka neexistuje",
+                },
+                _ => GetUnknownErrorMessage(lang),
+            };
+        }
+
+        private string Get7(ErrorCode errorCode, string lang)
+        {
+            return (string)errorCode switch
+            {
+                FastDoErrorCodes.DescriptionIsRequired => lang switch
+                {
+                    "cz" => "Popis je povinný",
+                    "en" => "Description is required",
+                    "de" => "Beschreibung ist erforderlich",
+                    _ => "Popis je povinný",
+                },
+                FastDoErrorCodes.DescriptionIsTooLong => lang switch
+                {
+                    "cz" => "Popis je příliš dlouhý",
+                    "en" => "Description is too long",
+                    "de" => "Beschreibung ist zu lang",
+                    _ => "Popis je příliš dlouhý",
+                },
+                FastDoErrorCodes.AddressIsRequired => lang switch
+                {
+                    "cz" => "Adresa je povinná",
+                    "en" => "Address is required",
+                    "de" => "Adresse ist erforderlich",
+                    _ => "Adresa je povinná",
+                },
+                FastDoErrorCodes.StreetIsRequired => lang switch
+                {
+                    "cz" => "Ulice je povinná",
+                    "en" => "Street is required",
+                    "de" => "Straße ist erforderlich",
+                    _ => "Ulice je povinná",
+                },
+                FastDoErrorCodes.StreetNumberIsRequired => lang switch
+                {
+                    "cz" => "Číslo domu je povinné",
+                    "en" => "Street number is required",
+                    "de" => "Hausnummer ist erforderlich",
+                    _ => "Číslo domu je povinné",
+                },
+                FastDoErrorCodes.ZipCodeIsRequired => lang switch
+                {
+                    "cz" => "PSČ je povinné",
+                    "en" => "Zip code is required",
+                    "de" => "Postleitzahl ist erforderlich",
+                    _ => "PSČ je povinné",
+                },
+                FastDoErrorCodes.CityIsRequired => lang switch
+                {
+                    "cz" => "Město je povinné",
+                    "en" => "City is required",
+                    "de" => "Stadt ist erforderlich",
+                    _ => "Město je povinné",
+                },
+                FastDoErrorCodes.CountryIsRequired => lang switch
+                {
+                    "cz" => "Země je povinná",
+                    "en" => "Country is required",
+                    "de" => "Land ist erforderlich",
+                    _ => "Země je povinná",
+                },
+                FastDoErrorCodes.CompanyNameIsRequired => lang switch
+                {
+                    "cz" => "Název firmy je povinný",
+                    "en" => "Company name is required",
+                    "de" => "Firmenname ist erforderlich",
+                    _ => "Název firmy je povinný",
+                },
+                FastDoErrorCodes.CompanyNameIsTooLong => lang switch
+                {
+                    "cz" => "Název firmy je příliš dlouhý",
+                    "en" => "Company name is too long",
+                    "de" => "Firmenname ist zu lang",
+                    _ => "Název firmy je příliš dlouhý",
+                },
+                FastDoErrorCodes.DicIsRequired => lang switch
+                {
+                    "cz" => "DIČ je povinné",
+                    "en" => "DIC is required",
+                    "de" => "DIC ist erforderlich",
+                    _ => "DIČ je povinné",
+                },
+                FastDoErrorCodes.IcoIsRequired => lang switch
+                {
+                    "cz" => "IČO je povinné",
+                    "en" => "ICO is required",
+                    "de" => "ICO ist erforderlich",
+                    _ => "IČO je povinné",
+                },
+                FastDoErrorCodes.IbanIsRequired => lang switch
+                {
+                    "cz" => "IBAN je povinné",
+                    "en" => "IBAN is required",
+                    "de" => "IBAN ist erforderlich",
+                    _ => "IBAN je povinné",
+                },
+                FastDoErrorCodes.CompanyAddressIsRequired => lang switch
+                {
+                    "cz" => "Adresa firmy je povinná",
+                    "en" => "Company address is required",
+                    "de" => "Firmenadresse ist erforderlich",
+                    _ => "Adresa firmy je povinná",
+                },
+                FastDoErrorCodes.CompanyInfoIsRequired => lang switch
+                {
+                    "cz" => "Informace o firmě je povinná",
+                    "en" => "Company info is required",
+                    "de" => "Firmeninformation ist erforderlich",
+                    _ => "Informace o firmě je povinná",
+                },
+                _ => GetUnknownErrorMessage(lang),
+            };
+        }
+
+        private string Get8(ErrorCode errorCode, string lang)
+        {
+            return (string)errorCode switch
+            {
+                FastDoErrorCodes.MustFillPreviousForms => lang switch
+                {
+                    "cz" => "Musíte vyplnit předchozí formuláře",
+                    "en" => "You must fill previous forms",
+                    "de" => "Sie müssen die vorherigen Formulare ausfüllen",
+                    _ => "Musíte vyplnit předchozí formuláře",
+                },
+                FastDoErrorCodes.AlreadySubmitted => lang switch
+                {
+                    "cz" => "Tento formulář byl již odeslán",
+                    "en" => "This form has already been submitted",
+                    "de" => "Dieses Formular wurde bereits abgeschickt",
+                    _ => "Tento formulář byl již odeslán",
+                },
+                FastDoErrorCodes.MustFillForm => lang switch
+                {
+                    "cz" => "Musíte vyplnit formulář",
+                    "en" => "You must fill the form",
+                    "de" => "Sie müssen das Formular ausfüllen",
+                    _ => "Musíte vyplnit formulář",
+                },
+                FastDoErrorCodes.PaymentCreationFailed => lang switch
+                {
+                    "cz" => "Vytvoření platby selhalo",
+                    "en" => "Payment creation failed",
+                    "de" => "Zahlungserstellung fehlgeschlagen",
+                    _ => "Vytvoření platby selhalo",
+                },
+                _ => GetUnknownErrorMessage(lang),
+            };
+        }
+
+        private string Get9(ErrorCode errorCode, string lang)
+        {
+            return (string)errorCode switch
+            {
+                FastDoErrorCodes.StringIsTooLong => lang switch
+                {
+                    "cz" => "Vstup je příliš dlouhý",
+                    "en" => "Input is too long",
+                    "de" => "Eingabe ist zu lang",
+                    _ => "Vstup je příliš dlouhý",
+                },
+                FastDoErrorCodes.InputIsNotValid => lang switch
+                {
+                    "cz" => "Vstup není platný",
+                    "en" => "Input is not valid",
+                    "de" => "Eingabe ist nicht gültig",
+                    _ => "Vstup není platný",
+                },
+                FastDoErrorCodes.AtLeastOneItemMustBeProvided => lang switch
+                {
+                    "cz" => "Musíte vyplnit alespoň jednu položku",
+                    "en" => "You must fill at least one item",
+                    "de" => "Sie müssen mindestens ein Element ausfüllen",
+                    _ => "Musíte vyplnit alespoň jednu položku",
+                },
+                FastDoErrorCodes.InvalidHexColorCode => lang switch
+                {
+                    "cz" => "Neplatný hexadecimální kód barvy",
+                    "en" => "Invalid hex color code",
+                    "de" => "Ungültiger Hex-Farbcode",
+                    _ => "Neplatný hexadecimální kód barvy",
                 },
                 _ => GetUnknownErrorMessage(lang),
             };

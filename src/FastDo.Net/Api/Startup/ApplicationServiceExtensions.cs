@@ -7,7 +7,10 @@ using FastDo.Net.Domain.Errors.ErrorMessages;
 using FastDo.Net.Domain.Errors.Models;
 using FastDo.Net.MongoDatabase.Providers;
 using FastDo.Net.MongoDatabase.Settings;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace FastDo.Net.Api.Startup
 {
@@ -15,7 +18,10 @@ namespace FastDo.Net.Api.Startup
     {
         private static IActionResult HandleErrors(ActionContext actionContext, IGetErrorMessage? getErrorMessage = null, IConfiguration? configuration = null)
         {
-            var modelErrorCollection = actionContext.ModelState.Values.Select(x => x.Errors).FirstOrDefault();
+            var modelErrorCollection = actionContext.ModelState.Values
+                .Where(_ => _.ValidationState == ModelValidationState.Invalid)
+                .Select(_ => _.Errors)
+                .FirstOrDefault();
 
             var lang = GlobalConsts.DefaultLanguage;
 
@@ -93,9 +99,50 @@ namespace FastDo.Net.Api.Startup
             return services;
         }
 
+        public static IServiceCollection AddAllowAllCorsPolicy(this IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(CorsPolicies.AllowAllCorsPolicy, policy =>
+                {
+                    policy
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowAnyOrigin();
+                });
+            });
+
+            return services;
+        }
+
+        public static IServiceCollection AddAllowAllCorsPolicySignalR(this IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(CorsPolicies.AddAllowAllCorsPolicySignalR, policy =>
+                {
+                    policy
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .SetIsOriginAllowed(_ => true)
+                        .AllowCredentials();
+                });
+            });
+
+            return services;
+        }
+
         public static IServiceCollection AddFastDoErrorMessages(this IServiceCollection services)
         {
             services.AddScoped<IGetErrorMessage, FastDoGetErrorMessage>();
+            return services;
+        }
+
+        public static IServiceCollection AddErrorMessages<T>(this IServiceCollection services, bool addFastDoErrorMessages = true) where T : class, IGetErrorMessage
+        {
+            if (addFastDoErrorMessages)
+                services.AddScoped<FastDoGetErrorMessage>();
+            services.AddScoped<IGetErrorMessage, T>();
             return services;
         }
 
@@ -109,6 +156,18 @@ namespace FastDo.Net.Api.Startup
         {
             services.AddSettings<MongoDbSettings>(configuration);
             services.AddScoped<IMongoDbProvider, MongoDbProvider>();
+            return services;
+        }
+
+        public static IServiceCollection AddAuthorizedControllersWithHttpContextAccessor(this IServiceCollection services)
+        {
+            services.AddControllers(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             return services;
         }
     }

@@ -1,13 +1,15 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using FastDo.Net.Domain.Enums;
+using FastDo.Net.Domain.Models;
+using Microsoft.IdentityModel.Tokens;
 
 namespace FastDo.Net.Api.Helpers
 {
     /// <summary>
     /// Helper for generating Salt, Hash, ApiKey
     /// </summary>
-    public class CryptographyHelper
+    public static class CryptographyHelper
     {
         /// <summary>
         /// Generate random string of specific size
@@ -15,7 +17,7 @@ namespace FastDo.Net.Api.Helpers
         /// <param name="size">Size of random string</param>
         /// <returns>Random string in base64 of length specified by parameter: size</returns>
         public static string GenerateRandomString(int size)
-            => Convert.ToBase64String(RandomNumberGenerator.GetBytes(size));
+            => Base64UrlEncoder.Encode(RandomNumberGenerator.GetBytes(size));
 
         /// <summary>
         /// Generate random int number of specified digits
@@ -61,7 +63,7 @@ namespace FastDo.Net.Api.Helpers
         }
 
         /// <summary>
-        /// Verify if hashed input mathces hash. Use it for verifing passwords.
+        /// Verify if hashed input matches hash. Use it for verifing passwords.
         /// </summary>
         /// <param name="input">Plain text input</param>
         /// <param name="hash">Hash</param>
@@ -73,6 +75,82 @@ namespace FastDo.Net.Api.Helpers
             var newHash = CreateHash(input, salt, hashMethod);
             return newHash.Equals(hash);
         }
+
+        /// <summary>
+        /// Verify if hashed input matches hash in password credentials with salt. Use it for verifing passwords.
+        /// </summary>
+        /// <param name="input">Plain text input</param>
+        /// <param name="passwordCredentials">Password credentials</param>
+        /// <returns>Success of the verification</returns>
+        public static bool Verify(string input, PasswordCredentials passwordCredentials)
+        {
+            var newHash = CreateHash(input, passwordCredentials.Salt!, (HashMethod)passwordCredentials.HashMethod);
+            return newHash.Equals(passwordCredentials.Hash);
+        }
+
+        /// <summary>
+        /// Generate salt and create hash
+        /// </summary>
+        /// <param name="input">Input string</param>
+        /// <param name="hashMethod">HashMethod</param>
+        /// <returns>Salt and hash</returns>
+        public static (string, string) CreateSaltAndHash(string input, HashMethod hashMethod)
+        {
+            var salt = GenerateSalt();
+            var hash = CreateHash(input, salt, hashMethod);
+            return (salt, hash);
+        }
+
+        /// <summary>
+        /// Generate salt and create hash with Sha256
+        /// </summary>
+        /// <param name="input">Input string</param>
+        /// <param name="hashMethod">HashMethod</param>
+        /// <returns>Salt and hash</returns>
+        public static (string, string) CreateSaltAndHashSha256(string input)
+            => CreateSaltAndHash(input, HashMethod.Sha256);
+
+        /// <summary>
+        /// Generate salt and create hash with Sha512
+        /// </summary>
+        /// <param name="input">Input string</param>
+        /// <param name="hashMethod">HashMethod</param>
+        /// <returns>Salt and hash</returns>
+        public static (string, string) CreateSaltAndHashSha512(string input)
+            => CreateSaltAndHash(input, HashMethod.Sha512);
+
+        /// <summary>
+        /// Create password credentials like salt, hash and hashMethod from string input
+        /// </summary>
+        /// <param name="input">Input string</param>
+        /// <param name="hashMethod">HashMethod</param>
+        /// <returns>PasswordCredentials</returns>
+        public static PasswordCredentials CreatePasswordCredentials(string input, HashMethod hashMethod)
+        {
+            (var salt, var hash) = CreateSaltAndHash(input, hashMethod);
+            return new PasswordCredentials()
+            {
+                Salt = salt,
+                Hash = hash,
+                HashMethod = (int)hashMethod,
+            };
+        }
+
+        /// <summary>
+        /// Create password credentials like salt, hash and hashMethod from string input with hashMethod Sha256
+        /// </summary>
+        /// <param name="input">Input string</param>
+        /// <returns>PasswordCredentials</returns>
+        public static PasswordCredentials CreatePasswordCredentialsSha256(string input)
+            => CreatePasswordCredentials(input, HashMethod.Sha256);
+
+        /// <summary>
+        /// Create password credentials like salt, hash and hashMethod from string input with hashMethod Sha512
+        /// </summary>
+        /// <param name="input">Input string</param>
+        /// <returns>PasswordCredentials</returns>
+        public static PasswordCredentials CreatePasswordCredentialsSha512(string input)
+             => CreatePasswordCredentials(input, HashMethod.Sha512);
 
         /// <summary>
         /// Generate salt
@@ -108,5 +186,39 @@ namespace FastDo.Net.Api.Helpers
         /// <returns>Random string of length 60 in base64</returns>
         public static string GenerateEmailVerificationToken()
             => GenerateRandomString(60);
+
+        /// <summary>
+        /// Generate EmailVerificationCredentials
+        /// </summary>
+        /// <returns>EmailVerificationCredentials</returns>
+        public static EmailVerificationCredentials GenerateEmailVerificationCredentials()
+            => new()
+            {
+                Token = GenerateEmailVerificationToken(),
+                Verified = false,
+            };
+
+        public static OAuthClientCredentials GenerateOAuthClientCredentials()
+            => new()
+            {
+                ClientId = GenerateClientId(),
+                ClientSecret = GenerateClientSecret(),
+            };
+
+        public static OAuthClientCredentialsSecure ToSecure(this OAuthClientCredentials oAuthClientCredentials, HashMethod hashMethod = HashMethod.Sha256)
+        {
+            if (string.IsNullOrEmpty(oAuthClientCredentials.ClientSecret))
+                throw new ArgumentNullException("ClientSecret must not be null");
+
+            (var salt, var hash) = CreateSaltAndHash(oAuthClientCredentials.ClientSecret, hashMethod);
+
+            return new OAuthClientCredentialsSecure()
+            {
+                ClientId = oAuthClientCredentials.ClientId,
+                ClientSecretHash = hash,
+                HashMethod = (int)hashMethod,
+                Salt = salt,
+            };
+        }
     }
 }

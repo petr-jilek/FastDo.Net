@@ -5,14 +5,13 @@ using FastDo.Net.Api.Services.Auth.Token;
 using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Consts;
-using FastDo.Net.Domain.Enums;
 using FastDo.Net.Domain.Errors;
 using FastDo.Net.MongoDatabase.Models.Users;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace FastDo.Net.Application.Areas.Users.SuperAdminUsers.Login
+namespace FastDo.Net.Application.Areas.Users.SuperadminUsers.Login
 {
     public class LoginHandler : IHandler
     {
@@ -27,17 +26,13 @@ namespace FastDo.Net.Application.Areas.Users.SuperAdminUsers.Login
 
         public async Task<Result<LoginResponse>> Handle(LoginRequest request)
         {
-            var collection = _mongoDbProvider.GetCollection<SuperAdminUser>();
+            var collection = _mongoDbProvider.GetCollection<SuperadminUser>();
 
             var user = await collection.AsQueryable().FirstOrDefaultAsync(_ => _.Email == request.Email);
             if (user is null)
                 return Result<LoginResponse>.BadRequest(FastDoErrorCodes.BadEmailOrPassword);
 
-            if (request.Password is null || user.PasswordHash is null || user.PasswordSalt is null)
-                return Result<LoginResponse>.BadRequest(FastDoErrorCodes.BadEmailOrPassword);
-
-            if (CryptographyHelper.Verify(request.Password, user.PasswordHash, user.PasswordSalt,
-                    (HashMethod)user.PasswordHashMethod) == false)
+            if (CryptographyHelper.Verify(request.Password!, user.PasswordCredentials!) == false)
                 return Result<LoginResponse>.BadRequest(FastDoErrorCodes.BadEmailOrPassword);
 
             var claims = new List<Claim>

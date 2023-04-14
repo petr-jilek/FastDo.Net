@@ -1,4 +1,5 @@
-﻿using FastDo.Net.Application.Abstractions;
+﻿using FastDo.Net.Api.Extensions;
+using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
 using FastDo.Net.Domain.Errors;
 using FastDo.Net.MongoDatabase.Models.Articles;
@@ -20,7 +21,10 @@ namespace FastDo.Net.Application.Areas.General.Articles.Create
         public async Task<Result<EmptyClass>> Handle(CreateRequest request)
         {
             var collection = _mongoDbProvider.GetCollection<Article>();
-            if (await collection.AsQueryable().AnyAsync(_ => _.Name == request.Name))
+
+            var nameUrl = request.Name!.ToFriendlyUrl();
+
+            if (await collection.AsQueryable().AnyAsync(_ => _.NameUrl == nameUrl || _.Name == request.Name))
                 return Result<EmptyClass>.Conflict(FastDoErrorCodes.ArticleAlreadyExists);
 
             var maxOrder = await collection.AsQueryable().AnyAsync(_ => true)
@@ -30,9 +34,10 @@ namespace FastDo.Net.Application.Areas.General.Articles.Create
             var article = new Article
             {
                 Name = request.Name,
+                NameUrl = nameUrl,
+                ImageName = request.ImageName,
                 Created = DateTimeOffset.UtcNow,
                 LastUpdated = DateTimeOffset.UtcNow,
-                ImageName = request.ImageName,
                 Description = request.Description,
                 Content = request.Content,
                 Type = request.Type,

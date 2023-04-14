@@ -8,5 +8,6 @@
         List<string> GetFileNames(string dirPath);
         byte[]? GetFile(string dirPath, string fileName);
         bool DeleteFile(string dirPath, string fileName);
+        bool DeleteAllFiles(string dirPath);
     }
 }

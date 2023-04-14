@@ -29,10 +29,12 @@ namespace FastDo.Net.Application.Areas.General.Articles.Get
                 {
                     Id = _.Id,
                     Name = _.Name,
+                    NameUrl = _.NameUrl,
                     Created = _.Created,
                     LastUpdated = _.LastUpdated,
                     ImageName = _.ImageName,
                     Description = _.Description,
+                    Order = _.Order,
                 })
                 .ToListAsync();
 

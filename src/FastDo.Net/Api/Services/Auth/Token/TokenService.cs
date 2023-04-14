@@ -38,6 +38,30 @@ namespace FastDo.Net.Api.Services.Auth.Token
             return tokenHandler.WriteToken(token);
         }
 
+        public string? CreateTokenExpirationInSeconds(List<Claim> claims, int expiration)
+        {
+            if (_tokenServiceSettings.Secret is null)
+                return null;
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenServiceSettings.Secret));
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Issuer = _tokenServiceSettings.Issuer,
+                Audience = _tokenServiceSettings.Audience,
+                Expires = DateTime.UtcNow.AddSeconds(expiration),
+                SigningCredentials = credentials
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            return tokenHandler.WriteToken(token);
+        }
+
         public async Task<bool> IsTokenValidAsync(string token)
         {
             if (_tokenServiceSettings.Secret is null)

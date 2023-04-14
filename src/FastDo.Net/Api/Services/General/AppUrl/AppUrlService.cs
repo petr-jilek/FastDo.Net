@@ -12,10 +12,20 @@
         public string? GetHostUrl()
             => _httpContextAccessor.HttpContext?.Request.Host.Value;
 
-        public string? CreateHttpsApiUrl(string path)
-            => $"https://{GetHostUrl()}/api{path}";
-
-        public string? CreateHttpsUrl(string path)
-            => $"https://{GetHostUrl()}{path}";
+        public string? CreateHttpsApiUrl(string path, bool useHttps = true)
+        {
+            if (useHttps)
+                return $"https://{GetHostUrl()}/api{path}";
+            else
+                return $"http://{GetHostUrl()}/api{path}";
+        }
+        
+        public string? CreateHttpsUrl(string path, bool useHttps = true)
+        {
+            if (useHttps)
+                return $"https://{GetHostUrl()}{path}";
+            else
+                return $"http://{GetHostUrl()}{path}";
+        }
     }
 }

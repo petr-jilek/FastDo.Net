@@ -1,4 +1,6 @@
-﻿namespace FastDo.Net.Domain.Errors.Models
+﻿using FastDo.Net.Api.Extensions;
+
+namespace FastDo.Net.Domain.Errors.Models
 {
     public class ErrorCode
     {
@@ -14,6 +16,10 @@
         public ErrorCode(string value)
         {
             var splitted = value.Split('.');
+
+            if (splitted.Length != 2 || splitted[0].IsInt() == false || splitted[1].IsInt() == false)
+                splitted = FastDoErrorCodes.UnknownError.Split('.');
+
             Block = int.Parse(splitted[0]);
             Code = int.Parse(splitted[1]);
         }

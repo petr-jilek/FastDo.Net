@@ -2,14 +2,13 @@
 using FastDo.Net.Api.Services.Auth.UserAccessor;
 using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
-using FastDo.Net.Domain.Enums;
 using FastDo.Net.Domain.Errors;
 using FastDo.Net.MongoDatabase.Models.Users;
 using FastDo.Net.MongoDatabase.Providers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
-namespace FastDo.Net.Application.Areas.Users.SuperAdminUsers.ChangePassword
+namespace FastDo.Net.Application.Areas.Users.SuperadminUsers.ChangePassword
 {
     public class ChangePasswordHandler : IHandler
     {
@@ -27,7 +26,7 @@ namespace FastDo.Net.Application.Areas.Users.SuperAdminUsers.ChangePassword
             if (request.NewPassword != request.NewPasswordConfirmation)
                 return Result<EmptyClass>.BadRequest(FastDoErrorCodes.PasswordsDontMatch);
 
-            var collection = _mongoDbProvider.GetCollection<SuperAdminUser>();
+            var collection = _mongoDbProvider.GetCollection<SuperadminUser>();
 
             var userId = _userAccessorService.GetId();
 
@@ -35,21 +34,10 @@ namespace FastDo.Net.Application.Areas.Users.SuperAdminUsers.ChangePassword
             if (user is null)
                 return Result<EmptyClass>.NotFound();
 
-            if (request.Password is null || user.PasswordHash is null || user.PasswordSalt is null ||
-                request.NewPassword is null)
-                return Result<EmptyClass>.Unauthorized(FastDoErrorCodes.BadPassword);
+            if (CryptographyHelper.Verify(request.Password!, user.PasswordCredentials!) == false)
+                return Result<EmptyClass>.BadRequest(FastDoErrorCodes.BadPassword);
 
-            if (CryptographyHelper.Verify(request.Password, user.PasswordHash, user.PasswordSalt,
-                    (HashMethod)user.PasswordHashMethod) == false)
-                return Result<EmptyClass>.Unauthorized(FastDoErrorCodes.BadPassword);
-
-            var hashMethod = HashMethod.Sha512;
-            var newPasswordSalt = CryptographyHelper.GenerateSalt();
-            var newPasswordHash = CryptographyHelper.CreateHash(request.NewPassword, newPasswordSalt, hashMethod);
-
-            user.PasswordSalt = newPasswordSalt;
-            user.PasswordHash = newPasswordHash;
-            user.PasswordHashMethod = (int)hashMethod;
+            user.PasswordCredentials = CryptographyHelper.CreatePasswordCredentialsSha256(request.NewPassword!);
 
             await collection.ReplaceOneAsync(_ => _.Id == userId, user);
 

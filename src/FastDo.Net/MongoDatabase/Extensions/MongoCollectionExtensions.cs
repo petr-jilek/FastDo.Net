@@ -7,7 +7,7 @@ namespace FastDo.Net.MongoDatabase.Extensions
 {
     public static class MongoCollectionExtensions
     {
-        public static async Task<ReplaceOneResult> EditOneAsync<T>(this IMongoCollection<T> collection, T item) where T : IId
+        public static async Task<ReplaceOneResult> UpdateOneAsync<T>(this IMongoCollection<T> collection, T item) where T : IId
             => await collection.ReplaceOneAsync(_ => _.Id == item.Id, item);
         public static async Task<DeleteResult> DeleteOneAsync<T>(this IMongoCollection<T> collection, T item) where T : IId
             => await collection.DeleteOneAsync(_ => _.Id == item.Id);
@@ -24,11 +24,16 @@ namespace FastDo.Net.MongoDatabase.Extensions
         public static async Task<List<T>> GetAllAsync<T>(this IMongoCollection<T> collection) where T : IId
             => await collection.AsQueryable().ToListAsync();
 
-        public static async Task<List<T>> GetPagedAsync<T>(this IMongoCollection<T> collection, int pageNumber, int pageSize) where T : IId
+        public static async Task<List<T>> GetPagedAsync<T>(this IMongoCollection<T> collection, int pageNumber, int pageSize)
             => await collection
                 .AsQueryable()
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+
+        public static IMongoQueryable<T> Paginate<T>(this IMongoQueryable<T> query, int pageNumber, int pageSize)
+          => query
+              .Skip((pageNumber - 1) * pageSize)
+              .Take(pageSize);
     }
 }

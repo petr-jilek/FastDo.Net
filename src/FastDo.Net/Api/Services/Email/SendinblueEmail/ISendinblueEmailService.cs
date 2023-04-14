@@ -1,7 +1,10 @@
-﻿namespace FastDo.Net.Api.Services.Email.SendinblueEmail
+﻿using FastDo.Net.Api.Services.Email.SendinblueEmail.Models;
+
+namespace FastDo.Net.Api.Services.Email.SendinblueEmail
 {
     public interface ISendinblueEmailService
     {
-        Task<HttpResponseMessage> SendEmailAsync(string fromEmail, string fromName, string toEmail, string toName, string subject, string htmlContent);
+        Task<HttpResponseMessage> SendEmailAsync(EmailUser sender, EmailUser reciever, string subject, string htmlContent);
+        Task<HttpResponseMessage> SendEmailMultipleRecieversAsync(EmailUser sender, List<EmailUser> recievers, string subject, string htmlContent);
     }
 }

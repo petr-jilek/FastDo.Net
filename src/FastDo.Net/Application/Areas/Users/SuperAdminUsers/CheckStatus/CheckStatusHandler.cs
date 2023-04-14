@@ -3,7 +3,7 @@ using FastDo.Net.Api.Services.Auth.UserAccessor;
 using FastDo.Net.Application.Abstractions;
 using FastDo.Net.Application.Core;
 
-namespace FastDo.Net.Application.Areas.Users.SuperAdminUsers.CheckStatus
+namespace FastDo.Net.Application.Areas.Users.SuperadminUsers.CheckStatus
 {
     public class CheckStatusHandler : IHandler
     {

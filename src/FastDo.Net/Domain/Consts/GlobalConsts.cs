@@ -10,5 +10,7 @@
         public const string MediaImagesFolder = "MediaImages";
         public const int MaxMediaImageSize = 5 * 1024 * 1024;
         public static readonly List<string> AllowedMediaImageExtensions = new List<string>() { "jpg", "png", "jpeg" };
+
+        public const string EnviromentKey = "ASPNETCORE_ENVIRONMENT";
     }
 }

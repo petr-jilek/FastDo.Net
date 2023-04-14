@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace FastDo.Net.Api.Extensions
 {
@@ -74,5 +76,30 @@ namespace FastDo.Net.Api.Extensions
 
             return true;
         }
+
+        public static string ToFriendlyUrl(this string input)
+        {
+            // Remove diacritics
+            var normalizedString = input.Normalize(NormalizationForm.FormD);
+            var regex = new Regex("[^a-zA-Z0-9 -]");
+            var strippedString = regex.Replace(normalizedString, "");
+
+            // Replace spaces with hyphens
+            var hyphenatedString = strippedString.Replace(" ", "-");
+
+            // Make the entire string lowercase
+            var result = hyphenatedString.ToLower();
+
+            // Encode the string to a URL-safe format
+            result = Uri.EscapeDataString(result);
+
+            return result;
+        }
+
+        public static bool IsSuccessStatusCode(this HttpStatusCode httpStatusCode)
+            => IsSuccessStatusCode((int)httpStatusCode);
+
+        public static bool IsSuccessStatusCode(this int httpStatusCode)
+            => (httpStatusCode >= 200) && (httpStatusCode <= 299);
     }
 }
