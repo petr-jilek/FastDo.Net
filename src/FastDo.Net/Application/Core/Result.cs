@@ -16,38 +16,38 @@ namespace FastDo.Net.Application.Core
         public static Result<T> Ok(T value) =>
             new() { Success = true, StatusCode = HttpStatusCode.OK, Value = value, ErrorCode = null };
 
-        public static Result<T> BadRequest(string? errorCode = null, string? errorDetail = null) => new()
+        public static Result<T> BadRequest(string? errorCode = null, string? errorDetail = null, T? value = default) => new()
         {
             Success = false,
             StatusCode = HttpStatusCode.BadRequest,
-            Value = default,
+            Value = value,
             ErrorCode = errorCode,
             ErrorDetail = errorDetail
         };
 
-        public static Result<T> NotFound(string? errorCode = null, string? errorDetail = null) => new()
+        public static Result<T> NotFound(string? errorCode = null, string? errorDetail = null, T? value = default) => new()
         {
             Success = false,
             StatusCode = HttpStatusCode.NotFound,
-            Value = default,
+            Value = value,
             ErrorCode = errorCode,
             ErrorDetail = errorDetail
         };
 
-        public static Result<T> Conflict(string? errorCode = null, string? errorDetail = null) => new()
+        public static Result<T> Conflict(string? errorCode = null, string? errorDetail = null, T? value = default) => new()
         {
             Success = false,
             StatusCode = HttpStatusCode.Conflict,
-            Value = default,
+            Value = value,
             ErrorCode = errorCode,
             ErrorDetail = errorDetail
         };
 
-        public static Result<T> Unauthorized(string? errorCode = null, string? errorDetail = null) => new()
+        public static Result<T> Unauthorized(string? errorCode = null, string? errorDetail = null, T? value = default) => new()
         {
             Success = false,
             StatusCode = HttpStatusCode.Unauthorized,
-            Value = default,
+            Value = value,
             ErrorCode = errorCode,
             ErrorDetail = errorDetail
         };

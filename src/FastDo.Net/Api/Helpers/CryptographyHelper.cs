@@ -82,8 +82,10 @@ namespace FastDo.Net.Api.Helpers
         /// <param name="input">Plain text input</param>
         /// <param name="passwordCredentials">Password credentials</param>
         /// <returns>Success of the verification</returns>
-        public static bool Verify(string input, PasswordCredentials passwordCredentials)
+        public static bool Verify(string? input, PasswordCredentials? passwordCredentials)
         {
+            if (input is null || passwordCredentials is null)
+                return false;
             var newHash = CreateHash(input, passwordCredentials.Salt!, (HashMethod)passwordCredentials.HashMethod);
             return newHash.Equals(passwordCredentials.Hash);
         }
