@@ -48,9 +48,9 @@ namespace FastDo.Net.Api.Helpers
         /// <param name="salt">Salt for hash</param>
         /// <param name="hashMethod">HashMethod by which the input will be hashed</param>
         /// <returns>Hashed input string</returns>
-        public static string CreateHash(string input, string salt, HashMethod hashMethod)
+        public static string CreateHash(string input, string? salt = null, HashMethod hashMethod = HashMethod.Sha256)
         {
-            var bytes = Encoding.UTF8.GetBytes(input + salt);
+            var bytes = Encoding.UTF8.GetBytes(input + (salt ?? ""));
 
             var hash = hashMethod switch
             {
