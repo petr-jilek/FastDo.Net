@@ -8,12 +8,12 @@ namespace FastDo.Net.Api.Seeds
 {
     public static class MongoDataSeed
     {
-        public static async Task SeedSuperAdmin(IMongoDbProvider mongoUserCollectionsProvider, string email, string password)
+        public static async Task SeedSuperdmin(IMongoDbProvider mongoDbProvider, string email, string password)
         {
-            var collection = mongoUserCollectionsProvider.GetCollection<SuperadminUser>();
+            var collection = mongoDbProvider.GetCollection<SuperadminUser>();
 
             if (await collection.AsQueryable().CountAsync() == 0)
-            {                
+            {
                 var superAdminUser = new SuperadminUser()
                 {
                     Email = email,
