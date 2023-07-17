@@ -1,11 +1,9 @@
-﻿using FastDo.Net.Domain.Enums;
+﻿using FastDo.Net.Domain.Models;
 
 namespace FastDo.Net.MongoDatabase.Abstractions
 {
     public abstract class PasswordDbModel : BaseDbModelStringId
     {
-        public string? PasswordSalt { get; set; }
-        public string? PasswordHash { get; set; }
-        public HashMethod PasswordHashMethod { get; set; }
+        public PasswordCredentials? PasswordCredentials { get; set; }
     }
 }

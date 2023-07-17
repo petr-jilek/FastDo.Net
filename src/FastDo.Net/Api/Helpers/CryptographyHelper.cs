@@ -48,9 +48,9 @@ namespace FastDo.Net.Api.Helpers
         /// <param name="salt">Salt for hash</param>
         /// <param name="hashMethod">HashMethod by which the input will be hashed</param>
         /// <returns>Hashed input string</returns>
-        public static string CreateHash(string input, string salt, HashMethod hashMethod)
+        public static string CreateHash(string input, string? salt = null, HashMethod hashMethod = HashMethod.Sha256)
         {
-            var bytes = Encoding.UTF8.GetBytes(input + salt);
+            var bytes = Encoding.UTF8.GetBytes(input + (salt ?? ""));
 
             var hash = hashMethod switch
             {
@@ -82,8 +82,10 @@ namespace FastDo.Net.Api.Helpers
         /// <param name="input">Plain text input</param>
         /// <param name="passwordCredentials">Password credentials</param>
         /// <returns>Success of the verification</returns>
-        public static bool Verify(string input, PasswordCredentials passwordCredentials)
+        public static bool Verify(string? input, PasswordCredentials? passwordCredentials)
         {
+            if (input is null || passwordCredentials is null)
+                return false;
             var newHash = CreateHash(input, passwordCredentials.Salt!, (HashMethod)passwordCredentials.HashMethod);
             return newHash.Equals(passwordCredentials.Hash);
         }

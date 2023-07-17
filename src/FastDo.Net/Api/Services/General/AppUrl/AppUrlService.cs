@@ -12,6 +12,14 @@
         public string? GetHostUrl()
             => _httpContextAccessor.HttpContext?.Request.Host.Value;
 
+        public string? CreateBaseUrl(bool useHttps = true)
+        {
+            if (useHttps)
+                return $"https://{GetHostUrl()}";
+            else
+                return $"http://{GetHostUrl()}";
+        }
+
         public string? CreateHttpsApiUrl(string path, bool useHttps = true)
         {
             if (useHttps)
@@ -19,7 +27,7 @@
             else
                 return $"http://{GetHostUrl()}/api{path}";
         }
-        
+
         public string? CreateHttpsUrl(string path, bool useHttps = true)
         {
             if (useHttps)
