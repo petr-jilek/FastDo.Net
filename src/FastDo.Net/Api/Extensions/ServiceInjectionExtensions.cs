@@ -31,6 +31,13 @@
         public static IServiceCollection AddSettings<T>(this IServiceCollection services, IConfiguration configuration)
             where T : class, new()
         {
+            services.AddAndGetSettings<T>(configuration);
+            return services;
+        }
+
+        public static T AddAndGetSettings<T>(this IServiceCollection services, IConfiguration configuration)
+            where T : class, new()
+        {
             var settings = new T();
             configuration.GetSection(typeof(T).Name).Bind(settings);
 
@@ -39,7 +46,7 @@
 
             services.AddSingleton(settings);
 
-            return services;
+            return settings;
         }
     }
 }
