@@ -3,6 +3,7 @@
     public static class Enviroments
     {
         public const string Development = "Development";
+        public const string Localhost = "Localhost";
         public const string Testing = "Testing";
         public const string Staging = "Staging";
         public const string Demo = "Demo";

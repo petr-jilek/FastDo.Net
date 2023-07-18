@@ -7,6 +7,9 @@ namespace FastDo.Net.Api.Helpers
         public static bool IsDevelopment()
             => Environment.GetEnvironmentVariable(GlobalConsts.EnviromentKey) == Enviroments.Development;
 
+        public static bool IsLocalhost()
+            => Environment.GetEnvironmentVariable(GlobalConsts.EnviromentKey) == Enviroments.Localhost;
+
         public static bool IsTesting()
             => Environment.GetEnvironmentVariable(GlobalConsts.EnviromentKey) == Enviroments.Testing;
 
