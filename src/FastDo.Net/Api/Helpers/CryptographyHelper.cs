@@ -210,16 +210,15 @@ namespace FastDo.Net.Api.Helpers
         public static OAuthClientCredentialsSecure ToSecure(this OAuthClientCredentials oAuthClientCredentials, HashMethod hashMethod = HashMethod.Sha256)
         {
             if (string.IsNullOrEmpty(oAuthClientCredentials.ClientSecret))
-                throw new ArgumentNullException("ClientSecret must not be null");
-
-            (var salt, var hash) = CreateSaltAndHash(oAuthClientCredentials.ClientSecret, hashMethod);
+            {
+                var argumentNullException = new ArgumentNullException("ClientSecret must not be null");
+                throw argumentNullException;
+            }
 
             return new OAuthClientCredentialsSecure()
             {
                 ClientId = oAuthClientCredentials.ClientId,
-                ClientSecretHash = hash,
-                HashMethod = (int)hashMethod,
-                Salt = salt,
+                ClientSecretCredentials = CreatePasswordCredentials(oAuthClientCredentials.ClientSecret, hashMethod),
             };
         }
     }

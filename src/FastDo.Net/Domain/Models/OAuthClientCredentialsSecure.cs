@@ -3,8 +3,6 @@
     public class OAuthClientCredentialsSecure
     {
         public string? ClientId { get; set; }
-        public string? ClientSecretHash { get; set; }
-        public string? Salt { get; set; }
-        public int HashMethod { get; set; }
+        public PasswordCredentials? ClientSecretCredentials { get; set; }
     }
 }
