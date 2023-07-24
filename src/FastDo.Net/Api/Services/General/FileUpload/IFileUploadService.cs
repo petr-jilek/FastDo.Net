@@ -7,6 +7,7 @@
         bool UploadFile(string dirPath, byte[] file, string fileName);
         List<string> GetFileNames(string dirPath);
         byte[]? GetFile(string dirPath, string fileName);
+        Task<byte[]?> GetFileAsync(string dirPath, string fileName);
         bool DeleteFile(string dirPath, string fileName);
         bool DeleteAllFiles(string dirPath);
     }

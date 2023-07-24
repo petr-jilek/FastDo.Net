@@ -78,6 +78,15 @@
             return File.ReadAllBytes(path);
         }
 
+        public async Task<byte[]?> GetFileAsync(string dirPath, string fileName)
+        {
+            var filePath = Path.Combine(dirPath, fileName);
+            if (FileExists(filePath) == false)
+                return null;
+
+            var path = GetPath(filePath);
+            return await File.ReadAllBytesAsync(path);
+        }
 
         public bool DeleteFile(string dirPath, string fileName)
         {
