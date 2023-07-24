@@ -13,21 +13,22 @@ namespace FastDo.Net.Api.Services.General.Localization
             _settings = settings;
         }
 
-        public string GetLanguageCode()
+        public string GetLang()
         {
-            var lang = _httpContextAccessor.HttpContext?.Request.Headers["Accept-Language"];
+            var langGet = _httpContextAccessor.HttpContext?.Request.Query["lang"];
+            var langHeader = _httpContextAccessor.HttpContext?.Request.Headers["Accept-Language"];
 
-            if (lang is null || GlobalConsts.SupportedLanguages.Contains(lang) == false)
-                return _settings.DefaultLanguage!;
-            if (_settings.SupportedLanguages!.Contains(lang))
-                return lang;
+            var lang = langGet ?? langHeader ?? _settings.DefaultLanguage;
 
-            return _settings.DefaultLanguage!;
+            if (GlobalConsts.SupportedLanguages.Contains(lang) == false)
+                lang = _settings.DefaultLanguage;
+
+            return lang;
         }
 
         public string GetString(Dictionary<string, string> localizedValues)
         {
-            return localizedValues.TryGetValue(GetLanguageCode(), out var value) ? value : "##";
+            return localizedValues.TryGetValue(GetLang(), out var value) ? value : "##";
         }
     }
 }

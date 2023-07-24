@@ -14,18 +14,18 @@ namespace FastDo.Net.Api.Abstractions
         public BaseApiLocalizedController(ILocalizationService localizationService, IGetErrorMessage getErrorMessage) : base(getErrorMessage)
         {
             _localizationService = localizationService;
-        }
+        }      
 
         protected IActionResult HandleResult<T>(Result<T> result)
-            => HandleResult(result, _localizationService.GetLanguageCode());
+            => HandleResult(result, _localizationService.GetLang());
 
         protected IActionResult HandleFileResult(Result<byte[]> result, string contentType, string? fileDownloadName = null)
-            => HandleFileResult(result, contentType, fileDownloadName, _localizationService.GetLanguageCode());
+            => HandleFileResult(result, contentType, fileDownloadName, _localizationService.GetLang());
 
         protected IActionResult HandleFileJpegResult(Result<byte[]> result, string? fileDownloadName = null)
-            => HandleFileJpegResult(result, fileDownloadName, _localizationService.GetLanguageCode());
+            => HandleFileJpegResult(result, fileDownloadName, _localizationService.GetLang());
 
         protected IActionResult HandleFileCsvResult(Result<byte[]> result, string? fileDownloadName = null)
-            => HandleFileCsvResult(result, fileDownloadName, _localizationService.GetLanguageCode());
+            => HandleFileCsvResult(result, fileDownloadName, _localizationService.GetLang());
     }
 }

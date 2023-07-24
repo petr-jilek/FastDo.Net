@@ -35,7 +35,7 @@ namespace FastDo.Net.Api.Startup
 
                 var localizationService = new LocalizationService(httpContextAccessor, localizationServiceSettings);
 
-                lang = localizationService.GetLanguageCode();
+                lang = localizationService.GetLang();
             }
 
             if (getErrorMessage is null)
@@ -55,13 +55,13 @@ namespace FastDo.Net.Api.Startup
             return new BadRequestObjectResult(new ErrorModel(getErrorMessage.GetErrorMessage(errorCode, lang), errorCode));
         }
 
-        public static IServiceCollection AddApiBehaviorOptions(this IServiceCollection services, IGetErrorMessage? getErrorMessage = null)
+        public static IServiceCollection AddApiBehaviorOptions(this IServiceCollection services, IGetErrorMessage? getErrorMessage = null, IConfiguration? configuration = null)
         {
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory = actionContext =>
                 {
-                    return HandleErrors(actionContext, getErrorMessage);
+                    return HandleErrors(actionContext, getErrorMessage, configuration: configuration);
                 };
             });
 

@@ -2,7 +2,7 @@
 {
     public interface ILocalizationService
     {
-        public string GetLanguageCode();
+        public string GetLang();
         public string GetString(Dictionary<string, string> localizedValues);
     }
 }

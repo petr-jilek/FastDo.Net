@@ -30,7 +30,7 @@ namespace FastDo.Net.Api.Middlewares
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-                var errorModel = ex.GetErrorModel(getErrorMessage, localizationService.GetLanguageCode());
+                var errorModel = ex.GetErrorModel(getErrorMessage, localizationService.GetLang());
                 var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
                 var json = JsonSerializer.Serialize(errorModel, options);
                 await context.Response.WriteAsync(json);
