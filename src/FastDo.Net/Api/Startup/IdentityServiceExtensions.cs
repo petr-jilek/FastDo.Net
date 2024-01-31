@@ -27,7 +27,7 @@ namespace FastDo.Net.Api.Startup
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey =
                             new SymmetricSecurityKey(
-                                Encoding.UTF8.GetBytes(configuration["TokenServiceSettings:Secret"])),
+                                Encoding.UTF8.GetBytes(configuration["TokenServiceSettings:Secret"] ?? "")),
                         ValidateIssuer = true,
                         ValidIssuer = configuration["TokenServiceSettings:Issuer"],
                         ValidateAudience = true,

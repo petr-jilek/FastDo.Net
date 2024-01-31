@@ -15,7 +15,7 @@ namespace FastDo.Net.Api.Services.Auth.BasicAuth
 
         public BasicAuthCredentials? GetBasicAuthCredentials()
         {
-            string authHeader = _httpContextAccessor.HttpContext!.Request.Headers["Authorization"];
+            string? authHeader = _httpContextAccessor.HttpContext!.Request.Headers["Authorization"];
             if (authHeader is null || authHeader.StartsWith("Basic ") == false)
                 return null;
 

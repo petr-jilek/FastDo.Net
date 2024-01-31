@@ -30,7 +30,7 @@ namespace FastDo.Net.Api.Middlewares
         {
             if (context.Request.Path.StartsWithSegments("/swagger"))
             {
-                string authHeader = context.Request.Headers["Authorization"];
+                string? authHeader = context.Request.Headers.Authorization;
                 if (authHeader is not null && authHeader.StartsWith("Basic "))
                 {
                     // Get the credentials from request header

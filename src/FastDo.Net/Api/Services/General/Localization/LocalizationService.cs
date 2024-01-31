@@ -18,12 +18,14 @@ namespace FastDo.Net.Api.Services.General.Localization
             var langGet = _httpContextAccessor.HttpContext?.Request.Query["lang"];
             var langHeader = _httpContextAccessor.HttpContext?.Request.Headers["Accept-Language"];
 
-            var lang = langGet ?? langHeader ?? _settings.DefaultLanguage;
+            string? lang = langGet ?? langHeader ?? _settings.DefaultLanguage;
 
-            if (GlobalConsts.SupportedLanguages.Contains(lang) == false)
+            if (string.IsNullOrEmpty(lang))
+                lang = _settings.DefaultLanguage;
+            if (GlobalConsts.SupportedLanguages.Contains(lang!) == false)
                 lang = _settings.DefaultLanguage;
 
-            return lang;
+            return lang!;
         }
 
         public string GetString(Dictionary<string, string> localizedValues)
